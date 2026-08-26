@@ -1,0 +1,208 @@
+{
+  "spec_version": "1.0.0",
+  "current_version": "1.0.5",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "created": "2026-08-26T11:08:54.564504Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_land.parquet": {
+          "sha256": "98eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+          "size_bytes": 3521513,
+          "href": "vacant_indicators_land/vacant_indicators_land.parquet",
+          "source_mtime": 1787737368.65038,
+          "mtime": 1787737368.65038,
+          "feature_count": 28737,
+          "schema_fingerprint": "f42ceaa2c11a485d"
+        }
+      },
+      "changes": [
+        "vacant_indicators_land.parquet"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "created": "2026-08-26T11:09:15.385652Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_land.parquet": {
+          "sha256": "98eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+          "size_bytes": 3521513,
+          "href": "vacant_indicators_land/vacant_indicators_land.parquet",
+          "source_mtime": 1787737368.65038,
+          "mtime": 1787737368.65038,
+          "feature_count": 28737,
+          "schema_fingerprint": "f42ceaa2c11a485d"
+        },
+        "vacant_indicators_land.pmtiles": {
+          "sha256": "6287954c16a1d16cbec7f9b5ca13a50eb95a278776ff22d31af6ab40aedb41f8",
+          "size_bytes": 6938718,
+          "href": "vacant_indicators_land/vacant_indicators_land.pmtiles",
+          "mtime": 1787742552.3770213
+        },
+        "vacant_indicators_land.thumb.jpg": {
+          "sha256": "d995a73babc458537193e29a36190b19b80817dfe38eeb8e82bf852dbd17b0b1",
+          "size_bytes": 21220,
+          "href": "vacant_indicators_land/vacant_indicators_land.thumb.jpg",
+          "mtime": 1787742555.252994
+        }
+      },
+      "changes": [
+        "vacant_indicators_land.pmtiles",
+        "vacant_indicators_land.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: vacant_indicators_land.pmtiles, vacant_indicators_land.thumb.jpg"
+    },
+    {
+      "version": "1.0.2",
+      "created": "2026-08-26T11:26:15.884901Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_land.parquet": {
+          "sha256": "98eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+          "size_bytes": 3521513,
+          "href": "vacant_indicators_land/vacant_indicators_land.parquet",
+          "source_mtime": 1787737368.65038,
+          "mtime": 1787737368.65038,
+          "feature_count": 28737,
+          "schema_fingerprint": "f42ceaa2c11a485d"
+        },
+        "vacant_indicators_land.pmtiles": {
+          "sha256": "6287954c16a1d16cbec7f9b5ca13a50eb95a278776ff22d31af6ab40aedb41f8",
+          "size_bytes": 6938718,
+          "href": "vacant_indicators_land/vacant_indicators_land.pmtiles",
+          "mtime": 1787742552.3770213
+        },
+        "vacant_indicators_land.thumb.jpg": {
+          "sha256": "d995a73babc458537193e29a36190b19b80817dfe38eeb8e82bf852dbd17b0b1",
+          "size_bytes": 21220,
+          "href": "vacant_indicators_land/vacant_indicators_land.thumb.jpg",
+          "mtime": 1787742555.252994
+        },
+        "README.md": {
+          "sha256": "508c298a535428fd154de8d2b83699f26d1bb1207ae3e23149065196cdd358c9",
+          "size_bytes": 4079,
+          "href": "vacant_indicators_land/README.md",
+          "mtime": 1787743558.8390064
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "created": "2026-08-26T11:35:13.359621Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_land.parquet": {
+          "sha256": "98eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+          "size_bytes": 3521513,
+          "href": "vacant_indicators_land/vacant_indicators_land.parquet",
+          "source_mtime": 1787737368.65038,
+          "mtime": 1787737368.65038,
+          "feature_count": 28737,
+          "schema_fingerprint": "f42ceaa2c11a485d"
+        },
+        "vacant_indicators_land.pmtiles": {
+          "sha256": "6287954c16a1d16cbec7f9b5ca13a50eb95a278776ff22d31af6ab40aedb41f8",
+          "size_bytes": 6938718,
+          "href": "vacant_indicators_land/vacant_indicators_land.pmtiles",
+          "mtime": 1787744106.0783813
+        },
+        "vacant_indicators_land.thumb.jpg": {
+          "sha256": "a31f95b23b63c57f937f95dbb5c3f07cdce0554b08def777b897a4a975da36c3",
+          "size_bytes": 23262,
+          "href": "vacant_indicators_land/vacant_indicators_land.thumb.jpg",
+          "mtime": 1787744113.2273076
+        },
+        "README.md": {
+          "sha256": "508c298a535428fd154de8d2b83699f26d1bb1207ae3e23149065196cdd358c9",
+          "size_bytes": 4079,
+          "href": "vacant_indicators_land/README.md",
+          "mtime": 1787743558.8390064
+        }
+      },
+      "changes": [
+        "vacant_indicators_land.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: vacant_indicators_land.pmtiles, vacant_indicators_land.thumb.jpg"
+    },
+    {
+      "version": "1.0.4",
+      "created": "2026-08-26T11:51:31.330213Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_land.parquet": {
+          "sha256": "98eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+          "size_bytes": 3521513,
+          "href": "vacant_indicators_land/vacant_indicators_land.parquet",
+          "source_mtime": 1787737368.65038,
+          "mtime": 1787737368.65038,
+          "feature_count": 28737,
+          "schema_fingerprint": "f42ceaa2c11a485d"
+        },
+        "vacant_indicators_land.pmtiles": {
+          "sha256": "6287954c16a1d16cbec7f9b5ca13a50eb95a278776ff22d31af6ab40aedb41f8",
+          "size_bytes": 6938718,
+          "href": "vacant_indicators_land/vacant_indicators_land.pmtiles",
+          "mtime": 1787744106.0783813
+        },
+        "vacant_indicators_land.thumb.jpg": {
+          "sha256": "a31f95b23b63c57f937f95dbb5c3f07cdce0554b08def777b897a4a975da36c3",
+          "size_bytes": 23262,
+          "href": "vacant_indicators_land/vacant_indicators_land.thumb.jpg",
+          "mtime": 1787744113.2273076
+        },
+        "README.md": {
+          "sha256": "2c36d0ac5fe76e14eb7957f93020c957435e05da12c07c993b9e0ef261f1c8da",
+          "size_bytes": 4179,
+          "href": "vacant_indicators_land/README.md",
+          "mtime": 1787745061.7510228
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.5",
+      "created": "2026-08-26T11:57:34.422459Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_land.parquet": {
+          "sha256": "98eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+          "size_bytes": 3521513,
+          "href": "vacant_indicators_land/vacant_indicators_land.parquet",
+          "source_mtime": 1787737368.65038,
+          "mtime": 1787737368.65038,
+          "feature_count": 28737,
+          "schema_fingerprint": "f42ceaa2c11a485d"
+        },
+        "vacant_indicators_land.pmtiles": {
+          "sha256": "6287954c16a1d16cbec7f9b5ca13a50eb95a278776ff22d31af6ab40aedb41f8",
+          "size_bytes": 6938718,
+          "href": "vacant_indicators_land/vacant_indicators_land.pmtiles",
+          "mtime": 1787744106.0783813
+        },
+        "vacant_indicators_land.thumb.jpg": {
+          "sha256": "8c007662184e2539f37d070ee733d1fa46569e92f863438e8d5901f2bec2c268",
+          "size_bytes": 209518,
+          "href": "vacant_indicators_land/vacant_indicators_land.thumb.jpg",
+          "mtime": 1787745288.5305932
+        },
+        "README.md": {
+          "sha256": "c584fd46f7dc0ccca993520a95829e682052a79bff4a62636b70b3ac86e65754",
+          "size_bytes": 4179,
+          "href": "vacant_indicators_land/README.md",
+          "mtime": 1787745120.9613867
+        }
+      },
+      "changes": [
+        "vacant_indicators_land.thumb.jpg",
+        "README.md"
+      ]
+    }
+  ]
+}

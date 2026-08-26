@@ -1,0 +1,35 @@
+{
+  "version": 8,
+  "name": "Condominium parcels",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../dor_parcel.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "dor_parcel-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "dor_parcel",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "condoflag"
+          ],
+          1,
+          "#d62828",
+          0,
+          "#7fb3d5",
+          "#e0e0e0"
+        ],
+        "fill-opacity": 0.9
+      }
+    }
+  ]
+}

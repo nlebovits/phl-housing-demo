@@ -1,0 +1,120 @@
+{
+  "type": "Collection",
+  "id": "zoning_descriptions",
+  "stac_version": "1.1.0",
+  "description": "Zoning Descriptions",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Philadelphia Housing and Land Use"
+    },
+    {
+      "rel": "license",
+      "href": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendataphilly.org/datasets/zoning-descriptions/",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "updated": "2026-08-26T11:27:09Z",
+  "table:columns": [
+    {
+      "name": "objectid",
+      "type": "int32"
+    },
+    {
+      "name": "new_code",
+      "type": "string"
+    },
+    {
+      "name": "code_description",
+      "type": "string"
+    }
+  ],
+  "table:row_count": 39,
+  "title": "Zoning Descriptions",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.2843924339013,
+          39.859589,
+          -74.9554859388087,
+          40.137935
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of Philadelphia",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendataphilly.org/"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "processor"
+      ],
+      "email": "nissim.lebovits@radiant.earth"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/"
+    }
+  ],
+  "assets": {
+    "zoning_descriptions": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_descriptions/zoning_descriptions.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1211,
+      "file:checksum": "1220cd02146d882cf425b6d15e82e6208e9be90bfc166396d603e60ada9bda04de3e",
+      "roles": [
+        "data"
+      ]
+    }
+  }
+}

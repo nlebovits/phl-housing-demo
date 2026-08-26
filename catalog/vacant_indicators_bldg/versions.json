@@ -1,0 +1,208 @@
+{
+  "spec_version": "1.0.0",
+  "current_version": "1.0.5",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "created": "2026-08-26T11:08:54.560964Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_bldg.parquet": {
+          "sha256": "a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72",
+          "size_bytes": 1371993,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.parquet",
+          "source_mtime": 1787737359.8234696,
+          "mtime": 1787737359.8234696,
+          "feature_count": 9041,
+          "schema_fingerprint": "0a2fa2c71e12394b"
+        }
+      },
+      "changes": [
+        "vacant_indicators_bldg.parquet"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "created": "2026-08-26T11:09:07.340060Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_bldg.parquet": {
+          "sha256": "a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72",
+          "size_bytes": 1371993,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.parquet",
+          "source_mtime": 1787737359.8234696,
+          "mtime": 1787737359.8234696,
+          "feature_count": 9041,
+          "schema_fingerprint": "0a2fa2c71e12394b"
+        },
+        "vacant_indicators_bldg.pmtiles": {
+          "sha256": "dc2aad33d9976de6be62af403a9e420916bafdfe09b43a3b561bbfddb30733c4",
+          "size_bytes": 2724905,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.pmtiles",
+          "mtime": 1787742544.9980907
+        },
+        "vacant_indicators_bldg.thumb.jpg": {
+          "sha256": "eed2cd86fc345f480bb398c923eb54a3c788507e1e652becc9ab4efafeb8f90c",
+          "size_bytes": 16628,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.thumb.jpg",
+          "mtime": 1787742547.2750692
+        }
+      },
+      "changes": [
+        "vacant_indicators_bldg.pmtiles",
+        "vacant_indicators_bldg.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: vacant_indicators_bldg.pmtiles, vacant_indicators_bldg.thumb.jpg"
+    },
+    {
+      "version": "1.0.2",
+      "created": "2026-08-26T11:26:15.876227Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_bldg.parquet": {
+          "sha256": "a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72",
+          "size_bytes": 1371993,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.parquet",
+          "source_mtime": 1787737359.8234696,
+          "mtime": 1787737359.8234696,
+          "feature_count": 9041,
+          "schema_fingerprint": "0a2fa2c71e12394b"
+        },
+        "vacant_indicators_bldg.pmtiles": {
+          "sha256": "dc2aad33d9976de6be62af403a9e420916bafdfe09b43a3b561bbfddb30733c4",
+          "size_bytes": 2724905,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.pmtiles",
+          "mtime": 1787742544.9980907
+        },
+        "vacant_indicators_bldg.thumb.jpg": {
+          "sha256": "eed2cd86fc345f480bb398c923eb54a3c788507e1e652becc9ab4efafeb8f90c",
+          "size_bytes": 16628,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.thumb.jpg",
+          "mtime": 1787742547.2750692
+        },
+        "README.md": {
+          "sha256": "a2c6106c05095da6e4347477777a674f9a3b23ca47665f5acf4ac31cc65115cc",
+          "size_bytes": 3752,
+          "href": "vacant_indicators_bldg/README.md",
+          "mtime": 1787743558.8340063
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "created": "2026-08-26T11:35:20.585660Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_bldg.parquet": {
+          "sha256": "a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72",
+          "size_bytes": 1371993,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.parquet",
+          "source_mtime": 1787737359.8234696,
+          "mtime": 1787737359.8234696,
+          "feature_count": 9041,
+          "schema_fingerprint": "0a2fa2c71e12394b"
+        },
+        "vacant_indicators_bldg.pmtiles": {
+          "sha256": "dc2aad33d9976de6be62af403a9e420916bafdfe09b43a3b561bbfddb30733c4",
+          "size_bytes": 2724905,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.pmtiles",
+          "mtime": 1787744116.4692743
+        },
+        "vacant_indicators_bldg.thumb.jpg": {
+          "sha256": "3cb9f2ce71de7a4fb5bbf1185acc2cba6a5788555531e68ab9a9eef7cc743897",
+          "size_bytes": 18115,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.thumb.jpg",
+          "mtime": 1787744120.5202324
+        },
+        "README.md": {
+          "sha256": "a2c6106c05095da6e4347477777a674f9a3b23ca47665f5acf4ac31cc65115cc",
+          "size_bytes": 3752,
+          "href": "vacant_indicators_bldg/README.md",
+          "mtime": 1787743558.8340063
+        }
+      },
+      "changes": [
+        "vacant_indicators_bldg.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: vacant_indicators_bldg.pmtiles, vacant_indicators_bldg.thumb.jpg"
+    },
+    {
+      "version": "1.0.4",
+      "created": "2026-08-26T11:51:31.318950Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_bldg.parquet": {
+          "sha256": "a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72",
+          "size_bytes": 1371993,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.parquet",
+          "source_mtime": 1787737359.8234696,
+          "mtime": 1787737359.8234696,
+          "feature_count": 9041,
+          "schema_fingerprint": "0a2fa2c71e12394b"
+        },
+        "vacant_indicators_bldg.pmtiles": {
+          "sha256": "dc2aad33d9976de6be62af403a9e420916bafdfe09b43a3b561bbfddb30733c4",
+          "size_bytes": 2724905,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.pmtiles",
+          "mtime": 1787744116.4692743
+        },
+        "vacant_indicators_bldg.thumb.jpg": {
+          "sha256": "3cb9f2ce71de7a4fb5bbf1185acc2cba6a5788555531e68ab9a9eef7cc743897",
+          "size_bytes": 18115,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.thumb.jpg",
+          "mtime": 1787744120.5202324
+        },
+        "README.md": {
+          "sha256": "983c2a9083f9230eb5b1c41f19f14968aab986e01697ac4b713ac6af0db241a8",
+          "size_bytes": 3852,
+          "href": "vacant_indicators_bldg/README.md",
+          "mtime": 1787745061.746023
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.5",
+      "created": "2026-08-26T11:57:34.411685Z",
+      "breaking": false,
+      "assets": {
+        "vacant_indicators_bldg.parquet": {
+          "sha256": "a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72",
+          "size_bytes": 1371993,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.parquet",
+          "source_mtime": 1787737359.8234696,
+          "mtime": 1787737359.8234696,
+          "feature_count": 9041,
+          "schema_fingerprint": "0a2fa2c71e12394b"
+        },
+        "vacant_indicators_bldg.pmtiles": {
+          "sha256": "dc2aad33d9976de6be62af403a9e420916bafdfe09b43a3b561bbfddb30733c4",
+          "size_bytes": 2724905,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.pmtiles",
+          "mtime": 1787744116.4692743
+        },
+        "vacant_indicators_bldg.thumb.jpg": {
+          "sha256": "f09d4ddce3aebf08763081bf845e477e8a06c7b63cc289214a1391eff65016d8",
+          "size_bytes": 132259,
+          "href": "vacant_indicators_bldg/vacant_indicators_bldg.thumb.jpg",
+          "mtime": 1787745405.3393478
+        },
+        "README.md": {
+          "sha256": "51b8774b9d5e1d3a6ca05bc7375cf90c51a5c1cabf8e5f7fa3728d0df38c31db",
+          "size_bytes": 3852,
+          "href": "vacant_indicators_bldg/README.md",
+          "mtime": 1787745120.9563868
+        }
+      },
+      "changes": [
+        "README.md",
+        "vacant_indicators_bldg.thumb.jpg"
+      ]
+    }
+  ]
+}

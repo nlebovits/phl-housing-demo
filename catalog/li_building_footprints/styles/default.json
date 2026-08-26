@@ -1,0 +1,37 @@
+{
+  "version": 8,
+  "name": "Building height",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../li_building_footprints.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "li_building_footprints-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "li_building_footprints",
+      "paint": {
+        "fill-color": [
+          "step",
+          [
+            "get",
+            "approx_hgt"
+          ],
+          "#f1e4d4",
+          20,
+          "#c9ada7",
+          35,
+          "#8b6f77",
+          60,
+          "#3d2c3d"
+        ],
+        "fill-opacity": 0.95
+      }
+    }
+  ]
+}

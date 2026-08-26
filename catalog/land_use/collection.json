@@ -1,0 +1,248 @@
+{
+  "type": "Collection",
+  "id": "land_use",
+  "stac_version": "1.1.0",
+  "description": "Land use assigned to each parcel in Philadelphia, maintained by the City Planning Commission. Land use records the activity on the ground, such as residential, commercial, or industrial, rather than what zoning permits.\n\nEvery parcel gets one of nine major classifications in `c_dig1`, and where possible a narrower sub-classification in `c_dig2` and `c_dig3`. Residential dominates at 471,793 of 559,077 parcels, followed by vacant at 48,464 and commercial at 22,607.\n\nCompare this against [zoning_basedistricts](../zoning_basedistricts) to find parcels used differently from how they are zoned. See [AGENTS.md](AGENTS.md) for the query.\n\nSource: [Land Use](https://opendataphilly.org/datasets/land-use/) on OpenDataPhilly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Philadelphia Housing and Land Use"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendataphilly.org/datasets/city-council-districts/",
+      "title": "License"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Phl Housing Demo"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/land_use/land_use.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "land_use"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendataphilly.org/datasets/land-use/",
+      "type": "text/html",
+      "title": "Original source"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 559077,
+  "table:row_count": 559077,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "c_dig1",
+      "type": "int16"
+    },
+    {
+      "name": "c_dig1desc",
+      "type": "string"
+    },
+    {
+      "name": "c_dig2",
+      "type": "int16"
+    },
+    {
+      "name": "c_dig2desc",
+      "type": "string"
+    },
+    {
+      "name": "c_dig3",
+      "type": "int16"
+    },
+    {
+      "name": "c_dig3desc",
+      "type": "string"
+    },
+    {
+      "name": "year",
+      "type": "int16"
+    },
+    {
+      "name": "vacbldg",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "updated": "2026-08-26T11:57:34Z",
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 14,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -75.1794433,
+    39.9350124,
+    14
+  ],
+  "pmtiles:layers": [
+    "land_use"
+  ],
+  "title": "Land Use",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.2803069,
+          39.8674718645708,
+          -74.9557485597981,
+          40.137935
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of Philadelphia",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendataphilly.org/"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "processor"
+      ],
+      "email": "nissim.lebovits@radiant.earth"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/"
+    }
+  ],
+  "assets": {
+    "land_use": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/land_use/land_use.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 79255383,
+      "file:checksum": "12201241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa",
+      "roles": [
+        "data"
+      ]
+    },
+    "land_use-tiles": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/land_use/land_use.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "land_use (vector tiles)",
+      "file:size": 88063155,
+      "file:checksum": "12200d37e44ad4c6911139e33d82999fd2006a9806b72731a8415d925e03688e376e",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Categorical Style",
+      "file:size": 839,
+      "file:checksum": "1220c2bfcbf817c52670c0a763fb240e87149243b47802b1923f50e0a0e8a014c9b8",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./land_use.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 352237,
+      "file:checksum": "1220056410fd0e9f5552210c2ff48d521a14427c4fedae20fe7dfbecb533ab5df971",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3585,
+      "file:checksum": "12202e97a2e0dcbd75f98782ee27a173884dff7f70683929bb52132c5336c21cb6cb",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "styles/residential-density": {
+      "href": "./styles/residential-density.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Residential density",
+      "file:size": 639,
+      "file:checksum": "1220216a318d6488fb3724da3822764060b8c635804f672a09805c79a91de92316be",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/vacant-parcels": {
+      "href": "./styles/vacant-parcels.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Vacant and unknown parcels",
+      "file:size": 611,
+      "file:checksum": "12203f3e4185df559e19a65eb609b0e7c14ac6c588c3bc8471d5e14c2ad3add86e80",
+      "roles": [
+        "style"
+      ]
+    }
+  }
+}

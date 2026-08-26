@@ -1,0 +1,39 @@
+{
+  "version": 8,
+  "name": "Zoning family",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../zoning_basedistricts.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "zoning_basedistricts-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "zoning_basedistricts",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "zoninggroup"
+          ],
+          "Residential/Multi-Family/Residential Mixed-Use",
+          "#f4e04d",
+          "Commercial/Commercial Mixed-Use",
+          "#e8543f",
+          "Industrial/Industrial Mixed-Use",
+          "#9b5de5",
+          "Special Purpose",
+          "#4a934a",
+          "#cccccc"
+        ],
+        "fill-opacity": 0.85
+      }
+    }
+  ]
+}

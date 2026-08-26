@@ -1,0 +1,284 @@
+{
+  "spec_version": "1.0.0",
+  "current_version": "1.0.7",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "created": "2026-08-26T11:08:54.580069Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "d83043b55ac8ef3fe64dec3809f5f026dced92a5bba1fe83898951004b0303eb",
+          "size_bytes": 81796925,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787740619.6327457,
+          "mtime": 1787740619.6327457,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        }
+      },
+      "changes": [
+        "land_use.parquet"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "created": "2026-08-26T11:14:16.732686Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "d83043b55ac8ef3fe64dec3809f5f026dced92a5bba1fe83898951004b0303eb",
+          "size_bytes": 81796925,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787740619.6327457,
+          "mtime": 1787740619.6327457,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        },
+        "land_use.pmtiles": {
+          "sha256": "41d066e1171c48f71a87861c999fbc8790a764d40c67731f83213809e0773313",
+          "size_bytes": 88063892,
+          "href": "land_use/land_use.pmtiles",
+          "mtime": 1787742838.3702633
+        },
+        "land_use.thumb.jpg": {
+          "sha256": "6685455f57c346d13d8fd8699431bc6030901c23c8bf33d4062f56ec9a81e54e",
+          "size_bytes": 22728,
+          "href": "land_use/land_use.thumb.jpg",
+          "mtime": 1787742855.7700922
+        }
+      },
+      "changes": [
+        "land_use.pmtiles",
+        "land_use.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: land_use.pmtiles, land_use.thumb.jpg"
+    },
+    {
+      "version": "1.0.2",
+      "created": "2026-08-26T11:22:56.901396Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "f15f02d95b6a1bdeccbc0f44c0755f2945c9720aed4e188957520179c3b8979d",
+          "size_bytes": 81796925,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787743375.855873,
+          "mtime": 1787743375.855873,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        },
+        "land_use.pmtiles": {
+          "sha256": "41d066e1171c48f71a87861c999fbc8790a764d40c67731f83213809e0773313",
+          "size_bytes": 88063892,
+          "href": "land_use/land_use.pmtiles",
+          "mtime": 1787742838.3702633
+        },
+        "land_use.thumb.jpg": {
+          "sha256": "6685455f57c346d13d8fd8699431bc6030901c23c8bf33d4062f56ec9a81e54e",
+          "size_bytes": 22728,
+          "href": "land_use/land_use.thumb.jpg",
+          "mtime": 1787742855.7700922
+        },
+        "README.md": {
+          "sha256": "e13efb6a37be13be1d600c8a5b248c50de08f265d826cdb0c3077c136a1c790b",
+          "size_bytes": 1530,
+          "href": "land_use/README.md",
+          "mtime": 1787742534.5981884
+        }
+      },
+      "changes": [
+        "README.md",
+        "land_use.parquet"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "created": "2026-08-26T11:26:15.856750Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "f15f02d95b6a1bdeccbc0f44c0755f2945c9720aed4e188957520179c3b8979d",
+          "size_bytes": 81796925,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787743375.855873,
+          "mtime": 1787743375.855873,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        },
+        "land_use.pmtiles": {
+          "sha256": "41d066e1171c48f71a87861c999fbc8790a764d40c67731f83213809e0773313",
+          "size_bytes": 88063892,
+          "href": "land_use/land_use.pmtiles",
+          "mtime": 1787742838.3702633
+        },
+        "land_use.thumb.jpg": {
+          "sha256": "6685455f57c346d13d8fd8699431bc6030901c23c8bf33d4062f56ec9a81e54e",
+          "size_bytes": 22728,
+          "href": "land_use/land_use.thumb.jpg",
+          "mtime": 1787742855.7700922
+        },
+        "README.md": {
+          "sha256": "5c976f4e645133f802fc9f120dce258617a5b5476e281e4dd117acac6f537312",
+          "size_bytes": 3476,
+          "href": "land_use/README.md",
+          "mtime": 1787743558.8250065
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.4",
+      "created": "2026-08-26T11:26:53.362414Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "1241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa",
+          "size_bytes": 79255383,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787743612.2394598,
+          "mtime": 1787743612.2394598,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        },
+        "land_use.pmtiles": {
+          "sha256": "41d066e1171c48f71a87861c999fbc8790a764d40c67731f83213809e0773313",
+          "size_bytes": 88063892,
+          "href": "land_use/land_use.pmtiles",
+          "mtime": 1787742838.3702633
+        },
+        "land_use.thumb.jpg": {
+          "sha256": "6685455f57c346d13d8fd8699431bc6030901c23c8bf33d4062f56ec9a81e54e",
+          "size_bytes": 22728,
+          "href": "land_use/land_use.thumb.jpg",
+          "mtime": 1787742855.7700922
+        },
+        "README.md": {
+          "sha256": "5c976f4e645133f802fc9f120dce258617a5b5476e281e4dd117acac6f537312",
+          "size_bytes": 3476,
+          "href": "land_use/README.md",
+          "mtime": 1787743558.8250065
+        }
+      },
+      "changes": [
+        "land_use.parquet"
+      ]
+    },
+    {
+      "version": "1.0.5",
+      "created": "2026-08-26T11:34:16.942868Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "1241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa",
+          "size_bytes": 79255383,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787743612.2394598,
+          "mtime": 1787743612.2394598,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        },
+        "land_use.pmtiles": {
+          "sha256": "0d37e44ad4c6911139e33d82999fd2006a9806b72731a8415d925e03688e376e",
+          "size_bytes": 88063155,
+          "href": "land_use/land_use.pmtiles",
+          "mtime": 1787744046.980991
+        },
+        "land_use.thumb.jpg": {
+          "sha256": "47a7065e14dab1a510a8dd8ca1aa9529a22523a2e6e2bafd523137ef5430a847",
+          "size_bytes": 22259,
+          "href": "land_use/land_use.thumb.jpg",
+          "mtime": 1787744056.4748929
+        },
+        "README.md": {
+          "sha256": "5c976f4e645133f802fc9f120dce258617a5b5476e281e4dd117acac6f537312",
+          "size_bytes": 3476,
+          "href": "land_use/README.md",
+          "mtime": 1787743558.8250065
+        }
+      },
+      "changes": [
+        "land_use.pmtiles",
+        "land_use.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: land_use.pmtiles, land_use.thumb.jpg"
+    },
+    {
+      "version": "1.0.6",
+      "created": "2026-08-26T11:51:31.294494Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "1241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa",
+          "size_bytes": 79255383,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787743612.2394598,
+          "mtime": 1787743612.2394598,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        },
+        "land_use.pmtiles": {
+          "sha256": "0d37e44ad4c6911139e33d82999fd2006a9806b72731a8415d925e03688e376e",
+          "size_bytes": 88063155,
+          "href": "land_use/land_use.pmtiles",
+          "mtime": 1787744046.980991
+        },
+        "land_use.thumb.jpg": {
+          "sha256": "47a7065e14dab1a510a8dd8ca1aa9529a22523a2e6e2bafd523137ef5430a847",
+          "size_bytes": 22259,
+          "href": "land_use/land_use.thumb.jpg",
+          "mtime": 1787744056.4748929
+        },
+        "README.md": {
+          "sha256": "8da98a2b91d8e4f266f91516702fd4bcb2f7bc5c63cec01d8917f4e91413ece5",
+          "size_bytes": 3585,
+          "href": "land_use/README.md",
+          "mtime": 1787745061.736023
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.7",
+      "created": "2026-08-26T11:57:34.390459Z",
+      "breaking": false,
+      "assets": {
+        "land_use.parquet": {
+          "sha256": "1241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa",
+          "size_bytes": 79255383,
+          "href": "land_use/land_use.parquet",
+          "source_mtime": 1787743612.2394598,
+          "mtime": 1787743612.2394598,
+          "feature_count": 559077,
+          "schema_fingerprint": "1e74257973fbad90"
+        },
+        "land_use.pmtiles": {
+          "sha256": "0d37e44ad4c6911139e33d82999fd2006a9806b72731a8415d925e03688e376e",
+          "size_bytes": 88063155,
+          "href": "land_use/land_use.pmtiles",
+          "mtime": 1787744046.980991
+        },
+        "land_use.thumb.jpg": {
+          "sha256": "056410fd0e9f5552210c2ff48d521a14427c4fedae20fe7dfbecb533ab5df971",
+          "size_bytes": 352237,
+          "href": "land_use/land_use.thumb.jpg",
+          "mtime": 1787745284.2766385
+        },
+        "README.md": {
+          "sha256": "2e97a2e0dcbd75f98782ee27a173884dff7f70683929bb52132c5336c21cb6cb",
+          "size_bytes": 3585,
+          "href": "land_use/README.md",
+          "mtime": 1787745120.9473867
+        }
+      },
+      "changes": [
+        "README.md",
+        "land_use.thumb.jpg"
+      ]
+    }
+  ]
+}

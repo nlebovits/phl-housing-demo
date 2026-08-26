@@ -1,0 +1,33 @@
+{
+  "version": 8,
+  "name": "Highest confidence only",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../vacant_indicators_land.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "vacant_indicators_land-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "vacant_indicators_land",
+      "paint": {
+        "fill-color": [
+          "step",
+          [
+            "get",
+            "land_rank"
+          ],
+          "#e8e8e8",
+          0.95,
+          "#6a040f"
+        ],
+        "fill-opacity": 0.9
+      }
+    }
+  ]
+}

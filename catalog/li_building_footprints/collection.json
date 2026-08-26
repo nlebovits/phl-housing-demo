@@ -1,0 +1,250 @@
+{
+  "type": "Collection",
+  "id": "li_building_footprints",
+  "stac_version": "1.1.0",
+  "description": "Outlines of buildings and related structures across Philadelphia, captured photogrammetrically from aerial imagery. The layer covers residential, commercial, and industrial buildings, along with isolated garages, mobile homes, sheds, greenhouses, silos, and buildings under construction that have walls.\n\n546,083 polygons carry an approximate height (`approx_hgt`), a footprint area in square feet, and a feature code. The published FCODE key defines 1810 as Building (545,339 rows) and 1830 as Tank (61 rows).\n\n`parcel_id_num` links a footprint to its parcel in [dor_parcel](../dor_parcel). See [AGENTS.md](AGENTS.md) for the join.\n\nSource: [Building Footprints](https://opendataphilly.org/datasets/building-footprints/) on OpenDataPhilly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Philadelphia Housing and Land Use"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendataphilly.org/datasets/city-council-districts/",
+      "title": "License"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Phl Housing Demo"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/li_building_footprints/li_building_footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "li_building_footprints"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendataphilly.org/datasets/building-footprints/",
+      "type": "text/html",
+      "title": "Original source"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 546083,
+  "table:row_count": 546083,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "bin",
+      "type": "string"
+    },
+    {
+      "name": "fcode",
+      "type": "int16"
+    },
+    {
+      "name": "address",
+      "type": "string"
+    },
+    {
+      "name": "building_name",
+      "type": "string"
+    },
+    {
+      "name": "base_elevation",
+      "type": "double"
+    },
+    {
+      "name": "approx_hgt",
+      "type": "int16"
+    },
+    {
+      "name": "max_hgt",
+      "type": "double"
+    },
+    {
+      "name": "parcel_id_num",
+      "type": "string"
+    },
+    {
+      "name": "parcel_id_source",
+      "type": "string"
+    },
+    {
+      "name": "dor_alternate_addr",
+      "type": "string"
+    },
+    {
+      "name": "square_ft",
+      "type": "int32"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "updated": "2026-08-26T11:57:34Z",
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 15,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -75.1629638,
+    39.9223756,
+    15
+  ],
+  "pmtiles:layers": [
+    "li_building_footprints"
+  ],
+  "title": "Building Footprints",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.2794332707506,
+          39.87237,
+          -74.957297,
+          40.1377813500408
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of Philadelphia",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendataphilly.org/"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "processor"
+      ],
+      "email": "nissim.lebovits@radiant.earth"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/"
+    }
+  ],
+  "assets": {
+    "li_building_footprints": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/li_building_footprints/li_building_footprints.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 102810229,
+      "file:checksum": "12200771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+      "roles": [
+        "data"
+      ]
+    },
+    "li_building_footprints-tiles": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/li_building_footprints/li_building_footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "li_building_footprints (vector tiles)",
+      "file:size": 210430426,
+      "file:checksum": "12200397f086d44857ffb80d9c55a4de5cf2bb592dd7bd2d3a03158b0e4c61282426",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Simple Style",
+      "file:size": 681,
+      "file:checksum": "122021e423614452fb06f2527badd059c426cdb6ec5122d9ff78c81b96979cd3c629",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./li_building_footprints.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 302107,
+      "file:checksum": "1220e10ea42483d755dfeaa93e08bf343898d31a8edebac8412ce8d9d78c9d3208cb",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3745,
+      "file:checksum": "1220e58dedbc82621ec099801ee96729cafc826a3d3c0192c14f37e421dbe2d1420b",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "styles/structure-type": {
+      "href": "./styles/structure-type.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Structure type",
+      "file:size": 678,
+      "file:checksum": "1220e77fccd8f921bd0e08ac29ee179c5b09ab847c72c90c7c0809a6e3655d41e1ee",
+      "roles": [
+        "style"
+      ]
+    }
+  }
+}

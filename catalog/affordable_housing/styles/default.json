@@ -1,0 +1,62 @@
+{
+  "version": 8,
+  "name": "Project type",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../affordable_housing.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "affordable_housing-circle",
+      "type": "circle",
+      "source": "data",
+      "source-layer": "affordable_housing",
+      "paint": {
+        "circle-color": [
+          "match",
+          [
+            "get",
+            "project_type"
+          ],
+          "Rental",
+          "#3a86ff",
+          "Special Needs",
+          "#8338ec",
+          "Homeownership",
+          "#06d6a0",
+          "Rental;Special Needs",
+          "#5c7aff",
+          "Rental;Mixed Use",
+          "#4895ef",
+          "Rental;Special Needs;Mixed Use",
+          "#7209b7",
+          "Mixed Use",
+          "#ffbe0b",
+          "#adb5bd"
+        ],
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          9,
+          3,
+          13,
+          7,
+          16,
+          12
+        ],
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 1,
+        "circle-opacity": 0.9
+      }
+    }
+  ]
+}

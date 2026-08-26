@@ -1,0 +1,208 @@
+{
+  "spec_version": "1.0.0",
+  "current_version": "1.0.5",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "created": "2026-08-26T11:08:54.567683Z",
+      "breaking": false,
+      "assets": {
+        "zoning_basedistricts.parquet": {
+          "sha256": "795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7",
+          "size_bytes": 16230250,
+          "href": "zoning_basedistricts/zoning_basedistricts.parquet",
+          "source_mtime": 1787737390.7851539,
+          "mtime": 1787737390.7851539,
+          "feature_count": 29205,
+          "schema_fingerprint": "5e3f6ac3dc8c042a"
+        }
+      },
+      "changes": [
+        "zoning_basedistricts.parquet"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "created": "2026-08-26T11:14:30.087263Z",
+      "breaking": false,
+      "assets": {
+        "zoning_basedistricts.parquet": {
+          "sha256": "795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7",
+          "size_bytes": 16230250,
+          "href": "zoning_basedistricts/zoning_basedistricts.parquet",
+          "source_mtime": 1787737390.7851539,
+          "mtime": 1787737390.7851539,
+          "feature_count": 29205,
+          "schema_fingerprint": "5e3f6ac3dc8c042a"
+        },
+        "zoning_basedistricts.pmtiles": {
+          "sha256": "6107cfaa134aae2f17709bc96ed6c98dec2ad821d6f482665ead772d8a52a5f1",
+          "size_bytes": 8196959,
+          "href": "zoning_basedistricts/zoning_basedistricts.pmtiles",
+          "mtime": 1787742866.8229833
+        },
+        "zoning_basedistricts.thumb.jpg": {
+          "sha256": "71cb6b2d9de9f368091af5a0f9f24a6c9023aee182f9d52de919f06bab008cc8",
+          "size_bytes": 27170,
+          "href": "zoning_basedistricts/zoning_basedistricts.thumb.jpg",
+          "mtime": 1787742869.7629542
+        }
+      },
+      "changes": [
+        "zoning_basedistricts.pmtiles",
+        "zoning_basedistricts.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: zoning_basedistricts.pmtiles, zoning_basedistricts.thumb.jpg"
+    },
+    {
+      "version": "1.0.2",
+      "created": "2026-08-26T11:26:15.894445Z",
+      "breaking": false,
+      "assets": {
+        "zoning_basedistricts.parquet": {
+          "sha256": "795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7",
+          "size_bytes": 16230250,
+          "href": "zoning_basedistricts/zoning_basedistricts.parquet",
+          "source_mtime": 1787737390.7851539,
+          "mtime": 1787737390.7851539,
+          "feature_count": 29205,
+          "schema_fingerprint": "5e3f6ac3dc8c042a"
+        },
+        "zoning_basedistricts.pmtiles": {
+          "sha256": "6107cfaa134aae2f17709bc96ed6c98dec2ad821d6f482665ead772d8a52a5f1",
+          "size_bytes": 8196959,
+          "href": "zoning_basedistricts/zoning_basedistricts.pmtiles",
+          "mtime": 1787742866.8229833
+        },
+        "zoning_basedistricts.thumb.jpg": {
+          "sha256": "71cb6b2d9de9f368091af5a0f9f24a6c9023aee182f9d52de919f06bab008cc8",
+          "size_bytes": 27170,
+          "href": "zoning_basedistricts/zoning_basedistricts.thumb.jpg",
+          "mtime": 1787742869.7629542
+        },
+        "README.md": {
+          "sha256": "4d615e71129e0f486ad11c6d8cb151510c4e38c1de404c42c4a244e36a2cd106",
+          "size_bytes": 3441,
+          "href": "zoning_basedistricts/README.md",
+          "mtime": 1787743558.8440063
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "created": "2026-08-26T11:34:59.981323Z",
+      "breaking": false,
+      "assets": {
+        "zoning_basedistricts.parquet": {
+          "sha256": "795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7",
+          "size_bytes": 16230250,
+          "href": "zoning_basedistricts/zoning_basedistricts.parquet",
+          "source_mtime": 1787737390.7851539,
+          "mtime": 1787737390.7851539,
+          "feature_count": 29205,
+          "schema_fingerprint": "5e3f6ac3dc8c042a"
+        },
+        "zoning_basedistricts.pmtiles": {
+          "sha256": "6107cfaa134aae2f17709bc96ed6c98dec2ad821d6f482665ead772d8a52a5f1",
+          "size_bytes": 8196959,
+          "href": "zoning_basedistricts/zoning_basedistricts.pmtiles",
+          "mtime": 1787744095.5024905
+        },
+        "zoning_basedistricts.thumb.jpg": {
+          "sha256": "1649d78913e02afc1e1956e0c04531c0f1b52556be952a39879661106e6b5212",
+          "size_bytes": 27323,
+          "href": "zoning_basedistricts/zoning_basedistricts.thumb.jpg",
+          "mtime": 1787744099.6734474
+        },
+        "README.md": {
+          "sha256": "4d615e71129e0f486ad11c6d8cb151510c4e38c1de404c42c4a244e36a2cd106",
+          "size_bytes": 3441,
+          "href": "zoning_basedistricts/README.md",
+          "mtime": 1787743558.8440063
+        }
+      },
+      "changes": [
+        "zoning_basedistricts.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: zoning_basedistricts.pmtiles, zoning_basedistricts.thumb.jpg"
+    },
+    {
+      "version": "1.0.4",
+      "created": "2026-08-26T11:51:31.340530Z",
+      "breaking": false,
+      "assets": {
+        "zoning_basedistricts.parquet": {
+          "sha256": "795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7",
+          "size_bytes": 16230250,
+          "href": "zoning_basedistricts/zoning_basedistricts.parquet",
+          "source_mtime": 1787737390.7851539,
+          "mtime": 1787737390.7851539,
+          "feature_count": 29205,
+          "schema_fingerprint": "5e3f6ac3dc8c042a"
+        },
+        "zoning_basedistricts.pmtiles": {
+          "sha256": "6107cfaa134aae2f17709bc96ed6c98dec2ad821d6f482665ead772d8a52a5f1",
+          "size_bytes": 8196959,
+          "href": "zoning_basedistricts/zoning_basedistricts.pmtiles",
+          "mtime": 1787744095.5024905
+        },
+        "zoning_basedistricts.thumb.jpg": {
+          "sha256": "1649d78913e02afc1e1956e0c04531c0f1b52556be952a39879661106e6b5212",
+          "size_bytes": 27323,
+          "href": "zoning_basedistricts/zoning_basedistricts.thumb.jpg",
+          "mtime": 1787744099.6734474
+        },
+        "README.md": {
+          "sha256": "e9b0c63a27e6e10f16394271107dedae3e525910c95903fd6ec56b8a129e1b7f",
+          "size_bytes": 3518,
+          "href": "zoning_basedistricts/README.md",
+          "mtime": 1787745061.7570229
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.5",
+      "created": "2026-08-26T11:57:34.433280Z",
+      "breaking": false,
+      "assets": {
+        "zoning_basedistricts.parquet": {
+          "sha256": "795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7",
+          "size_bytes": 16230250,
+          "href": "zoning_basedistricts/zoning_basedistricts.parquet",
+          "source_mtime": 1787737390.7851539,
+          "mtime": 1787737390.7851539,
+          "feature_count": 29205,
+          "schema_fingerprint": "5e3f6ac3dc8c042a"
+        },
+        "zoning_basedistricts.pmtiles": {
+          "sha256": "6107cfaa134aae2f17709bc96ed6c98dec2ad821d6f482665ead772d8a52a5f1",
+          "size_bytes": 8196959,
+          "href": "zoning_basedistricts/zoning_basedistricts.pmtiles",
+          "mtime": 1787744095.5024905
+        },
+        "zoning_basedistricts.thumb.jpg": {
+          "sha256": "22cfe048de04cdb550019b28ce4f17a6134b619c9bc9b562c4f41067ab0d01e2",
+          "size_bytes": 323649,
+          "href": "zoning_basedistricts/zoning_basedistricts.thumb.jpg",
+          "mtime": 1787745287.622603
+        },
+        "README.md": {
+          "sha256": "5f63c14f6ddb15f976f1880937991cca646684e9ca20a6589159777bdc24f799",
+          "size_bytes": 3518,
+          "href": "zoning_basedistricts/README.md",
+          "mtime": 1787745120.9673865
+        }
+      },
+      "changes": [
+        "zoning_basedistricts.thumb.jpg",
+        "README.md"
+      ]
+    }
+  ]
+}

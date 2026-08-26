@@ -1,0 +1,37 @@
+{
+  "version": 8,
+  "name": "Structure type",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../li_building_footprints.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "li_building_footprints-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "li_building_footprints",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "fcode"
+          ],
+          1810,
+          "#5c677d",
+          1830,
+          "#e07a5f",
+          0,
+          "#b0b0b0",
+          "#cccccc"
+        ],
+        "fill-opacity": 0.9
+      }
+    }
+  ]
+}

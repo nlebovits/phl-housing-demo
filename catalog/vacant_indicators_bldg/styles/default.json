@@ -1,0 +1,38 @@
+{
+  "version": 8,
+  "name": "Vacancy confidence",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../vacant_indicators_bldg.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "vacant_indicators_bldg-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "vacant_indicators_bldg",
+      "paint": {
+        "fill-color": [
+          "step",
+          [
+            "get",
+            "build_rank"
+          ],
+          "#fdae6b",
+          0.6,
+          "#e6550d",
+          0.8,
+          "#a63603",
+          0.95,
+          "#5c1a00"
+        ],
+        "fill-opacity": 1.0,
+        "fill-outline-color": "#7f2704"
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "version": 8,
+  "name": "Council district",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../council_districts_2024.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "council_districts_2024-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "council_districts_2024",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "district"
+          ],
+          "1",
+          "#8dd3c7",
+          "2",
+          "#ffffb3",
+          "3",
+          "#bebada",
+          "4",
+          "#fb8072",
+          "5",
+          "#80b1d3",
+          "6",
+          "#fdb462",
+          "7",
+          "#b3de69",
+          "8",
+          "#fccde5",
+          "9",
+          "#bc80bd",
+          "10",
+          "#ccebc5",
+          "#cccccc"
+        ],
+        "fill-opacity": 0.75
+      }
+    },
+    {
+      "id": "council_districts_2024-line",
+      "type": "line",
+      "source": "data",
+      "source-layer": "council_districts_2024",
+      "paint": {
+        "line-color": "#023047",
+        "line-width": 1.6
+      }
+    }
+  ]
+}

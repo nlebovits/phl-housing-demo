@@ -1,0 +1,170 @@
+{
+  "spec_version": "1.0.0",
+  "current_version": "1.0.4",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "created": "2026-08-26T11:08:54.571208Z",
+      "breaking": false,
+      "assets": {
+        "zoning_overlays.parquet": {
+          "sha256": "a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641",
+          "size_bytes": 8523414,
+          "href": "zoning_overlays/zoning_overlays.parquet",
+          "source_mtime": 1787737351.222557,
+          "mtime": 1787737351.222557,
+          "feature_count": 195,
+          "schema_fingerprint": "aa288ad58f39e7b0"
+        }
+      },
+      "changes": [
+        "zoning_overlays.parquet"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "created": "2026-08-26T11:09:02.799162Z",
+      "breaking": false,
+      "assets": {
+        "zoning_overlays.parquet": {
+          "sha256": "a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641",
+          "size_bytes": 8523414,
+          "href": "zoning_overlays/zoning_overlays.parquet",
+          "source_mtime": 1787737351.222557,
+          "mtime": 1787737351.222557,
+          "feature_count": 195,
+          "schema_fingerprint": "aa288ad58f39e7b0"
+        },
+        "zoning_overlays.pmtiles": {
+          "sha256": "98f6582632bab296a9f0b72eaffe3fb1094ff5d5f261a6dbadb707eaa1b2b729",
+          "size_bytes": 1831227,
+          "href": "zoning_overlays/zoning_overlays.pmtiles",
+          "mtime": 1787742540.8301299
+        },
+        "zoning_overlays.thumb.jpg": {
+          "sha256": "c7e75455f18a1fbd4b2fed0c303ecd0c84088935777a3ccb202b67287cd7d231",
+          "size_bytes": 25380,
+          "href": "zoning_overlays/zoning_overlays.thumb.jpg",
+          "mtime": 1787742542.642113
+        }
+      },
+      "changes": [
+        "zoning_overlays.pmtiles",
+        "zoning_overlays.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: zoning_overlays.pmtiles, zoning_overlays.thumb.jpg"
+    },
+    {
+      "version": "1.0.2",
+      "created": "2026-08-26T11:26:15.904565Z",
+      "breaking": false,
+      "assets": {
+        "zoning_overlays.parquet": {
+          "sha256": "a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641",
+          "size_bytes": 8523414,
+          "href": "zoning_overlays/zoning_overlays.parquet",
+          "source_mtime": 1787737351.222557,
+          "mtime": 1787737351.222557,
+          "feature_count": 195,
+          "schema_fingerprint": "aa288ad58f39e7b0"
+        },
+        "zoning_overlays.pmtiles": {
+          "sha256": "98f6582632bab296a9f0b72eaffe3fb1094ff5d5f261a6dbadb707eaa1b2b729",
+          "size_bytes": 1831227,
+          "href": "zoning_overlays/zoning_overlays.pmtiles",
+          "mtime": 1787742540.8301299
+        },
+        "zoning_overlays.thumb.jpg": {
+          "sha256": "c7e75455f18a1fbd4b2fed0c303ecd0c84088935777a3ccb202b67287cd7d231",
+          "size_bytes": 25380,
+          "href": "zoning_overlays/zoning_overlays.thumb.jpg",
+          "mtime": 1787742542.642113
+        },
+        "README.md": {
+          "sha256": "2d1ea7b297bea5607bae3808d502f41a40c2e31fda8b2f68a331399f12de17a8",
+          "size_bytes": 3167,
+          "href": "zoning_overlays/README.md",
+          "mtime": 1787743558.8540063
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "created": "2026-08-26T11:51:31.350714Z",
+      "breaking": false,
+      "assets": {
+        "zoning_overlays.parquet": {
+          "sha256": "a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641",
+          "size_bytes": 8523414,
+          "href": "zoning_overlays/zoning_overlays.parquet",
+          "source_mtime": 1787737351.222557,
+          "mtime": 1787737351.222557,
+          "feature_count": 195,
+          "schema_fingerprint": "aa288ad58f39e7b0"
+        },
+        "zoning_overlays.pmtiles": {
+          "sha256": "98f6582632bab296a9f0b72eaffe3fb1094ff5d5f261a6dbadb707eaa1b2b729",
+          "size_bytes": 1831227,
+          "href": "zoning_overlays/zoning_overlays.pmtiles",
+          "mtime": 1787742540.8301299
+        },
+        "zoning_overlays.thumb.jpg": {
+          "sha256": "c7e75455f18a1fbd4b2fed0c303ecd0c84088935777a3ccb202b67287cd7d231",
+          "size_bytes": 25380,
+          "href": "zoning_overlays/zoning_overlays.thumb.jpg",
+          "mtime": 1787742542.642113
+        },
+        "README.md": {
+          "sha256": "aee06ad196340beda5d1108ab7f604753c08d3ad40ad84f42f123621b3105266",
+          "size_bytes": 3196,
+          "href": "zoning_overlays/README.md",
+          "mtime": 1787745061.7660227
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.4",
+      "created": "2026-08-26T11:57:34.442641Z",
+      "breaking": false,
+      "assets": {
+        "zoning_overlays.parquet": {
+          "sha256": "a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641",
+          "size_bytes": 8523414,
+          "href": "zoning_overlays/zoning_overlays.parquet",
+          "source_mtime": 1787737351.222557,
+          "mtime": 1787737351.222557,
+          "feature_count": 195,
+          "schema_fingerprint": "aa288ad58f39e7b0"
+        },
+        "zoning_overlays.pmtiles": {
+          "sha256": "98f6582632bab296a9f0b72eaffe3fb1094ff5d5f261a6dbadb707eaa1b2b729",
+          "size_bytes": 1831227,
+          "href": "zoning_overlays/zoning_overlays.pmtiles",
+          "mtime": 1787742540.8301299
+        },
+        "zoning_overlays.thumb.jpg": {
+          "sha256": "2abbd6889e5546cda4a86366b5a9bab7e394d660ed18e1f77d67130846b9ca43",
+          "size_bytes": 154356,
+          "href": "zoning_overlays/zoning_overlays.thumb.jpg",
+          "mtime": 1787745291.2235644
+        },
+        "README.md": {
+          "sha256": "50fbd52d68ab56944f027718cf9aeb5685b052e4155833da9f21251a8bf0b3cc",
+          "size_bytes": 3196,
+          "href": "zoning_overlays/README.md",
+          "mtime": 1787745120.9773865
+        }
+      },
+      "changes": [
+        "zoning_overlays.thumb.jpg",
+        "README.md"
+      ]
+    }
+  ]
+}

@@ -1,92 +1,88 @@
-# Portolan Catalog Template
+# phl-housing-demo
 
-A starting point for a [Portolan](https://www.portolan-sdi.org/) catalog whose
-metadata lives in git. Click **Use this template**, work through
-[SETUP.md](SETUP.md), and you have a repository whose CI validates every change
-before it publishes.
+Metadata for the [Philadelphia Housing and Land
+Use](https://source.coop/nlebovits/phl-housing-demo) catalog on Source
+Cooperative. Ten collections describing property, zoning, vacancy, and
+affordable housing in Philadelphia, mirrored from the City of Philadelphia's
+ArcGIS services via [OpenDataPhilly](https://opendataphilly.org/).
 
-**`catalog/` is the published catalog.** Everything in it is published.
-Everything outside it never is. That boundary is the whole publish contract,
-and `tools/publish.py` has no flag or config key that widens it.
+The catalog holds 1,780,845 features. This repository holds its STAC metadata,
+map styles, thumbnails, and documentation. The data lives in the bucket.
 
-## Three kinds of file
-
-| Kind | Where | Example |
+| Collection | Rows | Geometry |
 |---|---|---|
-| Tracked and published | inside `catalog/` | STAC JSON, `README.md`, `AGENTS.md`, thumbnails, logos |
-| Tracked, never published | outside `catalog/` | `tools/`, `tests/`, `docs/`, this README, `catalog.publish.yaml` |
-| Neither | gitignored | GeoParquet, COGs, PMTiles, credentials |
+| Property parcels | 607,957 | Polygon |
+| Land use | 559,077 | Polygon |
+| Building footprints | 546,083 | Polygon |
+| Zoning base districts | 29,205 | Polygon |
+| Vacant indicators — land | 28,737 | Polygon |
+| Vacant indicators — buildings | 9,041 | Polygon |
+| Affordable housing production | 501 | Point |
+| Zoning overlays | 195 | Polygon |
+| Zoning code descriptions | 39 | None |
+| City council districts (2024) | 10 | Polygon |
 
-The data lives in object storage next to the published metadata. The
-repository references it by URL and never stores it.
+## Reading the data
 
-## Layout
+Every collection is GeoParquet in EPSG:3857, with PMTiles alongside for
+rendering. Read one over HTTP with DuckDB:
 
-| Path | What it is |
-|---|---|
-| `catalog/` | The published tree, synced 1:1 to object storage |
-| `catalog.publish.yaml` | Where it publishes, and under what public URL |
-| `tools/publish.py` | The sync. Dry run by default |
-| `tools/upload_data.py` | The data upload. Dry run by default |
-| `tests/` | The gates CI runs on every pull request |
-| `docs/conformance.md` | Any validator finding this catalog accepts, and why |
-| `SETUP.md` | The checklist. Delete it when you are done |
+```sql
+INSTALL spatial; LOAD spatial;
+INSTALL httpfs; LOAD httpfs;
 
-## Publish
+SET VARIABLE base =
+  'https://data.source.coop/nlebovits/phl-housing-demo';
 
-```bash
-python3 tools/publish.py            # dry run: what would change
-python3 tools/publish.py --confirm  # upload; needs AWS credentials
+SELECT z.long_code, d.code_description, count(*) AS polygons
+FROM read_parquet(getvariable('base')
+     || '/zoning_basedistricts/zoning_basedistricts.parquet') z
+JOIN read_parquet(getvariable('base')
+     || '/zoning_descriptions/zoning_descriptions.parquet') d
+  ON z.long_code = d.new_code
+GROUP BY 1, 2 ORDER BY 3 DESC;
 ```
 
-It never deletes. Removing a file from `catalog/` does not unpublish it, so
-delete the object yourself if that is what you meant.
+[catalog/AGENTS.md](catalog/AGENTS.md) covers join keys, worked queries, and
+the four data quirks that cause most wrong answers. Each collection has its own
+agent guide beside its `collection.json`.
 
-## Upload the data
+## Contributing
 
-The data is too large for git, so it lives outside `catalog/`.
-`tools/upload_data.py` carries it to the same bucket prefix. Set `data_dir` in
-`catalog.publish.yaml` to the directory that holds it.
-
-```bash
-python3 tools/upload_data.py            # dry run: what would change
-python3 tools/upload_data.py --confirm  # upload; needs AWS credentials
-```
-
-Both scripts share one set of rules. `upload_data.py` imports the sentinel
-guard, the content types, the change detection, and the upload pool from
-`publish.py`. It changes one thing, the directory it walks. Only the suffixes
-in its allow-list upload, so staged scratch files stay out of the bucket.
-
-## Test
+Metadata errors are worth fixing, and a pull request is the way. Wrong license
+text, a column description that misreads the data, a broken link, or a style
+whose legend does not match what renders: all of these are in scope.
 
 ```bash
-python3 tests/run_all.py
+git clone https://github.com/nlebovits/phl-housing-demo
+cd phl-housing-demo
+
+python3 -m venv .venv
+.venv/bin/pip install 'rashid>=0.1.5,<0.2.0' stac-check
+
+# make the edit, then
+.venv/bin/python3 tests/run_all.py
 ```
 
-| Gate | What it checks |
-|---|---|
-| `test_setup.py` | Template placeholders are all edited, or all untouched |
-| `test_links.py` | Every relative link and asset href resolves |
-| `test_publish.py` | Nothing outside `catalog/` can be uploaded |
-| `test_upload_data.py` | Only staged files with an allowed suffix upload |
-| `test_stac_valid.py` | Valid STAC 1.1.0, via `stac-check` |
-| `test_conformance.py` | Portolan conformance, via `rashid` |
+CI runs the same gates on every pull request: `rashid` for Portolan
+conformance, `stac-check` for STAC hygiene, link resolution, and every SQL
+block in the documentation executed against the published bucket.
 
-The two validator gates skip when their tools are absent, so a clean checkout
-runs with no setup. CI installs both and enforces them.
-
-## What this template does not decide
-
-How a published catalog points back at the repository that maintains it. Three
-encodings are in use across real catalogs and none is standardized, so this
-template ships none of them rather than freezing one in by default. The
-tradeoffs are in
-[portolan-spec#145](https://github.com/portolan-sdi/portolan-spec/issues/145)
-and in the
-[git-backed catalogs guidance](https://github.com/portolan-sdi/portolan-spec/blob/main/specs/best-practices/git-backed-catalogs.md).
+That last gate is the unusual one. A query in the docs that no longer runs is a
+bug, so CI fails when one breaks.
 
 ## License
 
-Apache-2.0, covering the tooling in this repository. The data you catalog
-carries its own license, which belongs in `catalog/README.md`.
+The data is published by the City of Philadelphia under the City of
+Philadelphia License, which reserves rights rather than granting them. The
+terms state the city "reserves all rights in the database and any data
+contained therein" and that use "does not constitute a transfer of, nor does
+the end user receive, any title or interest in the database". Data is offered
+"as is" and without warranty of any kind.
+
+No SPDX identifier applies, and no explicit redistribution grant accompanies
+the datasets. Read the [city's
+terms](https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/)
+before redistributing or using this data commercially.
+
+The tooling in this repository is MIT licensed. See [LICENSE](LICENSE).

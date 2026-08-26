@@ -1,0 +1,37 @@
+{
+  "version": 8,
+  "name": "Residential density",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../land_use.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "land_use-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "land_use",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "c_dig2"
+          ],
+          11,
+          "#fee6a0",
+          12,
+          "#f2a65a",
+          13,
+          "#c1440e",
+          "#e8e8e8"
+        ],
+        "fill-opacity": 0.9
+      }
+    }
+  ]
+}

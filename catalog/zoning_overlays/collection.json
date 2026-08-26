@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "id": "zoning_overlays",
+  "stac_version": "1.1.0",
+  "description": "Boundaries of Philadelphia's zoning overlay districts, enacted 15 December 2011 and effective 22 August 2012. An overlay adds rules on top of the base district beneath it, so a parcel can sit under several at once.\n\n195 polygons split into three kinds: 165 Overlay Districts, 25 Supplemental Controls, and 5 Wissahickon Watershed Impervious Coverage Restrictions. Each row names the overlay and cites the section of the zoning code that created it, with `code_section_link` pointing at the text.\n\nRead overlays together with [zoning_basedistricts](../zoning_basedistricts). See [AGENTS.md](AGENTS.md) for a spatial join that finds every rule applying to a point.\n\nSource: [Zoning Overlays](https://opendataphilly.org/datasets/zoning-overlays/) on OpenDataPhilly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Philadelphia Housing and Land Use"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendataphilly.org/datasets/city-council-districts/",
+      "title": "License"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Phl Housing Demo"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/zoning_overlays.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "zoning_overlays"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendataphilly.org/datasets/zoning-overlays/",
+      "type": "text/html",
+      "title": "Original source"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 195,
+  "table:row_count": 195,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "overlay_name",
+      "type": "string"
+    },
+    {
+      "name": "overlay_symbol",
+      "type": "string"
+    },
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "name": "code_section",
+      "type": "string"
+    },
+    {
+      "name": "code_section_link",
+      "type": "string"
+    },
+    {
+      "name": "sunset_date",
+      "type": "timestamp[ms]"
+    },
+    {
+      "name": "pending",
+      "type": "string"
+    },
+    {
+      "name": "pendingbill",
+      "type": "string"
+    },
+    {
+      "name": "pendingbillurl",
+      "type": "string"
+    },
+    {
+      "name": "sunsetbillnum",
+      "type": "string"
+    },
+    {
+      "name": "sunsetbilllink",
+      "type": "string"
+    },
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "updated": "2026-08-26T11:57:34Z",
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 14,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -75.1574707,
+    39.9518584,
+    14
+  ],
+  "pmtiles:layers": [
+    "zoning_overlays"
+  ],
+  "title": "Zoning Overlays",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.2843924339013,
+          39.859589,
+          -74.9554859388087,
+          40.137935
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of Philadelphia",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendataphilly.org/"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "processor"
+      ],
+      "email": "nissim.lebovits@radiant.earth"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/"
+    }
+  ],
+  "assets": {
+    "zoning_overlays": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/zoning_overlays.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8523414,
+      "file:checksum": "1220a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641",
+      "roles": [
+        "data"
+      ]
+    },
+    "zoning_overlays-tiles": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/zoning_overlays.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "zoning_overlays (vector tiles)",
+      "file:size": 1831227,
+      "file:checksum": "122098f6582632bab296a9f0b72eaffe3fb1094ff5d5f261a6dbadb707eaa1b2b729",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Simple Style",
+      "file:size": 781,
+      "file:checksum": "122059c9e6b4ac4840b3d984114868a5a9949f355e3cc8a9ea0af5d85ab68f6af42f",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./zoning_overlays.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 154356,
+      "file:checksum": "12202abbd6889e5546cda4a86366b5a9bab7e394d660ed18e1f77d67130846b9ca43",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3196,
+      "file:checksum": "122050fbd52d68ab56944f027718cf9aeb5685b052e4155833da9f21251a8bf0b3cc",
+      "roles": [
+        "documentation"
+      ]
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "spec_version": "1.0.0",
+  "current_version": "1.0.5",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "created": "2026-08-26T11:08:54.583589Z",
+      "breaking": false,
+      "assets": {
+        "li_building_footprints.parquet": {
+          "sha256": "0771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+          "size_bytes": 102810229,
+          "href": "li_building_footprints/li_building_footprints.parquet",
+          "source_mtime": 1787741567.52403,
+          "mtime": 1787741567.52403,
+          "feature_count": 546083,
+          "schema_fingerprint": "ddbf531f2436b64f"
+        }
+      },
+      "changes": [
+        "li_building_footprints.parquet"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "created": "2026-08-26T11:16:41.226428Z",
+      "breaking": false,
+      "assets": {
+        "li_building_footprints.parquet": {
+          "sha256": "0771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+          "size_bytes": 102810229,
+          "href": "li_building_footprints/li_building_footprints.parquet",
+          "source_mtime": 1787741567.52403,
+          "mtime": 1787741567.52403,
+          "feature_count": 546083,
+          "schema_fingerprint": "ddbf531f2436b64f"
+        },
+        "li_building_footprints.pmtiles": {
+          "sha256": "59178a9c1dd6eefa9a0cb59d1a8900327053491376b82dc5c9800c9f5212a78a",
+          "size_bytes": 210432514,
+          "href": "li_building_footprints/li_building_footprints.pmtiles",
+          "mtime": 1787742985.553807
+        },
+        "li_building_footprints.thumb.jpg": {
+          "sha256": "a90c9a3b55a63fceae5a7b63c94a8e04623ea8cd92713059648f4016b5e22acb",
+          "size_bytes": 21251,
+          "href": "li_building_footprints/li_building_footprints.thumb.jpg",
+          "mtime": 1787743000.2576604
+        }
+      },
+      "changes": [
+        "li_building_footprints.pmtiles",
+        "li_building_footprints.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: li_building_footprints.pmtiles, li_building_footprints.thumb.jpg"
+    },
+    {
+      "version": "1.0.2",
+      "created": "2026-08-26T11:26:15.912880Z",
+      "breaking": false,
+      "assets": {
+        "li_building_footprints.parquet": {
+          "sha256": "0771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+          "size_bytes": 102810229,
+          "href": "li_building_footprints/li_building_footprints.parquet",
+          "source_mtime": 1787741567.52403,
+          "mtime": 1787741567.52403,
+          "feature_count": 546083,
+          "schema_fingerprint": "ddbf531f2436b64f"
+        },
+        "li_building_footprints.pmtiles": {
+          "sha256": "59178a9c1dd6eefa9a0cb59d1a8900327053491376b82dc5c9800c9f5212a78a",
+          "size_bytes": 210432514,
+          "href": "li_building_footprints/li_building_footprints.pmtiles",
+          "mtime": 1787742985.553807
+        },
+        "li_building_footprints.thumb.jpg": {
+          "sha256": "a90c9a3b55a63fceae5a7b63c94a8e04623ea8cd92713059648f4016b5e22acb",
+          "size_bytes": 21251,
+          "href": "li_building_footprints/li_building_footprints.thumb.jpg",
+          "mtime": 1787743000.2576604
+        },
+        "README.md": {
+          "sha256": "98ca59867cb8cb51b9d45b62c22893843670860f53836c4d7a6f61e77e7e9d3d",
+          "size_bytes": 3658,
+          "href": "li_building_footprints/README.md",
+          "mtime": 1787743558.8300064
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "created": "2026-08-26T11:37:35.476476Z",
+      "breaking": false,
+      "assets": {
+        "li_building_footprints.parquet": {
+          "sha256": "0771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+          "size_bytes": 102810229,
+          "href": "li_building_footprints/li_building_footprints.parquet",
+          "source_mtime": 1787741567.52403,
+          "mtime": 1787741567.52403,
+          "feature_count": 546083,
+          "schema_fingerprint": "ddbf531f2436b64f"
+        },
+        "li_building_footprints.pmtiles": {
+          "sha256": "0397f086d44857ffb80d9c55a4de5cf2bb592dd7bd2d3a03158b0e4c61282426",
+          "size_bytes": 210430426,
+          "href": "li_building_footprints/li_building_footprints.pmtiles",
+          "mtime": 1787744238.1450186
+        },
+        "li_building_footprints.thumb.jpg": {
+          "sha256": "c7580e073f85a42d8fec7c8468ff929aa317a5d981c61874a63bcd8e01b75f85",
+          "size_bytes": 22016,
+          "href": "li_building_footprints/li_building_footprints.thumb.jpg",
+          "mtime": 1787744254.5208495
+        },
+        "README.md": {
+          "sha256": "98ca59867cb8cb51b9d45b62c22893843670860f53836c4d7a6f61e77e7e9d3d",
+          "size_bytes": 3658,
+          "href": "li_building_footprints/README.md",
+          "mtime": 1787743558.8300064
+        }
+      },
+      "changes": [
+        "li_building_footprints.pmtiles",
+        "li_building_footprints.thumb.jpg"
+      ],
+      "message": "Generated PMTiles and thumbnail: li_building_footprints.pmtiles, li_building_footprints.thumb.jpg"
+    },
+    {
+      "version": "1.0.4",
+      "created": "2026-08-26T11:51:31.362846Z",
+      "breaking": false,
+      "assets": {
+        "li_building_footprints.parquet": {
+          "sha256": "0771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+          "size_bytes": 102810229,
+          "href": "li_building_footprints/li_building_footprints.parquet",
+          "source_mtime": 1787741567.52403,
+          "mtime": 1787741567.52403,
+          "feature_count": 546083,
+          "schema_fingerprint": "ddbf531f2436b64f"
+        },
+        "li_building_footprints.pmtiles": {
+          "sha256": "0397f086d44857ffb80d9c55a4de5cf2bb592dd7bd2d3a03158b0e4c61282426",
+          "size_bytes": 210430426,
+          "href": "li_building_footprints/li_building_footprints.pmtiles",
+          "mtime": 1787744238.1450186
+        },
+        "li_building_footprints.thumb.jpg": {
+          "sha256": "c7580e073f85a42d8fec7c8468ff929aa317a5d981c61874a63bcd8e01b75f85",
+          "size_bytes": 22016,
+          "href": "li_building_footprints/li_building_footprints.thumb.jpg",
+          "mtime": 1787744254.5208495
+        },
+        "README.md": {
+          "sha256": "0ee84912489fe434794c1fa198a97e852b2cc169a3b7de8824b6e210c904550b",
+          "size_bytes": 3745,
+          "href": "li_building_footprints/README.md",
+          "mtime": 1787745061.741023
+        }
+      },
+      "changes": [
+        "README.md"
+      ]
+    },
+    {
+      "version": "1.0.5",
+      "created": "2026-08-26T11:57:34.452930Z",
+      "breaking": false,
+      "assets": {
+        "li_building_footprints.parquet": {
+          "sha256": "0771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+          "size_bytes": 102810229,
+          "href": "li_building_footprints/li_building_footprints.parquet",
+          "source_mtime": 1787741567.52403,
+          "mtime": 1787741567.52403,
+          "feature_count": 546083,
+          "schema_fingerprint": "ddbf531f2436b64f"
+        },
+        "li_building_footprints.pmtiles": {
+          "sha256": "0397f086d44857ffb80d9c55a4de5cf2bb592dd7bd2d3a03158b0e4c61282426",
+          "size_bytes": 210430426,
+          "href": "li_building_footprints/li_building_footprints.pmtiles",
+          "mtime": 1787744238.1450186
+        },
+        "li_building_footprints.thumb.jpg": {
+          "sha256": "e10ea42483d755dfeaa93e08bf343898d31a8edebac8412ce8d9d78c9d3208cb",
+          "size_bytes": 302107,
+          "href": "li_building_footprints/li_building_footprints.thumb.jpg",
+          "mtime": 1787745286.3416166
+        },
+        "README.md": {
+          "sha256": "e58dedbc82621ec099801ee96729cafc826a3d3c0192c14f37e421dbe2d1420b",
+          "size_bytes": 3745,
+          "href": "li_building_footprints/README.md",
+          "mtime": 1787745120.9513867
+        }
+      },
+      "changes": [
+        "README.md",
+        "li_building_footprints.thumb.jpg"
+      ]
+    }
+  ]
+}

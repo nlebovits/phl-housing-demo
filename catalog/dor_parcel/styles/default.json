@@ -1,0 +1,42 @@
+{
+  "version": 8,
+  "name": "Parcel size",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../dor_parcel.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "dor_parcel-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "dor_parcel",
+      "paint": {
+        "fill-color": [
+          "step",
+          [
+            "get",
+            "Shape__Area"
+          ],
+          "#fde0dd",
+          138,
+          "#fa9fb5",
+          186,
+          "#f768a1",
+          255,
+          "#c51b8a",
+          435,
+          "#7a0177",
+          776,
+          "#3f0043"
+        ],
+        "fill-opacity": 0.9,
+        "fill-outline-color": "#ffffff"
+      }
+    }
+  ]
+}

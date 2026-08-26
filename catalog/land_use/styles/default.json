@@ -1,0 +1,49 @@
+{
+  "version": 8,
+  "name": "Land use category",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../land_use.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "land_use-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "land_use",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "c_dig1"
+          ],
+          1,
+          "#f4e04d",
+          2,
+          "#e8543f",
+          3,
+          "#9b5de5",
+          4,
+          "#4cc9f0",
+          5,
+          "#8d99ae",
+          6,
+          "#f77f00",
+          7,
+          "#4a934a",
+          8,
+          "#1d70b8",
+          9,
+          "#3d3d3d",
+          "#cccccc"
+        ],
+        "fill-opacity": 0.85
+      }
+    }
+  ]
+}

@@ -35,6 +35,17 @@ jobs:
           python -m pip install pyflakes
           pyflakes tools/*.py tests/*.py
 
+      # tests/test_queries.py runs every SQL block in the AGENTS.md files
+      # against the published bucket, so a moved asset or a renamed column
+      # fails here rather than on a reader. It skips itself when duckdb is
+      # absent, so the install is what makes the gate real.
+      - name: Install DuckDB
+        run: |
+          curl -fsSL --retry 3 -o /tmp/duckdb.zip \
+            https://github.com/duckdb/duckdb/releases/download/v1.5.1/duckdb_cli-linux-amd64.zip
+          unzip -q /tmp/duckdb.zip -d /usr/local/bin
+          duckdb --version
+
       # CI_LIGHT exempts asset hrefs with a data suffix from the link check.
       # The checkout holds the metadata and not the bytes. Structural links
       # and every non-data asset still resolve. Leave it unset locally.

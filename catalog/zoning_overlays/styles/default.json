@@ -1,0 +1,38 @@
+{
+  "version": 8,
+  "name": "Overlay type",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../zoning_overlays.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "zoning_overlays-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "zoning_overlays",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "type"
+          ],
+          "Overlay District",
+          "#4361ee",
+          "Supplemental Control",
+          "#f77f00",
+          "Wissahickon Watershed Impervious Coverage Restriction",
+          "#2a9d8f",
+          "#cccccc"
+        ],
+        "fill-opacity": 0.6,
+        "fill-outline-color": "#1d3557"
+      }
+    }
+  ]
+}

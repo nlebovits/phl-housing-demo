@@ -1,0 +1,354 @@
+{
+  "type": "Collection",
+  "id": "dor_parcel",
+  "stac_version": "1.1.0",
+  "description": "Boundaries of every real estate property parcel in Philadelphia, drawn from legally recorded deed documents. The Department of Records maintains the layer and republishes it weekly.\n\n607,957 polygons cover the city. Each row carries a registry identifier (`basereg`, `mapreg`), a parsed street address, and flags for condominium units and stacked parcels. `geoid` is the Geographic Unique ID, and `pin` the parcel identification number.\n\nParcels are the join key for most Philadelphia property data. `opa_id` in the vacancy collections and `parcel_id_num` in building footprints both point back here. See [AGENTS.md](AGENTS.md) for queries that run.\n\nSource: [Department of Records Property Parcels](https://opendataphilly.org/datasets/department-of-records-property-parcels/) on OpenDataPhilly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Philadelphia Housing and Land Use"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendataphilly.org/datasets/city-council-districts/",
+      "title": "License"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Phl Housing Demo"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/dor_parcel/dor_parcel.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "dor_parcel"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendataphilly.org/datasets/department-of-records-property-parcels/",
+      "type": "text/html",
+      "title": "Original source"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 607957,
+  "table:row_count": 607957,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "recsub",
+      "type": "string"
+    },
+    {
+      "name": "basereg",
+      "type": "string"
+    },
+    {
+      "name": "mapreg",
+      "type": "string"
+    },
+    {
+      "name": "parcel",
+      "type": "string"
+    },
+    {
+      "name": "recmap",
+      "type": "string"
+    },
+    {
+      "name": "stcod",
+      "type": "int32"
+    },
+    {
+      "name": "house",
+      "type": "int32"
+    },
+    {
+      "name": "suf",
+      "type": "string"
+    },
+    {
+      "name": "unit",
+      "type": "string"
+    },
+    {
+      "name": "stex",
+      "type": "int16"
+    },
+    {
+      "name": "stdir",
+      "type": "string"
+    },
+    {
+      "name": "stnam",
+      "type": "string"
+    },
+    {
+      "name": "stdessuf",
+      "type": "string"
+    },
+    {
+      "name": "elev_flag",
+      "type": "int16"
+    },
+    {
+      "name": "topelev",
+      "type": "double"
+    },
+    {
+      "name": "botelev",
+      "type": "double"
+    },
+    {
+      "name": "condoflag",
+      "type": "int16"
+    },
+    {
+      "name": "matchflag",
+      "type": "int16"
+    },
+    {
+      "name": "inactdate",
+      "type": "timestamp[ms]"
+    },
+    {
+      "name": "orig_date",
+      "type": "timestamp[ms]"
+    },
+    {
+      "name": "status",
+      "type": "int32"
+    },
+    {
+      "name": "geoid",
+      "type": "string"
+    },
+    {
+      "name": "stdes",
+      "type": "string"
+    },
+    {
+      "name": "addr_source",
+      "type": "string"
+    },
+    {
+      "name": "addr_std",
+      "type": "string"
+    },
+    {
+      "name": "comments",
+      "type": "string"
+    },
+    {
+      "name": "pin",
+      "type": "int32"
+    },
+    {
+      "name": "frac",
+      "type": "string"
+    },
+    {
+      "name": "unit_type",
+      "type": "string"
+    },
+    {
+      "name": "stex_frac",
+      "type": "string"
+    },
+    {
+      "name": "stex_suf",
+      "type": "string"
+    },
+    {
+      "name": "separated_rights",
+      "type": "string"
+    },
+    {
+      "name": "muniment_type",
+      "type": "string"
+    },
+    {
+      "name": "muniment_id",
+      "type": "string"
+    },
+    {
+      "name": "dor_review",
+      "type": "string"
+    },
+    {
+      "name": "opa_review",
+      "type": "string"
+    },
+    {
+      "name": "pwd_review",
+      "type": "string"
+    },
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "updated": "2026-08-26T11:57:34Z",
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 13,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -75.168457,
+    39.9265863,
+    13
+  ],
+  "pmtiles:layers": [
+    "dor_parcel"
+  ],
+  "title": "Property Parcels",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.2777569,
+          39.8705549624657,
+          -74.9557605644352,
+          40.1378739
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of Philadelphia",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendataphilly.org/"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "processor"
+      ],
+      "email": "nissim.lebovits@radiant.earth"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/"
+    }
+  ],
+  "assets": {
+    "dor_parcel": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/dor_parcel/dor_parcel.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 69220860,
+      "file:checksum": "12208e4444eaba7a2d16a59f7c95a76ccafedddd8b7c75a7319bbe918cdf818ca8cd",
+      "roles": [
+        "data"
+      ]
+    },
+    "dor_parcel-tiles": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/dor_parcel/dor_parcel.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "dor_parcel (vector tiles)",
+      "file:size": 143409848,
+      "file:checksum": "1220c7659e9937a09eb70d9c87014d6b7dfaa660a303bc64c0d01a6045431ee78344",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Simple Style",
+      "file:size": 757,
+      "file:checksum": "1220a1e42945696b9d4b75469cf8ff08bbd3be53198df5b85affccdce6d2343f1cbf",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./dor_parcel.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 258773,
+      "file:checksum": "12200623e7eb9747c4b478ae119d2908211f250f17f740b43b752a243e7c5e5aa9e5",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 4445,
+      "file:checksum": "1220382e08e620c360dab73a58c4380907bbd040de65e26b5a977fae95eace54b3a9",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "styles/condominium": {
+      "href": "./styles/condominium.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Condominium parcels",
+      "file:size": 611,
+      "file:checksum": "12204d78ba8b1b08b8a33c8ef75c1f15c9d92538b8dfbd76d7c856a619091631658d",
+      "roles": [
+        "style"
+      ]
+    }
+  }
+}

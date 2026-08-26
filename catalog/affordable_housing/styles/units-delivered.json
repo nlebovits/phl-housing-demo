@@ -1,0 +1,57 @@
+{
+  "version": 8,
+  "name": "Units delivered",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../affordable_housing.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "affordable_housing-circle",
+      "type": "circle",
+      "source": "data",
+      "source-layer": "affordable_housing",
+      "paint": {
+        "circle-color": [
+          "step",
+          [
+            "get",
+            "total_units"
+          ],
+          "#ffd166",
+          25,
+          "#f4a261",
+          60,
+          "#e76f51",
+          120,
+          "#9d0208"
+        ],
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "total_units"
+          ],
+          1,
+          4,
+          50,
+          9,
+          150,
+          15,
+          400,
+          22
+        ],
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 1,
+        "circle-opacity": 0.85
+      }
+    }
+  ]
+}

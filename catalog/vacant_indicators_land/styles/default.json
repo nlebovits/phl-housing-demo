@@ -1,0 +1,37 @@
+{
+  "version": 8,
+  "name": "Vacancy confidence",
+  "sources": {
+    "data": {
+      "type": "vector",
+      "url": "pmtiles://../vacant_indicators_land.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 13
+    }
+  },
+  "layers": [
+    {
+      "id": "vacant_indicators_land-fill",
+      "type": "fill",
+      "source": "data",
+      "source-layer": "vacant_indicators_land",
+      "paint": {
+        "fill-color": [
+          "step",
+          [
+            "get",
+            "land_rank"
+          ],
+          "#fee5d9",
+          0.6,
+          "#fcae91",
+          0.8,
+          "#fb6a4a",
+          0.95,
+          "#a50f15"
+        ],
+        "fill-opacity": 0.9
+      }
+    }
+  ]
+}

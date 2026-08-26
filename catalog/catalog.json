@@ -4,9 +4,9 @@
   "stac_extensions": [
     "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json"
   ],
-  "id": "example-catalog",
-  "title": "Example Catalog",
-  "description": "TODO(setup): one or two sentences saying what this catalog holds, who produced the data, and who it is for. A person and an agent both read this first.",
+  "id": "phl-housing-demo",
+  "title": "Philadelphia Housing and Land Use",
+  "description": "Ten collections describing property, zoning, vacancy, and affordable housing in Philadelphia, mirrored from the City of Philadelphia's ArcGIS services via [OpenDataPhilly](https://opendataphilly.org/). Together they answer what exists on a parcel, what the zoning code permits there, whether the city believes it is empty, and what publicly funded housing has been built.\n\nThe catalog holds 1,780,845 features. Property parcels (607,957), land use (559,077), and building footprints (546,083) cover the whole city. Zoning base districts (29,205) and overlays (195) record what the code allows, and a 39-row lookup table decodes every zoning code. The city's vacancy model flags 28,737 likely-vacant lots and 9,041 likely-vacant buildings. Affordable housing production lists 501 DHCD-funded projects delivering 19,249 units since 1994.\n\nEach collection ships as GeoParquet in the source CRS, EPSG:3857, with PMTiles for rendering and two to three verified map styles. Start at the catalog [AGENTS.md](AGENTS.md) for join keys, worked queries, and the data quirks that cause most wrong answers.",
   "links": [
     {
       "rel": "root",
@@ -27,13 +27,74 @@
     },
     {
       "rel": "vcs",
-      "href": "https://github.com/TODO(setup)",
+      "href": "https://github.com/nlebovits/phl-housing-demo",
       "title": "Source repository"
     },
     {
       "rel": "issues",
-      "href": "https://github.com/TODO(setup)/issues",
+      "href": "https://github.com/nlebovits/phl-housing-demo/issues",
       "title": "Issue tracker"
+    },
+    {
+      "rel": "child",
+      "href": "./affordable_housing/collection.json",
+      "type": "application/json",
+      "title": "Affordable Housing Production"
+    },
+    {
+      "rel": "child",
+      "href": "./council_districts_2024/collection.json",
+      "type": "application/json",
+      "title": "City Council Districts (2024)"
+    },
+    {
+      "rel": "child",
+      "href": "./dor_parcel/collection.json",
+      "type": "application/json",
+      "title": "Property Parcels"
+    },
+    {
+      "rel": "child",
+      "href": "./land_use/collection.json",
+      "type": "application/json",
+      "title": "Land Use"
+    },
+    {
+      "rel": "child",
+      "href": "./li_building_footprints/collection.json",
+      "type": "application/json",
+      "title": "Building Footprints"
+    },
+    {
+      "rel": "child",
+      "href": "./vacant_indicators_bldg/collection.json",
+      "type": "application/json",
+      "title": "Vacant Property Indicators \u2014 Buildings"
+    },
+    {
+      "rel": "child",
+      "href": "./vacant_indicators_land/collection.json",
+      "type": "application/json",
+      "title": "Vacant Property Indicators \u2014 Land"
+    },
+    {
+      "rel": "child",
+      "href": "./zoning_basedistricts/collection.json",
+      "type": "application/json",
+      "title": "Zoning Base Districts"
+    },
+    {
+      "rel": "child",
+      "href": "./zoning_descriptions/collection.json",
+      "type": "application/json",
+      "title": "Zoning Descriptions"
+    },
+    {
+      "rel": "child",
+      "href": "./zoning_overlays/collection.json",
+      "type": "application/json",
+      "title": "Zoning Overlays"
     }
-  ]
+  ],
+  "updated": "2026-08-26T00:00:00Z"
 }

@@ -1,0 +1,250 @@
+{
+  "type": "Collection",
+  "id": "vacant_indicators_land",
+  "stac_version": "1.1.0",
+  "description": "Parcels across Philadelphia that the city's Vacant Property Indicators model flags as likely vacant land. The model was built by the Office of Innovation and Technology with Licenses and Inspections, the Office of Property Assessment, the Philadelphia Land Bank, and the Philadelphia Water Department.\n\n28,737 parcels each carry a `land_rank` between 0.5 and 1.0. The score measures how many independent administrative signals agree that a parcel is vacant, so a higher value means more agreement. 8,413 parcels score 1.0, where every indicator agrees.\n\nThe model reads administrative traces rather than observing the ground. A recently disconnected gas supply is one such signal, which is why a property that looks occupied from the street can still appear here.\n\n`opa_id` joins to [dor_parcel](../dor_parcel). See [vacant_indicators_bldg](../vacant_indicators_bldg) for vacant structures.\n\nSource: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-property-indicators/) on OpenDataPhilly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Philadelphia Housing and Land Use"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendataphilly.org/datasets/city-council-districts/",
+      "title": "License"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Phl Housing Demo"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_land/vacant_indicators_land.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "vacant_indicators_land"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendataphilly.org/datasets/vacant-property-indicators/",
+      "type": "text/html",
+      "title": "Original source"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 28737,
+  "table:row_count": 28737,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "address",
+      "type": "string"
+    },
+    {
+      "name": "owner1",
+      "type": "string"
+    },
+    {
+      "name": "owner2",
+      "type": "string"
+    },
+    {
+      "name": "bldg_desc",
+      "type": "string"
+    },
+    {
+      "name": "opa_id",
+      "type": "string"
+    },
+    {
+      "name": "lniaddresskey",
+      "type": "string"
+    },
+    {
+      "name": "councildistrict",
+      "type": "string"
+    },
+    {
+      "name": "zoningbasedistrict",
+      "type": "string"
+    },
+    {
+      "name": "zipcode",
+      "type": "string"
+    },
+    {
+      "name": "land_rank",
+      "type": "double"
+    },
+    {
+      "name": "date_update",
+      "type": "timestamp[ms]"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "updated": "2026-08-26T11:57:34Z",
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 13,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -75.168457,
+    39.9939536,
+    13
+  ],
+  "pmtiles:layers": [
+    "vacant_indicators_land"
+  ],
+  "title": "Vacant Property Indicators \u2014 Land",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.2668844466059,
+          39.8851869,
+          -74.969346944859,
+          40.1350371238388
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of Philadelphia",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendataphilly.org/"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "processor"
+      ],
+      "email": "nissim.lebovits@radiant.earth"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/"
+    }
+  ],
+  "assets": {
+    "vacant_indicators_land": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_land/vacant_indicators_land.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3521513,
+      "file:checksum": "122098eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+      "roles": [
+        "data"
+      ]
+    },
+    "vacant_indicators_land-tiles": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_land/vacant_indicators_land.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "vacant_indicators_land (vector tiles)",
+      "file:size": 6938718,
+      "file:checksum": "12206287954c16a1d16cbec7f9b5ca13a50eb95a278776ff22d31af6ab40aedb41f8",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Categorical Style",
+      "file:size": 686,
+      "file:checksum": "12202a9da6aa2e292b6cc10c2ed0bd4a915ae96ba106607561a45493c69421abbc4d",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./vacant_indicators_land.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 209518,
+      "file:checksum": "12208c007662184e2539f37d070ee733d1fa46569e92f863438e8d5901f2bec2c268",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 4179,
+      "file:checksum": "1220c584fd46f7dc0ccca993520a95829e682052a79bff4a62636b70b3ac86e65754",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "styles/highest-confidence": {
+      "href": "./styles/highest-confidence.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Highest confidence only",
+      "file:size": 619,
+      "file:checksum": "12207d789f8016b5707a7fad597ef2a393f33b3fce4b10cb4def31a8a6c94f790839",
+      "roles": [
+        "style"
+      ]
+    }
+  }
+}

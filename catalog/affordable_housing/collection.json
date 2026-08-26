@@ -1,0 +1,242 @@
+{
+  "type": "Collection",
+  "id": "affordable_housing",
+  "stac_version": "1.1.0",
+  "description": "Affordable housing projects funded by the Division of Housing and Community Development and completed since 1994. DHCD funds developers to build and maintain affordable units across the city.\n\n501 projects account for 19,249 units, spanning fiscal years 1995 through 2026. Rental is the most common project type at 242 projects, followed by special needs at 128 and homeownership at 109. Each row records total units alongside accessible, sensory, and visitable unit counts, so accessibility can be measured directly.\n\n`development_type` separates new construction from rehabilitation of vacant buildings and preservation of occupied ones. Read this against [vacant_indicators_bldg](../vacant_indicators_bldg) to see where rehabilitation has returned vacant structures to use.\n\nSource: [Affordable Housing Production](https://opendataphilly.org/datasets/affordable-housing-production/) on OpenDataPhilly.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Philadelphia Housing and Land Use"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendataphilly.org/datasets/city-council-districts/",
+      "title": "License"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Phl Housing Demo"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/affordable_housing/affordable_housing.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "affordable_housing"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendataphilly.org/datasets/affordable-housing-production/",
+      "type": "text/html",
+      "title": "Original source"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 501,
+  "table:row_count": 501,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "fiscal_year_complete",
+      "type": "int32"
+    },
+    {
+      "name": "project_name",
+      "type": "string"
+    },
+    {
+      "name": "developer_name",
+      "type": "string"
+    },
+    {
+      "name": "address",
+      "type": "string"
+    },
+    {
+      "name": "project_type",
+      "type": "string"
+    },
+    {
+      "name": "total_units",
+      "type": "int32"
+    },
+    {
+      "name": "accessible_units",
+      "type": "int32"
+    },
+    {
+      "name": "sensory_units",
+      "type": "int32"
+    },
+    {
+      "name": "visitable_units",
+      "type": "int32"
+    },
+    {
+      "name": "development_type",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "updated": "2026-08-26T11:57:34Z",
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 8,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -75.234375,
+    40.121713,
+    8
+  ],
+  "pmtiles:layers": [
+    "affordable_housing"
+  ],
+  "title": "Affordable Housing Production",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -75.248901,
+          39.901828,
+          -74.9828976135199,
+          40.1217132292974
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of Philadelphia",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendataphilly.org/"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "processor"
+      ],
+      "email": "nissim.lebovits@radiant.earth"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/"
+    }
+  ],
+  "assets": {
+    "affordable_housing": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/affordable_housing/affordable_housing.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 36962,
+      "file:checksum": "1220f5df81ae394902a078da5f2f4618a8bbc9b238576fe5f13e2bd99076bd92a354",
+      "roles": [
+        "data"
+      ]
+    },
+    "affordable_housing-tiles": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/affordable_housing/affordable_housing.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "affordable_housing (vector tiles)",
+      "file:size": 46952,
+      "file:checksum": "1220306eb8ce727d7ef30f0cdc99d49196c33d2fa41d4d5316f7ad7fab5fbcd9b742",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Simple Style",
+      "file:size": 1232,
+      "file:checksum": "12202df1726a4c856829c7b820cbec09dcbf6b8ed79e9bce79a7bfbbe7fa088e712c",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./affordable_housing.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 138637,
+      "file:checksum": "12204dab003a97e1cafbd664eb1a5d33f0614e3e8663d2dff0e3bc197eb014cfce03",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3971,
+      "file:checksum": "12208671d6b21ac959e262a0cf691de4a22efad765a723cad78536db3685de2947b7",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "styles/units-delivered": {
+      "href": "./styles/units-delivered.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Units delivered",
+      "file:size": 1044,
+      "file:checksum": "122035f68c2ae57bd8137c0b76d528d8e71c8145418dc38f8ecb38dd3ab89de51170",
+      "roles": [
+        "style"
+      ]
+    }
+  }
+}
