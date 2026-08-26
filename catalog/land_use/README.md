@@ -44,8 +44,8 @@ Source: [Land Use](https://opendataphilly.org/datasets/land-use/) on OpenDataPhi
 | ./land_use.parquet | 75.6 MB | 12201241a2a5... |
 | ./land_use.pmtiles | 84.0 MB | 12200d37e44a... |
 | ./styles/default.json | 839 B | 1220c2bfcbf8... |
-| ./land_use.thumb.jpg | 21.7 KB | 122047a7065e... |
-| ./README.md | 3.5 KB | 12208da98a2b... |
+| ./land_use.thumb.jpg | 344.0 KB | 1220056410fd... |
+| ./README.md | 3.5 KB | 12202e97a2e0... |
 | ./styles/residential-density.json | 639 B | 1220216a318d... |
 | ./styles/vacant-parcels.json | 611 B | 12203f3e4185... |
 

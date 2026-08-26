@@ -45,8 +45,8 @@ Source: [Affordable Housing Production](https://opendataphilly.org/datasets/affo
 | ./affordable_housing.parquet | 36.1 KB | 1220f5df81ae... |
 | ./affordable_housing.pmtiles | 45.9 KB | 1220306eb8ce... |
 | ./styles/default.json | 1.2 KB | 12202df1726a... |
-| ./affordable_housing.thumb.jpg | 20.2 KB | 1220793796df... |
-| ./README.md | 3.9 KB | 12203ecfc987... |
+| ./affordable_housing.thumb.jpg | 135.4 KB | 12204dab003a... |
+| ./README.md | 3.9 KB | 12208671d6b2... |
 | ./styles/units-delivered.json | 1.0 KB | 122035f68c2a... |
 
 ## Quick Start

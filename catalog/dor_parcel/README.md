@@ -72,9 +72,9 @@ Source: [Department of Records Property Parcels](https://opendataphilly.org/data
 |------|------|----------|
 | ./dor_parcel.parquet | 66.0 MB | 12208e4444ea... |
 | ./dor_parcel.pmtiles | 136.8 MB | 1220c7659e99... |
-| ./styles/default.json | 722 B | 1220327868f5... |
-| ./dor_parcel.thumb.jpg | 24.1 KB | 1220eea96092... |
-| ./README.md | 4.3 KB | 1220b28f8003... |
+| ./styles/default.json | 757 B | 1220a1e42945... |
+| ./dor_parcel.thumb.jpg | 252.7 KB | 12200623e7eb... |
+| ./README.md | 4.3 KB | 1220382e08e6... |
 | ./styles/condominium.json | 611 B | 12204d78ba8b... |
 
 ## Quick Start

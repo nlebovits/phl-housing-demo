@@ -47,8 +47,8 @@ Source: [Building Footprints](https://opendataphilly.org/datasets/building-footp
 | ./li_building_footprints.parquet | 98.0 MB | 12200771b36f... |
 | ./li_building_footprints.pmtiles | 200.7 MB | 12200397f086... |
 | ./styles/default.json | 681 B | 122021e42361... |
-| ./li_building_footprints.thumb.jpg | 21.5 KB | 1220c7580e07... |
-| ./README.md | 3.7 KB | 12200ee84912... |
+| ./li_building_footprints.thumb.jpg | 295.0 KB | 1220e10ea424... |
+| ./README.md | 3.7 KB | 1220e58dedbc... |
 | ./styles/structure-type.json | 678 B | 1220e77fccd8... |
 
 ## Quick Start

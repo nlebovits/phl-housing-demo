@@ -35,10 +35,10 @@ Source: [City Council Districts](https://opendataphilly.org/datasets/city-counci
 | File | Size | Checksum |
 |------|------|----------|
 | ./council_districts_2024.parquet | 113.1 KB | 12200ce93afc... |
-| ./styles/default.json | 484 B | 12202bc752c9... |
+| ./styles/default.json | 1.1 KB | 1220dca1346b... |
 | ./council_districts_2024.pmtiles | 31.0 KB | 1220c39c5609... |
-| ./council_districts_2024.thumb.jpg | 19.2 KB | 1220fad17c33... |
-| ./README.md | 2.8 KB | 122009cb4f3a... |
+| ./council_districts_2024.thumb.jpg | 110.4 KB | 12202ab0c3ca... |
+| ./README.md | 2.8 KB | 1220651ea9f1... |
 
 ## Quick Start
 

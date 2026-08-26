@@ -27,6 +27,30 @@ Never run `portolan push` from this repository, and never point
 `tools/publish.py` at a data directory. The version history in `versions.json`
 is only correct if the tool that wrote it is the tool that updates it.
 
+### Publishing an edited agent guide
+
+`portolan push` will not upload a collection's `AGENTS.md`. The file is not a
+tracked version asset, so push skips it and still reports success. See
+[portolan-cli#816](https://github.com/portolan-sdi/portolan-cli/issues/816).
+
+Until that is fixed, upload them directly after editing:
+
+```bash
+BUCKET=s3://us-west-2.opendata.source.coop/nlebovits/phl-housing-demo
+for d in */; do
+  aws s3 cp "${d}AGENTS.md" "$BUCKET/${d}AGENTS.md" \
+    --content-type text/markdown
+done
+```
+
+Then confirm the published copy is what you meant to ship, rather than
+trusting the push summary:
+
+```bash
+curl -s https://data.source.coop/nlebovits/phl-housing-demo/land_use/AGENTS.md \
+  | grep -c "getvariable('base')"
+```
+
 ## The publish boundary
 
 `catalog/` is the published catalog. Everything in it is published, and nothing

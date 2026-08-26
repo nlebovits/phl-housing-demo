@@ -129,7 +129,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T11:57:34Z",
+  "updated": "2026-08-26T12:27:17Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 14,
   "pmtiles:tile_type": "mvt",
@@ -230,8 +230,8 @@
     "documentation": {
       "href": "./README.md",
       "type": "text/markdown",
-      "file:size": 3196,
-      "file:checksum": "122050fbd52d68ab56944f027718cf9aeb5685b052e4155833da9f21251a8bf0b3cc",
+      "file:size": 3197,
+      "file:checksum": "12207df25642f68b9fa04b9aeee051b991a6d40ca07eb30e9d5b71ef5d1626998115",
       "roles": [
         "documentation"
       ]

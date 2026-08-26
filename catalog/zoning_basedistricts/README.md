@@ -47,8 +47,8 @@ Source: [Zoning Base Districts](https://opendataphilly.org/datasets/zoning-base-
 | ./zoning_basedistricts.parquet | 15.5 MB | 1220795792ff... |
 | ./zoning_basedistricts.pmtiles | 7.8 MB | 12206107cfaa... |
 | ./styles/default.json | 2.0 KB | 1220b8470efa... |
-| ./zoning_basedistricts.thumb.jpg | 26.7 KB | 12201649d789... |
-| ./README.md | 3.4 KB | 1220e9b0c63a... |
+| ./zoning_basedistricts.thumb.jpg | 316.1 KB | 122022cfe048... |
+| ./README.md | 3.4 KB | 12205f63c14f... |
 | ./styles/zoning-family.json | 833 B | 12205920820f... |
 
 ## Quick Start

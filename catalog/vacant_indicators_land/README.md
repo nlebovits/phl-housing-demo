@@ -49,8 +49,8 @@ Source: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-
 | ./vacant_indicators_land.parquet | 3.4 MB | 122098eaf6d4... |
 | ./vacant_indicators_land.pmtiles | 6.6 MB | 12206287954c... |
 | ./styles/default.json | 686 B | 12202a9da6aa... |
-| ./vacant_indicators_land.thumb.jpg | 22.7 KB | 1220a31f95b2... |
-| ./README.md | 4.1 KB | 12202c36d0ac... |
+| ./vacant_indicators_land.thumb.jpg | 204.6 KB | 12208c007662... |
+| ./README.md | 4.1 KB | 1220c584fd46... |
 | ./styles/highest-confidence.json | 619 B | 12207d789f80... |
 
 ## Quick Start

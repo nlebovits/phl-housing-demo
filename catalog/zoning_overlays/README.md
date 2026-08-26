@@ -46,9 +46,9 @@ Source: [Zoning Overlays](https://opendataphilly.org/datasets/zoning-overlays/) 
 |------|------|----------|
 | ./zoning_overlays.parquet | 8.1 MB | 1220a0e0b368... |
 | ./zoning_overlays.pmtiles | 1.7 MB | 122098f65826... |
-| ./styles/default.json | 470 B | 122040078e57... |
-| ./zoning_overlays.thumb.jpg | 24.8 KB | 1220c7e75455... |
-| ./README.md | 3.1 KB | 1220aee06ad1... |
+| ./styles/default.json | 781 B | 122059c9e6b4... |
+| ./zoning_overlays.thumb.jpg | 150.7 KB | 12202abbd688... |
+| ./README.md | 3.1 KB | 122050fbd52d... |
 
 ## Quick Start
 

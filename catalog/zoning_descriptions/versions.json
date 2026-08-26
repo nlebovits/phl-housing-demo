@@ -1,6 +1,6 @@
 {
   "spec_version": "1.0.0",
-  "current_version": "1.6.0",
+  "current_version": "1.7.0",
   "versions": [
     {
       "version": "1.0.0",
@@ -139,6 +139,28 @@
     {
       "version": "1.6.0",
       "created": "2026-08-26T11:57:34.474113Z",
+      "breaking": false,
+      "assets": {
+        "zoning_descriptions.parquet": {
+          "sha256": "cd02146d882cf425b6d15e82e6208e9be90bfc166396d603e60ada9bda04de3e",
+          "size_bytes": 1211,
+          "href": "zoning_descriptions/zoning_descriptions.parquet",
+          "mtime": 1787737435.4746952
+        }
+      },
+      "changes": [],
+      "schema": {
+        "type": "unknown",
+        "fingerprint": {
+          "columns": [],
+          "types": {}
+        }
+      },
+      "message": ""
+    },
+    {
+      "version": "1.7.0",
+      "created": "2026-08-26T12:27:17.199147Z",
       "breaking": false,
       "assets": {
         "zoning_descriptions.parquet": {
