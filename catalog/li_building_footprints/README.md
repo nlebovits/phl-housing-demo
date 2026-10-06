@@ -2,22 +2,18 @@
 
 Outlines of buildings and related structures across Philadelphia, captured photogrammetrically from aerial imagery. The layer covers residential, commercial, and industrial buildings, along with isolated garages, mobile homes, sheds, greenhouses, silos, and buildings under construction that have walls.
 
-546,083 polygons carry an approximate height (`approx_hgt`), a footprint area in square feet, and a feature code. The published FCODE key defines 1810 as Building (545,339 rows) and 1830 as Tank (61 rows).
+Each polygon carries an approximate height (`approx_hgt`), a footprint area in square feet, and a feature code. The published FCODE key defines 1810 as Building and 1830 as Tank. Nearly every row is a building, and tanks are rare.
 
-`parcel_id_num` links a footprint to its parcel in [dor_parcel](../dor_parcel). See [AGENTS.md](AGENTS.md) for the join.
+Join a footprint to its parcel in [dor_parcel](../dor_parcel) spatially. `parcel_id_num` rarely matches a parcel identifier. See [AGENTS.md](AGENTS.md) for the join.
 
 Source: [Building Footprints](https://opendataphilly.org/datasets/building-footprints/) on OpenDataPhilly.
 
 ![buildings](https://img.shields.io/badge/buildings-blue) ![footprints](https://img.shields.io/badge/footprints-blue) ![planimetric](https://img.shields.io/badge/planimetric-blue) ![structures](https://img.shields.io/badge/structures-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2794332707506, 39.87237, -74.957297, 40.1377813500408]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `li_building_footprints.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -39,17 +35,6 @@ Source: [Building Footprints](https://opendataphilly.org/datasets/building-footp
 | Shape__Length | double |  |
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./li_building_footprints.parquet | 98.0 MB | 12200771b36f... |
-| ./li_building_footprints.pmtiles | 200.7 MB | 12200397f086... |
-| ./styles/default.json | 681 B | 122021e42361... |
-| ./li_building_footprints.thumb.jpg | 295.0 KB | 1220e10ea424... |
-| ./README.md | 3.7 KB | 1220e58dedbc... |
-| ./styles/structure-type.json | 678 B | 1220e77fccd8... |
 
 ## Quick Start
 
@@ -93,9 +78,9 @@ Nissim Lebovits <nissim.lebovits@radiant.earth>
 
 ## Known Issues
 
-683 rows carry `fcode` = 0, which the published key does not define. It covers only 1810 and 1830.
+A small share of rows carry `fcode` = 0, which the published key does not define. It covers only 1810 and 1830.
 
-235 rows have a null `approx_hgt`. The height styles place these in their own bin rather than silently dropping them.
+A few rows have a null `approx_hgt`. Filter them out before you analyse height.
 
 Tippecanoe dropped features from z10 and z11 tiles to stay under its 200,000-feature limit. The GeoParquet is complete.
 

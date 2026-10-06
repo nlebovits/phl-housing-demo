@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "vacant_indicators_land",
   "stac_version": "1.1.0",
-  "description": "Parcels across Philadelphia that the city's Vacant Property Indicators model flags as likely vacant land. The model was built by the Office of Innovation and Technology with Licenses and Inspections, the Office of Property Assessment, the Philadelphia Land Bank, and the Philadelphia Water Department.\n\n28,737 parcels each carry a `land_rank` between 0.5 and 1.0. The score measures how many independent administrative signals agree that a parcel is vacant, so a higher value means more agreement. 8,413 parcels score 1.0, where every indicator agrees.\n\nThe model reads administrative traces rather than observing the ground. A recently disconnected gas supply is one such signal, which is why a property that looks occupied from the street can still appear here.\n\n`opa_id` joins to [dor_parcel](../dor_parcel). See [vacant_indicators_bldg](../vacant_indicators_bldg) for vacant structures.\n\nSource: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-property-indicators/) on OpenDataPhilly.",
+  "description": "Parcels across Philadelphia that the city's Vacant Property Indicators model flags as likely vacant land. The model was built by the Office of Innovation and Technology with Licenses and Inspections, the Office of Property Assessment, the Philadelphia Land Bank, and the Philadelphia Water Department.\n\nEach parcel carries a `land_rank` between 0.5 and 1.0. The score measures how many independent administrative signals agree that a parcel is vacant, so a higher value means more agreement. A score of 1.0 means every indicator agrees.\n\nThe model reads administrative traces rather than observing the ground. A recently disconnected gas supply is one such signal, which is why a property that looks occupied from the street can still appear here.\n\n`opa_id` joins to [dor_parcel](../dor_parcel). See [vacant_indicators_bldg](../vacant_indicators_bldg) for vacant structures.\n\nSource: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-property-indicators/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,11 +57,12 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 28737,
-  "table:row_count": 28737,
+  "geoparquet:feature_count": 28770,
+  "table:row_count": 28770,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -110,7 +111,7 @@
     },
     {
       "name": "date_update",
-      "type": "timestamp[ms]"
+      "type": "timestamp[us]"
     },
     {
       "name": "Shape__Area",
@@ -129,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-10-06T20:34:27Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 13,
   "pmtiles:tile_type": "mvt",
@@ -141,23 +142,23 @@
   "pmtiles:layers": [
     "vacant_indicators_land"
   ],
-  "title": "Vacant Property Indicators \u2014 Land",
+  "title": "Vacant Property Indicators — Land",
   "extent": {
     "spatial": {
       "bbox": [
         [
-          -75.2668844466059,
-          39.8851869,
-          -74.969346944859,
-          40.1350371238388
+          -75.2668844466,
+          39.8851872212,
+          -74.9693469449,
+          40.1350371238
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-10-04T15:25:05Z"
         ]
       ]
     }
@@ -191,18 +192,25 @@
     "vacant_indicators_land": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_land/vacant_indicators_land.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 3521513,
-      "file:checksum": "122098eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5",
+      "file:size": 3525517,
+      "file:checksum": "1220d3b54c46c2ccb3a9011b21add84d962a7c58202ebb2ea46cae96f4dd8bded881",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-04T15:25:05Z",
+      "table:row_count": 28770,
+      "phl:content_hash": "267357839546702841339214:28770",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0
     },
     "vacant_indicators_land-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_land/vacant_indicators_land.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "vacant_indicators_land (vector tiles)",
-      "file:size": 6938718,
-      "file:checksum": "12206287954c16a1d16cbec7f9b5ca13a50eb95a278776ff22d31af6ab40aedb41f8",
+      "file:size": 6944342,
+      "file:checksum": "12203595ef3593115ded3cb991c6e7ecd13c5e8c3578eefcffe169e157f2f4536fa3",
       "roles": [
         "visual"
       ]
@@ -245,6 +253,25 @@
       "roles": [
         "style"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_land/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "vacant_indicators_land as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 28737,
+      "phl:content_hash": "264976241311133271212299:28737",
+      "file:size": 3521513,
+      "file:checksum": "122098eaf6d46a5dd840da6060b88a9883bd02308e4b482d07845ac5dc872cf919b5"
     }
-  }
+  },
+  "version": "2026-10-06",
+  "phl:source_updated": "2026-10-04T15:25:05Z",
+  "phl:update_frequency": "unstated",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/vacant-property-indicators/"
 }

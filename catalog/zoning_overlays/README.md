@@ -2,7 +2,7 @@
 
 Boundaries of Philadelphia's zoning overlay districts, enacted 15 December 2011 and effective 22 August 2012. An overlay adds rules on top of the base district beneath it, so a parcel can sit under several at once.
 
-195 polygons split into three kinds: 165 Overlay Districts, 25 Supplemental Controls, and 5 Wissahickon Watershed Impervious Coverage Restrictions. Each row names the overlay and cites the section of the zoning code that created it, with `code_section_link` pointing at the text.
+The polygons split into three kinds: Overlay Districts, Supplemental Controls, and Wissahickon Watershed Impervious Coverage Restrictions. Overlay Districts are by far the most numerous. Each row names the overlay and cites the section of the zoning code that created it, with `code_section_link` pointing at the text.
 
 Read overlays together with [zoning_basedistricts](../zoning_basedistricts). See [AGENTS.md](AGENTS.md) for a spatial join that finds every rule applying to a point.
 
@@ -10,14 +10,10 @@ Source: [Zoning Overlays](https://opendataphilly.org/datasets/zoning-overlays/) 
 
 ![zoning](https://img.shields.io/badge/zoning-blue) ![overlay districts](https://img.shields.io/badge/overlay_districts-blue) ![planning](https://img.shields.io/badge/planning-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2843924339013, 39.859589, -74.9554859388087, 40.137935]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `zoning_overlays.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -40,16 +36,6 @@ Source: [Zoning Overlays](https://opendataphilly.org/datasets/zoning-overlays/) 
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
 
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./zoning_overlays.parquet | 8.1 MB | 1220a0e0b368... |
-| ./zoning_overlays.pmtiles | 1.7 MB | 122098f65826... |
-| ./styles/default.json | 781 B | 122059c9e6b4... |
-| ./zoning_overlays.thumb.jpg | 150.7 KB | 12202abbd688... |
-| ./README.md | 3.1 KB | 122050fbd52d... |
-
 ## Quick Start
 
 ```python
@@ -70,7 +56,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Zoning_Overlays FeatureServer. 21 invalid geometries were repaired with shapely.make_valid.
+Extracted 2026-08-26 from the Zoning_Overlays FeatureServer. Invalid geometries were repaired with shapely.make_valid.
 
 
 ## Citation

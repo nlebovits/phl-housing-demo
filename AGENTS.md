@@ -12,44 +12,31 @@ City of Philadelphia's ArcGIS services.
 
 The data itself lives in the bucket and never in git.
 
-## Two publishers, and they do not interoperate
+## One publisher: the scheduled refresh
 
-This catalog has two upload paths, and mixing them corrupts the version state.
+The refresh workflow is the only tool that writes data to the bucket. See
+[docs/refresh.md](docs/refresh.md).
 
-**`portolan push` owns the data assets.** GeoParquet and PMTiles were uploaded
-with it, and it records every upload in `versions.json` keyed on sha256. It
-runs from the working catalog outside this repository, not from `catalog/`.
+- `tools/refresh.py` extracts what changed. It stages the archive of the
+  outgoing version and the new current files, then records the new version
+  in `catalog/<coll>/collection.json`.
+- `tools/upload_data.py` uploads the staged data. Archives under
+  `versions/` go first, and it refuses to replace one that is already in the
+  bucket.
+- `tools/publish.py` uploads everything under `catalog/`, including every
+  `AGENTS.md`.
 
-**`tools/publish.py` owns the metadata under `catalog/`.** It keeps no state
-and compares local size and MD5 against the bucket listing.
+Never run `portolan push` on this catalog. It rewrites `<coll>/<coll>.parquet`
+without archiving the version it replaces, and its `versions.json` state
+knows nothing about the versions the Collections record.
 
-Never run `portolan push` from this repository, and never point
-`tools/publish.py` at a data directory. The version history in `versions.json`
-is only correct if the tool that wrote it is the tool that updates it.
+Never edit the version assets in `collection.json` by hand. Each names an
+archived file and its checksum, and the archive is only correct if the refresh
+wrote both.
 
-### Publishing an edited agent guide
-
-`portolan push` will not upload a collection's `AGENTS.md`. The file is not a
-tracked version asset, so push skips it and still reports success. See
-[portolan-cli#816](https://github.com/portolan-sdi/portolan-cli/issues/816).
-
-Until that is fixed, upload them directly after editing:
-
-```bash
-BUCKET=s3://us-west-2.opendata.source.coop/nlebovits/phl-housing-demo
-for d in */; do
-  aws s3 cp "${d}AGENTS.md" "$BUCKET/${d}AGENTS.md" \
-    --content-type text/markdown
-done
-```
-
-Then confirm the published copy is what you meant to ship, rather than
-trusting the push summary:
-
-```bash
-curl -s https://data.source.coop/nlebovits/phl-housing-demo/land_use/AGENTS.md \
-  | grep -c "getvariable('base')"
-```
+Run the refresh only from `main`. When a run publishes and then fails to
+commit, git falls behind the bucket. The next run detects that and stops.
+Commit the run's `refreshed-metadata` artifact first.
 
 ## The publish boundary
 
@@ -83,6 +70,13 @@ Every claim in a `catalog/**/AGENTS.md` is quoted from a source or measured
 from the data. An invented join key or column name produces a confident wrong
 answer that nothing downstream catches.
 
+Never write a number measured from the data into a README or AGENTS.md:
+no row counts, category counts, percentages, or quartiles. The data changes on
+every refresh and the number goes stale. Describe what the data holds and give
+a query that the reader can run. The current row count is `table:row_count`
+in each `collection.json`. Codes, EPSG codes, dates, and thresholds that the
+publisher defines are not data numbers.
+
 Three findings in this catalog came from outside the service metadata and are
 cited where they are used: the building FCODE key from the
 [PASDA metadata record](https://www.pasda.psu.edu/uci/FullMetadataDisplay.aspx?file=PhiladelphiaBuildings2017.xml),
@@ -99,6 +93,10 @@ shipped with three of them before they were caught.
 
 Re-verify after changing a style. A branch that matches nothing paints its
 features with the fallback colour while the legend claims otherwise.
+
+`tools/check_styles.py` runs this check on every refresh. A refresh that
+empties a branch or a step class, or that brings a value no branch names, is
+held back and reported.
 
 Two specific traps in this data:
 
@@ -117,7 +115,7 @@ fires, why it is accepted, and the issue tracking its removal.
 
 ```bash
 python3 -m venv .venv
-.venv/bin/pip install 'rashid>=0.1.5,<0.2.0' stac-check
+.venv/bin/pip install 'rashid>=0.1.5,<0.2.0' stac-check duckdb pyarrow
 .venv/bin/python3 tests/run_all.py
 ```
 

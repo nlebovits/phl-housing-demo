@@ -8,14 +8,10 @@ Source: [City Council Districts](https://opendataphilly.org/datasets/city-counci
 
 ![council districts](https://img.shields.io/badge/council_districts-blue) ![boundaries](https://img.shields.io/badge/boundaries-blue) ![political](https://img.shields.io/badge/political-blue) ![redistricting](https://img.shields.io/badge/redistricting-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2803069, 39.8674808914178, -74.955742, 40.137935]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `council_districts_2024.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -29,16 +25,6 @@ Source: [City Council Districts](https://opendataphilly.org/datasets/city-counci
 | Shape__Length | double |  |
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./council_districts_2024.parquet | 113.1 KB | 12200ce93afc... |
-| ./styles/default.json | 1.1 KB | 1220dca1346b... |
-| ./council_districts_2024.pmtiles | 31.0 KB | 1220c39c5609... |
-| ./council_districts_2024.thumb.jpg | 110.4 KB | 12202ab0c3ca... |
-| ./README.md | 2.8 KB | 1220651ea9f1... |
 
 ## Quick Start
 

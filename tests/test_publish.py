@@ -28,6 +28,7 @@ from publish import (  # noqa: E402
     collect_uploads,
     content_type_for,
     is_unchanged,
+    load_config,
     split_s3_uri,
     unedited_sentinels,
     upload_all,
@@ -252,6 +253,37 @@ else:
 
         empty = aws_session({"profile": "", "region": ""})
         check(empty.profile_name == "default", "an empty profile is no profile")
+
+# --- environment overrides for the scheduled refresh -------------------
+with tempfile.TemporaryDirectory() as tmp:
+    conf = write(
+        Path(tmp) / "publish.yaml",
+        "write_prefix: s3://raw-bucket/a/prefix\n"
+        "public_base: https://data.example.org/a/prefix\n"
+        "publish_dir: catalog\n",
+    )
+    saved = {k: os.environ.pop(k, None)
+             for k in ("PUBLISH_WRITE_PREFIX", "PUBLISH_DATA_DIR")}
+    try:
+        check(load_config(conf)["write_prefix"] == "s3://raw-bucket/a/prefix",
+              "no override keeps the file's write_prefix")
+        os.environ["PUBLISH_WRITE_PREFIX"] = "s3://account/product"
+        os.environ["PUBLISH_DATA_DIR"] = "/tmp/stage"
+        overridden = load_config(conf)
+        check(overridden["write_prefix"] == "s3://account/product",
+              "PUBLISH_WRITE_PREFIX replaces write_prefix")
+        check(overridden["data_dir"] == "/tmp/stage",
+              "PUBLISH_DATA_DIR replaces data_dir")
+        check(overridden["publish_dir"] == "catalog",
+              "an override never touches publish_dir")
+        os.environ["PUBLISH_WRITE_PREFIX"] = ""
+        check(load_config(conf)["write_prefix"] == "s3://raw-bucket/a/prefix",
+              "an empty override is no override")
+    finally:
+        for key, value in saved.items():
+            os.environ.pop(key, None)
+            if value is not None:
+                os.environ[key] = value
 
 if errors:
     print("\n".join(f"error  {e}" for e in errors))

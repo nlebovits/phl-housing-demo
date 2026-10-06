@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "zoning_basedistricts",
   "stac_version": "1.1.0",
-  "description": "Boundaries of Philadelphia's zoning base districts under the zoning code enacted in December 2011 and effective 22 August 2012. A base district sets what may be built on a parcel and how it may be used.\n\n29,205 polygons carry a district code in `long_code`, such as RSA-5 or CMX-2, and a broader grouping in `zoninggroup`. Residential and residential mixed-use account for 17,839 polygons, commercial 9,020, industrial 1,406, and special purpose 940. RSA-5, the row-house district that defines much of the city, is the single most common code at 8,730 polygons.\n\n`long_code` joins to [zoning_descriptions](../zoning_descriptions) on `new_code` to get a readable name for every code. All 29,205 rows match. Columns for pending and sunset legislation track districts under active amendment.\n\nSource: [Zoning Base Districts](https://opendataphilly.org/datasets/zoning-base-districts/) on OpenDataPhilly.",
+  "description": "Boundaries of Philadelphia's zoning base districts under the zoning code enacted in December 2011 and effective 22 August 2012. A base district sets what may be built on a parcel and how it may be used.\n\nEach polygon carries a district code in `long_code`, such as RSA-5 or CMX-2, and a broader grouping in `zoninggroup`. Residential and residential mixed-use polygons are the most numerous, followed by commercial, industrial, and special purpose. RSA-5, the row-house district that defines much of the city, is the single most common code.\n\n`long_code` joins to [zoning_descriptions](../zoning_descriptions) on `new_code` to get a readable name for every code. Every row matches. Columns for pending and sunset legislation track districts under active amendment.\n\nSource: [Zoning Base Districts](https://opendataphilly.org/datasets/zoning-base-districts/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,11 +57,12 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 29205,
-  "table:row_count": 29205,
+  "geoparquet:feature_count": 29206,
+  "table:row_count": 29206,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -94,7 +95,7 @@
     },
     {
       "name": "sunset_date",
-      "type": "timestamp[ms]"
+      "type": "timestamp[us]"
     },
     {
       "name": "sunsetbillnum",
@@ -129,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-10-06T20:34:27Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 13,
   "pmtiles:tile_type": "mvt",
@@ -146,18 +147,18 @@
     "spatial": {
       "bbox": [
         [
-          -75.2802329,
-          39.8708219,
-          -74.9558059,
-          40.1378579
+          -75.2802326689,
+          39.870822253,
+          -74.9558063535,
+          40.1378578107
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-10-06T11:24:24Z"
         ]
       ]
     }
@@ -191,18 +192,25 @@
     "zoning_basedistricts": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_basedistricts/zoning_basedistricts.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 16230250,
-      "file:checksum": "1220795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7",
+      "file:size": 16230441,
+      "file:checksum": "1220ff2f0a2ba7ece081ce0e751948fdc45be20a4a4dfff654b13fe9eb3aa2787bd2",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-06T11:24:24Z",
+      "table:row_count": 29206,
+      "phl:content_hash": "269790599981843369739571:29206",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0
     },
     "zoning_basedistricts-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_basedistricts/zoning_basedistricts.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "zoning_basedistricts (vector tiles)",
-      "file:size": 8196959,
-      "file:checksum": "12206107cfaa134aae2f17709bc96ed6c98dec2ad821d6f482665ead772d8a52a5f1",
+      "file:size": 8201942,
+      "file:checksum": "1220e196f61f046a692ea69555155446139be1d687ec875886b8b6db3c90018ec3f6",
       "roles": [
         "data"
       ]
@@ -245,6 +253,25 @@
       "roles": [
         "style"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_basedistricts/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "zoning_basedistricts as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 29205,
+      "phl:content_hash": "269130379686740813960542:29205",
+      "file:size": 16230250,
+      "file:checksum": "1220795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7"
     }
-  }
+  },
+  "version": "2026-10-06",
+  "phl:source_updated": "2026-10-06T11:24:24Z",
+  "phl:update_frequency": "unstated",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/zoning-base-districts/"
 }

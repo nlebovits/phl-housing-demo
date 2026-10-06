@@ -2,7 +2,7 @@
 
 Parcels across Philadelphia that the city's Vacant Property Indicators model flags as likely vacant land. The model was built by the Office of Innovation and Technology with Licenses and Inspections, the Office of Property Assessment, the Philadelphia Land Bank, and the Philadelphia Water Department.
 
-28,737 parcels each carry a `land_rank` between 0.5 and 1.0. The score measures how many independent administrative signals agree that a parcel is vacant, so a higher value means more agreement. 8,413 parcels score 1.0, where every indicator agrees.
+Each parcel carries a `land_rank` between 0.5 and 1.0. The score measures how many independent administrative signals agree that a parcel is vacant, so a higher value means more agreement. A score of 1.0 means every indicator agrees.
 
 The model reads administrative traces rather than observing the ground. A recently disconnected gas supply is one such signal, which is why a property that looks occupied from the street can still appear here.
 
@@ -12,14 +12,10 @@ Source: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-
 
 ![vacancy](https://img.shields.io/badge/vacancy-blue) ![vacant land](https://img.shields.io/badge/vacant_land-blue) ![blight](https://img.shields.io/badge/blight-blue) ![property](https://img.shields.io/badge/property-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2668844466059, 39.8851869, -74.969346944859, 40.1350371238388]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `vacant_indicators_land.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -41,17 +37,6 @@ Source: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-
 | Shape__Length | double |  |
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./vacant_indicators_land.parquet | 3.4 MB | 122098eaf6d4... |
-| ./vacant_indicators_land.pmtiles | 6.6 MB | 12206287954c... |
-| ./styles/default.json | 686 B | 12202a9da6aa... |
-| ./vacant_indicators_land.thumb.jpg | 204.6 KB | 12208c007662... |
-| ./README.md | 4.1 KB | 1220c584fd46... |
-| ./styles/highest-confidence.json | 619 B | 12207d789f80... |
 
 ## Quick Start
 
@@ -97,7 +82,7 @@ Nissim Lebovits <nissim.lebovits@radiant.earth>
 
 Every parcel here scores at least 0.5, because that threshold is the condition for inclusion. The collection is not a census of vacant land, and it holds no record of parcels the model judged occupied.
 
-`land_rank` takes only four values: 0.5 (16,294 parcels), 0.667 (3,635), 0.833 (395), and 1.0 (8,413). They are stored as floating point, so compare with a range rather than equality.
+`land_rank` takes only four values: 0.5, 0.667, 0.833, and 1.0. They are stored as floating point, so compare with a range rather than equality.
 
 A flag is a model output, not a legal finding of vacancy.
 

@@ -4,7 +4,7 @@ Guidance for AI agents and LLMs working with this collection.
 
 ## Overview
 
-Boundaries of Philadelphia's zoning base districts under the code enacted in December 2011 and effective 22 August 2012. 29,205 polygons.
+Boundaries of Philadelphia's zoning base districts under the code enacted in December 2011 and effective 22 August 2012.
 
 A base district sets what may be built on a parcel and how it may be used. Read it with [zoning_overlays](../zoning_overlays), which layer extra rules on top.
 
@@ -19,19 +19,19 @@ SELECT * FROM read_parquet(
 ) LIMIT 5;
 ```
 
-Coordinates are EPSG:3857 (Web Mercator) metres. DuckDB reads `geometry`
-natively, so do not wrap it in `ST_GeomFromWKB`.
+Coordinates are longitude and latitude in CRS84 (WGS 84). DuckDB reads
+`geometry` natively, so do not wrap it in `ST_GeomFromWKB`.
 
 ## Schema & field notes
 
 - `long_code` — district code with dashes, e.g. `RSA-5`. Joins to `zoning_descriptions.new_code`.
 - `code` — the same code without dashes, e.g. `RSA5`. This is what the styles key on.
-- `zoninggroup` — four broad families: Residential/Multi-Family/Residential Mixed-Use (17,839 polygons), Commercial/Commercial Mixed-Use (9,020), Industrial/Industrial Mixed-Use (1,406), and Special Purpose (940).
+- `zoninggroup` — four broad families: Residential/Multi-Family/Residential Mixed-Use, Commercial/Commercial Mixed-Use, Industrial/Industrial Mixed-Use, and Special Purpose. Residential polygons are the most numerous and Special Purpose the fewest.
 - `pending`, `pendingbill`, `pendingbillurl` — legislation that would change this district.
 - `sunset_date`, `sunsetbillnum`, `sunsetbilllink` — when a district expires and the bill that set that date.
 - `citycor` — flag whose meaning the publisher does not document.
 
-All 39 distinct codes present in the data resolve through [zoning_descriptions](../zoning_descriptions). The most common are RSA-5 (8,730 polygons), CMX-2 (4,065), RM-1 (3,768), and CMX-1 (3,130).
+Every distinct code present in the data resolves through [zoning_descriptions](../zoning_descriptions). The most common are RSA-5, CMX-2, RM-1, and CMX-1. The first example query below counts polygons per code.
 
 ## Data quality & usage notes
 
@@ -43,7 +43,7 @@ Polygons partition the city, so a point falls in exactly one base district.
 
 ## Example queries
 
-Zoning codes with readable names. All 29,205 rows match:
+Zoning codes with readable names. Every row matches:
 
 ```sql
 SET VARIABLE base = 'https://data.source.coop/nlebovits/phl-housing-demo';
@@ -78,6 +78,17 @@ FROM read_parquet(getvariable('base') || '/zoning_basedistricts/zoning_basedistr
 WHERE pendingbill IS NOT NULL
 LIMIT 20;
 ```
+
+## Versions
+
+`zoning_basedistricts.parquet` is always the current extract. Each earlier extract stays at
+`versions/<version>.parquet` and never changes. `collection.json` lists every
+version, with its checksum and the date the city last edited the rows.
+`2026-08-26` is the first version. The publisher states no update cadence
+([source](https://opendataphilly.org/datasets/zoning-base-districts/)). The catalog checks the source daily and
+records a new version at most every 7 days, and only when the rows changed.
+See "Versions" in the [catalog guide](../AGENTS.md) for a query that
+compares two versions.
 
 ## Related collections
 

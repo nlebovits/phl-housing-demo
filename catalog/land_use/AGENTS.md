@@ -4,7 +4,7 @@ Guidance for AI agents and LLMs working with this collection.
 
 ## Overview
 
-Land use assigned to each parcel by the City Planning Commission. 559,077 polygons recording the activity on the ground, which is distinct from what zoning permits.
+Land use assigned to each parcel by the City Planning Commission. One polygon per parcel, recording the activity on the ground, which is distinct from what zoning permits.
 
 Use this to ask what a place *is*. Use [zoning_basedistricts](../zoning_basedistricts) to ask what it *may become*.
 
@@ -19,8 +19,8 @@ SELECT * FROM read_parquet(
 ) LIMIT 5;
 ```
 
-Coordinates are EPSG:3857 (Web Mercator) metres. DuckDB reads `geometry`
-natively, so do not wrap it in `ST_GeomFromWKB`.
+Coordinates are longitude and latitude in CRS84 (WGS 84). DuckDB reads
+`geometry` natively, so do not wrap it in `ST_GeomFromWKB`.
 
 ## Schema & field notes
 
@@ -30,32 +30,32 @@ The classification is hierarchical, one digit deeper at each level:
 - `c_dig2` — sub-class, two digits, e.g. `11` under major class 1.
 - `c_dig3` — finest class, three digits.
 
-Major classes and their counts:
+Major classes, which the first example query below counts:
 
-| Code | Meaning | Parcels |
-|---|---|---|
-| 1 | Residential | 471,793 |
-| 2 | Commercial | 22,607 |
-| 3 | Industrial | 4,699 |
-| 4 | Civic / Institution | 3,925 |
-| 5 | Transportation | 4,684 |
-| 6 | Culture / Recreation | 835 |
-| 7 | Park / Open Space | 1,788 |
-| 8 | Water | 282 |
-| 9 | Vacant | 48,464 |
+| Code | Meaning |
+|---|---|
+| 1 | Residential |
+| 2 | Commercial |
+| 3 | Industrial |
+| 4 | Civic / Institution |
+| 5 | Transportation |
+| 6 | Culture / Recreation |
+| 7 | Park / Open Space |
+| 8 | Water |
+| 9 | Vacant |
 
 Sub-classes seen in the data: 11 Residential Low Density, 12 Residential Medium Density, 13 Residential High Density, 21 Commercial Consumer, 22 Commercial Business/Professional, 23 Commercial Mixed Residential, 31 Industrial, 41 Civic/Institution, 51 Transportation, 52 Greened ROW, 61 Culture/Amusement, 62 Active Recreation, 71 Park/Open Space, 72 Cemetery, 81 Water, 91 Vacant, 92 Other/Unknown.
 
 - `year` — survey year. Every row is 2023 or 2025.
-- `vacbldg` — `V` on 175 rows, null on 558,902. Effectively unpopulated; use the [vacancy collections](../vacant_indicators_bldg) instead.
+- `vacbldg` — `V` on a handful of rows, null on the rest. Effectively unpopulated, so use the [vacancy collections](../vacant_indicators_bldg) instead.
 
 ## Data quality & usage notes
 
-**The description columns are mostly unusable.** 515,369 of 559,077 rows (92%) store a bare digit in `c_dig1desc` rather than a label, so a query returns `"1"` where you expect `"1 Residential"`. `c_dig2desc` and `c_dig3desc` behave the same way.
+**The description columns are mostly unusable.** Most rows store a bare digit in `c_dig1desc` rather than a label, so a query returns `"1"` where you expect `"1 Residential"`. `c_dig2desc` and `c_dig3desc` behave the same way.
 
 The numeric code columns are clean and fully populated. Read those and map them yourself, as the first query below does.
 
-29 invalid geometries were repaired during extraction. The file is Hilbert-sorted, so row groups carry spatial locality and a bbox filter can skip most of the file.
+Invalid geometries were repaired during the 2026-08-26 extraction. The file is Hilbert-sorted, so row groups carry spatial locality and a bbox filter can skip most of the file.
 
 ## Example queries
 
@@ -76,7 +76,7 @@ FROM read_parquet(getvariable('base') || '/land_use/land_use.parquet')
 GROUP BY 1 ORDER BY 2 DESC;
 ```
 
-Where is vacant land zoned for housing? Returns 39,411 parcels on residential land:
+Where is vacant land zoned for housing? Residential zoning groups hold most of the result:
 
 ```sql
 SET VARIABLE base = 'https://data.source.coop/nlebovits/phl-housing-demo';
@@ -99,6 +99,17 @@ FROM read_parquet(getvariable('base') || '/land_use/land_use.parquet')
 WHERE c_dig2 IN (11, 12, 13)
 GROUP BY 1 ORDER BY 1;
 ```
+
+## Versions
+
+`land_use.parquet` is always the current extract. Each earlier extract stays at
+`versions/<version>.parquet` and never changes. `collection.json` lists every
+version, with its checksum and the date the city last edited the rows.
+`2026-08-26` is the first version. The publisher states no update cadence
+([source](https://opendataphilly.org/datasets/land-use/)). The catalog checks the source daily and
+records a new version at most every 7 days, and only when the rows changed.
+See "Versions" in the [catalog guide](../AGENTS.md) for a query that
+compares two versions.
 
 ## Related collections
 

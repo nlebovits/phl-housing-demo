@@ -23,6 +23,16 @@ Two gates decide what uploads. The path gate admits only files under
 PUBLISHABLE_SUFFIXES. Both apply. It never deletes, exactly as ``publish.py``
 never deletes.
 
+**It never replaces an archived version.** A file under a ``versions/``
+folder that already exists in the bucket is refused, even with ``--force``,
+because the Collection names it as history. So this script lists the bucket on every
+run, including ``--force`` runs.
+
+**Archives go first.** Every ``versions/`` file finishes uploading before
+any other file starts. A refresh archives the outgoing ``<coll>.parquet``
+under ``versions/`` and then replaces it, so this order means the old bytes are safe
+in the bucket before the current file changes.
+
 **Change detection is weaker here than it is for the catalog.**
 ``is_unchanged`` compares a compound ETag on size alone, because a multipart
 ETag is not an MD5. A catalog file is small and uploads in one part, so it
@@ -122,6 +132,23 @@ def collect_data_uploads(
     return uploads
 
 
+def is_archive(key: str) -> bool:
+    return "/versions/" in f"/{key}"
+
+
+def overwritten_archives(
+    changed: list[Upload], index: dict[str, tuple[int, str]]
+) -> list[str]:
+    """Keys under a ``versions/`` folder that already exist in the bucket.
+
+    An archived version is written once and then only read, through the
+    Collection asset that names it. Replacing one changes history under every
+    reader, so it is refused even with ``--force``. An empty index (no
+    listing) cannot prove a key is new, so it refuses nothing.
+    """
+    return sorted(u.key for u in changed if is_archive(u.key) and u.key in index)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Upload staged data files to the catalog's bucket prefix.",
@@ -154,8 +181,16 @@ def main() -> int:
         print(f"nothing under {base}/ to upload", file=sys.stderr)
         return 1
 
-    index = {} if args.force else remote_index(bucket, prefix, config)
+    index = remote_index(bucket, prefix, config)
     changed = [u for u in uploads if args.force or not is_unchanged(u, index)]
+
+    clobbered = overwritten_archives(changed, index)
+    if clobbered:
+        print("refusing to replace archived versions, which are immutable:",
+              file=sys.stderr)
+        for key in clobbered:
+            print(f"  {key}", file=sys.stderr)
+        return 1
 
     print(f"data_dir:    {base}/")
     print(f"target:      s3://{bucket}/{prefix}")
@@ -185,7 +220,14 @@ def main() -> int:
     except Exception as exc:  # noqa: BLE001 - stop before any upload
         sys.exit(f"cannot build an AWS session: {exc}")
 
-    failed = upload_all(session, bucket, changed)
+    archives = [u for u in changed if is_archive(u.key)]
+    rest = [u for u in changed if not is_archive(u.key)]
+    failed = upload_all(session, bucket, archives) if archives else []
+    if failed:
+        print("\nan archive failed, so no current file was replaced",
+              file=sys.stderr)
+    elif rest:
+        failed = upload_all(session, bucket, rest)
     if failed:
         print(f"\n{len(failed)} of {len(changed)} file(s) failed:",
               file=sys.stderr)

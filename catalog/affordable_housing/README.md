@@ -2,7 +2,7 @@
 
 Affordable housing projects funded by the Division of Housing and Community Development and completed since 1994. DHCD funds developers to build and maintain affordable units across the city.
 
-501 projects account for 19,249 units, spanning fiscal years 1995 through 2026. Rental is the most common project type at 242 projects, followed by special needs at 128 and homeownership at 109. Each row records total units alongside accessible, sensory, and visitable unit counts, so accessibility can be measured directly.
+Each row is one project with its fiscal year of completion. Rental is the most common project type, followed by special needs and homeownership. Each row records total units alongside accessible, sensory, and visitable unit counts, so accessibility can be measured directly.
 
 `development_type` separates new construction from rehabilitation of vacant buildings and preservation of occupied ones. Read this against [vacant_indicators_bldg](../vacant_indicators_bldg) to see where rehabilitation has returned vacant structures to use.
 
@@ -10,14 +10,10 @@ Source: [Affordable Housing Production](https://opendataphilly.org/datasets/affo
 
 ![affordable housing](https://img.shields.io/badge/affordable_housing-blue) ![development](https://img.shields.io/badge/development-blue) ![DHCD](https://img.shields.io/badge/DHCD-blue) ![housing production](https://img.shields.io/badge/housing_production-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.248901, 39.901828, -74.9828976135199, 40.1217132292974]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `affordable_housing.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -37,17 +33,6 @@ Source: [Affordable Housing Production](https://opendataphilly.org/datasets/affo
 | status | string |  |
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./affordable_housing.parquet | 36.1 KB | 1220f5df81ae... |
-| ./affordable_housing.pmtiles | 45.9 KB | 1220306eb8ce... |
-| ./styles/default.json | 1.2 KB | 12202df1726a... |
-| ./affordable_housing.thumb.jpg | 135.4 KB | 12204dab003a... |
-| ./README.md | 3.9 KB | 12208671d6b2... |
-| ./styles/units-delivered.json | 1.0 KB | 122035f68c2a... |
 
 ## Quick Start
 
@@ -69,7 +54,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the AffordableHousingProduction FeatureServer. The service names the layer "Affordable_Housing" and covers 1994 through September 2024, though completed fiscal years run to 2026.
+Extracted 2026-08-26 from the AffordableHousingProduction FeatureServer. The service names the layer "Affordable_Housing" and covers 1994 through September 2024, though the data includes projects completed in later fiscal years.
 
 
 ## Citation
@@ -91,7 +76,7 @@ Nissim Lebovits <nissim.lebovits@radiant.earth>
 
 ## Known Issues
 
-25 of 501 projects have no geometry and sort to the end of the file. They hold attributes but cannot be mapped.
+A few projects have no geometry and sort to the end of the file. They hold attributes but cannot be mapped.
 
 `project_type` and `development_type` hold multiple values separated by semicolons, such as "Rental;Special Needs;Mixed Use". Grouping on the raw column treats each combination as its own category. Split on ";" to count by individual type.
 

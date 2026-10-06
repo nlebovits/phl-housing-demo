@@ -2,7 +2,7 @@
 
 Parcels across Philadelphia that the city's Vacant Property Indicators model flags as holding a likely vacant building. It is the structural counterpart to [vacant_indicators_land](../vacant_indicators_land), built by the same inter-agency model.
 
-9,041 parcels each carry a `build_rank` between 0.5 and 1.0, measuring how many administrative signals agree the building is empty. The distribution leans low: 5,778 parcels score 0.5 and only 135 reach 1.0, so full agreement is rarer here than for vacant land.
+Each parcel carries a `build_rank` between 0.5 and 1.0, measuring how many administrative signals agree the building is empty. Most parcels score 0.5 and few reach 1.0, so full agreement is rarer here than for vacant land.
 
 `bldg_desc` describes the structure, and `councildistrict` and `zoningbasedistrict` are carried through for aggregation without a spatial join.
 
@@ -10,14 +10,10 @@ Source: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-
 
 ![vacancy](https://img.shields.io/badge/vacancy-blue) ![vacant buildings](https://img.shields.io/badge/vacant_buildings-blue) ![blight](https://img.shields.io/badge/blight-blue) ![property](https://img.shields.io/badge/property-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2739214974549, 39.8912306514407, -74.9589405963185, 40.1329329]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `vacant_indicators_bldg.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -39,17 +35,6 @@ Source: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-
 | Shape__Length | double |  |
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./vacant_indicators_bldg.parquet | 1.3 MB | 1220a220300c... |
-| ./vacant_indicators_bldg.pmtiles | 2.6 MB | 1220dc2aad33... |
-| ./styles/default.json | 728 B | 1220ff595f59... |
-| ./vacant_indicators_bldg.thumb.jpg | 129.2 KB | 1220f09d4ddc... |
-| ./README.md | 3.8 KB | 122051b8774b... |
-| ./styles/highest-confidence.json | 620 B | 12205c57f747... |
 
 ## Quick Start
 
@@ -95,7 +80,7 @@ Nissim Lebovits <nissim.lebovits@radiant.earth>
 
 Every parcel here scores at least 0.5, the threshold for inclusion, so the collection is not a census of vacant buildings.
 
-`build_rank` takes only four values: 0.5 (5,778), 0.667 (2,988), 0.833 (140), and 1.0 (135). They are stored as floating point, so compare with a range rather than equality.
+`build_rank` takes only four values: 0.5, 0.667, 0.833, and 1.0. They are stored as floating point, so compare with a range rather than equality.
 
 A building can appear sound from the street and still be flagged, because the model reads administrative signals rather than condition.
 

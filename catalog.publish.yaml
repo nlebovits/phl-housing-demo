@@ -3,11 +3,15 @@
 # Everything under publish_dir is synced 1:1 to write_prefix. Data files are
 # never placed under publish_dir, so they cannot be published by accident.
 #
-# PUBLISHER: this catalog's data was uploaded with `portolan push`, which
-# tracks uploads in versions.json keyed on sha256. tools/publish.py keeps no
-# such state and compares size and MD5 against the bucket listing. The two do
-# not interoperate. `portolan push` owns the data assets; tools/publish.py is
-# used only for the metadata under catalog/. See AGENTS.md.
+# PUBLISHER: the scheduled refresh (.github/workflows/refresh.yml) owns the
+# data. tools/upload_data.py uploads the staged versions and tools/publish.py
+# uploads catalog/. Do not run `portolan push` on this catalog. See AGENTS.md
+# and docs/refresh.md.
+#
+# The workflow signs in to the Source data proxy, which names the bucket
+# differently. It overrides write_prefix with PUBLISH_WRITE_PREFIX and
+# data_dir with PUBLISH_DATA_DIR. The values below serve a maintainer who
+# publishes by hand with a profile.
 
 # The S3 URI uploads are written to.
 write_prefix: s3://us-west-2.opendata.source.coop/nlebovits/phl-housing-demo
