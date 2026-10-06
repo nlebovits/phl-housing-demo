@@ -1,0 +1,75 @@
+{
+  "org_url": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services",
+  "collections": {
+    "affordable_housing": {
+      "service": "AffordableHousingProduction",
+      "kind": "layer",
+      "update_frequency": "unstated",
+      "frequency_source": "https://opendataphilly.org/datasets/affordable-housing-production/",
+      "min_days": 7
+    },
+    "council_districts_2024": {
+      "service": "Council_Districts_2024",
+      "kind": "layer",
+      "update_frequency": "as needed",
+      "frequency_source": "https://opendataphilly.org/datasets/city-council-districts/",
+      "min_days": 1
+    },
+    "dor_parcel": {
+      "service": "DOR_Parcel",
+      "kind": "layer",
+      "update_frequency": "weekly",
+      "frequency_source": "https://opendataphilly.org/datasets/department-of-records-property-parcels/",
+      "min_days": 7
+    },
+    "land_use": {
+      "service": "Land_Use",
+      "kind": "layer",
+      "update_frequency": "unstated",
+      "frequency_source": "https://opendataphilly.org/datasets/land-use/",
+      "min_days": 7
+    },
+    "li_building_footprints": {
+      "service": "LI_BUILDING_FOOTPRINTS",
+      "kind": "layer",
+      "update_frequency": "weekly",
+      "frequency_source": "https://opendataphilly.org/datasets/building-footprints/",
+      "min_days": 7
+    },
+    "vacant_indicators_bldg": {
+      "service": "Vacant_Indicators_Bldg",
+      "kind": "layer",
+      "update_frequency": "unstated",
+      "frequency_source": "https://opendataphilly.org/datasets/vacant-property-indicators/",
+      "min_days": 7
+    },
+    "vacant_indicators_land": {
+      "service": "Vacant_Indicators_Land",
+      "kind": "layer",
+      "update_frequency": "unstated",
+      "frequency_source": "https://opendataphilly.org/datasets/vacant-property-indicators/",
+      "min_days": 7
+    },
+    "zoning_basedistricts": {
+      "service": "Zoning_BaseDistricts",
+      "kind": "layer",
+      "update_frequency": "unstated",
+      "frequency_source": "https://opendataphilly.org/datasets/zoning-base-districts/",
+      "min_days": 7
+    },
+    "zoning_descriptions": {
+      "service": "zoning_descriptions",
+      "kind": "table",
+      "update_frequency": "unstated",
+      "frequency_source": "https://opendataphilly.org/datasets/zoning-descriptions/",
+      "min_days": 7
+    },
+    "zoning_overlays": {
+      "service": "Zoning_Overlays",
+      "kind": "layer",
+      "update_frequency": "unstated",
+      "frequency_source": "https://opendataphilly.org/datasets/zoning-overlays/",
+      "min_days": 7
+    }
+  }
+}

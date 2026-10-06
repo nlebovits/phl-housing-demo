@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "dor_parcel",
   "stac_version": "1.1.0",
-  "description": "Boundaries of every real estate property parcel in Philadelphia, drawn from legally recorded deed documents. The Department of Records maintains the layer and republishes it weekly.\n\n607,957 polygons cover the city. Each row carries a registry identifier (`basereg`, `mapreg`), a parsed street address, and flags for condominium units and stacked parcels. `geoid` is the Geographic Unique ID, and `pin` the parcel identification number.\n\nParcels are the join key for most Philadelphia property data. `opa_id` in the vacancy collections and `parcel_id_num` in building footprints both point back here. See [AGENTS.md](AGENTS.md) for queries that run.\n\nSource: [Department of Records Property Parcels](https://opendataphilly.org/datasets/department-of-records-property-parcels/) on OpenDataPhilly.",
+  "description": "Boundaries of every real estate property parcel in Philadelphia, drawn from legally recorded deed documents. The Department of Records maintains the layer and republishes it weekly.\n\nPolygons cover the whole city, and `table:row_count` gives the current count. Each row carries a registry identifier (`basereg`, `mapreg`), a parsed street address, and flags for condominium units and stacked parcels. `geoid` is the Geographic Unique ID, and `pin` the parcel identification number.\n\nParcels are the join key for most Philadelphia property data. `opa_id` in the vacancy collections and `parcel_id_num` in building footprints both point back here. See [AGENTS.md](AGENTS.md) for queries that run.\n\nSource: [Department of Records Property Parcels](https://opendataphilly.org/datasets/department-of-records-property-parcels/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,11 +57,12 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 607957,
-  "table:row_count": 607957,
+  "geoparquet:feature_count": 608085,
+  "table:row_count": 608085,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -138,11 +139,11 @@
     },
     {
       "name": "inactdate",
-      "type": "timestamp[ms]"
+      "type": "timestamp[us]"
     },
     {
       "name": "orig_date",
-      "type": "timestamp[ms]"
+      "type": "timestamp[us]"
     },
     {
       "name": "status",
@@ -233,7 +234,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-10-06T20:34:27Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 13,
   "pmtiles:tile_type": "mvt",
@@ -250,18 +251,18 @@
     "spatial": {
       "bbox": [
         [
-          -75.2777569,
-          39.8705549624657,
-          -74.9557605644352,
-          40.1378739
+          -75.277756828,
+          39.8705549625,
+          -74.9557605644,
+          40.1378735759
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-10-06T19:25:22Z"
         ]
       ]
     }
@@ -295,18 +296,25 @@
     "dor_parcel": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/dor_parcel/dor_parcel.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 69220860,
-      "file:checksum": "12208e4444eaba7a2d16a59f7c95a76ccafedddd8b7c75a7319bbe918cdf818ca8cd",
+      "file:size": 69363709,
+      "file:checksum": "122013b6c67ebeb1bb00a62ac74df2ee240d2b11fd0ca84d3d54b0e88904e99d91dc",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-06T19:25:22Z",
+      "table:row_count": 608085,
+      "phl:content_hash": "5613323199178127413985418:608085",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 37
     },
     "dor_parcel-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/dor_parcel/dor_parcel.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "dor_parcel (vector tiles)",
-      "file:size": 143409848,
-      "file:checksum": "1220c7659e9937a09eb70d9c87014d6b7dfaa660a303bc64c0d01a6045431ee78344",
+      "file:size": 143458584,
+      "file:checksum": "1220357bec08b0d6e3c91915cf95e7623343d6abd5f8acafc7cf4e4b963f0c8c3348",
       "roles": [
         "data"
       ]
@@ -349,6 +357,25 @@
       "roles": [
         "style"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/dor_parcel/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "dor_parcel as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 607957,
+      "phl:content_hash": "5604781911845859654915123:607957",
+      "file:size": 69220860,
+      "file:checksum": "12208e4444eaba7a2d16a59f7c95a76ccafedddd8b7c75a7319bbe918cdf818ca8cd"
     }
-  }
+  },
+  "version": "2026-10-06",
+  "phl:source_updated": "2026-10-06T19:25:22Z",
+  "phl:update_frequency": "weekly",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/department-of-records-property-parcels/"
 }

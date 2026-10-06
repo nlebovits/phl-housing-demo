@@ -1,0 +1,20 @@
+# What tools/refresh.py and tests/test_refresh.py need. Install into a
+# virtualenv, not the system Python:
+#
+#   python3 -m venv .venv
+#   .venv/bin/pip install -r tools/requirements-refresh.txt
+#
+# The packages that write published bytes are pinned exactly, so a refresh
+# writes the same file shape as the one before it:
+#
+# - portolan-cli runs the ArcGIS extract. It is pinned to the commit the
+#   pipeline was tested against (version 0.8.0).
+# - geoparquet-io sorts the rows and builds PMTiles. The PMTiles step needs
+#   tippecanoe on PATH, which this file cannot install. On Ubuntu:
+#   sudo apt-get install -y tippecanoe
+#
+# duckdb and pyarrow come in through portolan-cli, which bounds duckdb.
+portolan-cli @ git+https://github.com/portolan-sdi/portolan-cli@ee8e750
+geoparquet-io==1.6.0
+shapely==2.1.2
+boto3>=1.34

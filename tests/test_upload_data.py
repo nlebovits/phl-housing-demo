@@ -25,9 +25,12 @@ sys.path.insert(0, str(ROOT / "tools"))
 import upload_data  # noqa: E402
 from upload_data import (  # noqa: E402
     PUBLISHABLE_SUFFIXES,
+    Upload,
     collect_data_uploads,
     data_root,
     is_data_publishable,
+    is_archive,
+    overwritten_archives,
     unedited_sentinels,
 )
 
@@ -195,6 +198,30 @@ with tempfile.TemporaryDirectory() as tmp:
         "EXAMPLE-BUCKET" in out.getvalue(),
         "the guard names the sentinel it found",
     )
+
+# --- an archived version is never replaced -----------------------------
+def upload(key: str) -> Upload:
+    return Upload(Path("x"), key, "application/vnd.apache.parquet")
+
+
+pending = [
+    upload("p/land_use/versions/2026-08-26.parquet"),
+    upload("p/land_use/versions/2026-10-06.parquet"),
+    upload("p/land_use/land_use.parquet"),
+]
+listing = {
+    "p/land_use/versions/2026-08-26.parquet": (1, "e"),
+    "p/land_use/land_use.parquet": (1, "e"),
+}
+check(
+    overwritten_archives(pending, listing)
+    == ["p/land_use/versions/2026-08-26.parquet"],
+    "an existing archive is refused, a new one and the current file pass",
+)
+check(overwritten_archives(pending, {}) == [],
+      "an empty listing refuses nothing")
+check(is_archive("p/land_use/versions/2026-08-26.parquet"), "versions/ is an archive")
+check(not is_archive("p/land_use/land_use.parquet"), "the current file is not")
 
 if errors:
     print("\n".join(f"error  {e}" for e in errors))

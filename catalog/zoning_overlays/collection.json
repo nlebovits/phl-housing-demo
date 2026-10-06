@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "zoning_overlays",
   "stac_version": "1.1.0",
-  "description": "Boundaries of Philadelphia's zoning overlay districts, enacted 15 December 2011 and effective 22 August 2012. An overlay adds rules on top of the base district beneath it, so a parcel can sit under several at once.\n\n195 polygons split into three kinds: 165 Overlay Districts, 25 Supplemental Controls, and 5 Wissahickon Watershed Impervious Coverage Restrictions. Each row names the overlay and cites the section of the zoning code that created it, with `code_section_link` pointing at the text.\n\nRead overlays together with [zoning_basedistricts](../zoning_basedistricts). See [AGENTS.md](AGENTS.md) for a spatial join that finds every rule applying to a point.\n\nSource: [Zoning Overlays](https://opendataphilly.org/datasets/zoning-overlays/) on OpenDataPhilly.",
+  "description": "Boundaries of Philadelphia's zoning overlay districts, enacted 15 December 2011 and effective 22 August 2012. An overlay adds rules on top of the base district beneath it, so a parcel can sit under several at once.\n\nThe polygons split into three kinds: Overlay Districts, Supplemental Controls, and Wissahickon Watershed Impervious Coverage Restrictions. Overlay Districts are by far the most numerous. Each row names the overlay and cites the section of the zoning code that created it, with `code_section_link` pointing at the text.\n\nRead overlays together with [zoning_basedistricts](../zoning_basedistricts). See [AGENTS.md](AGENTS.md) for a spatial join that finds every rule applying to a point.\n\nSource: [Zoning Overlays](https://opendataphilly.org/datasets/zoning-overlays/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,11 +57,12 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 195,
-  "table:row_count": 195,
+  "geoparquet:feature_count": 196,
+  "table:row_count": 196,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -86,7 +87,7 @@
     },
     {
       "name": "sunset_date",
-      "type": "timestamp[ms]"
+      "type": "timestamp[us]"
     },
     {
       "name": "pending",
@@ -129,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-10-06T20:34:27Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 14,
   "pmtiles:tile_type": "mvt",
@@ -146,18 +147,18 @@
     "spatial": {
       "bbox": [
         [
-          -75.2843924339013,
-          39.859589,
-          -74.9554859388087,
-          40.137935
+          -75.2843924339,
+          39.8595893098,
+          -74.9554859388,
+          40.1379348401
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-10-06T11:27:25Z"
         ]
       ]
     }
@@ -191,18 +192,25 @@
     "zoning_overlays": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/zoning_overlays.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 8523414,
-      "file:checksum": "1220a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641",
+      "file:size": 8477047,
+      "file:checksum": "1220f76c39b382dd42244345f73f025ee159ec3dcd823253b009eb9b198b7dbe803e",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-06T11:27:25Z",
+      "table:row_count": 196,
+      "phl:content_hash": "1857321154659228809161:196",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0
     },
     "zoning_overlays-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/zoning_overlays.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "zoning_overlays (vector tiles)",
-      "file:size": 1831227,
-      "file:checksum": "122098f6582632bab296a9f0b72eaffe3fb1094ff5d5f261a6dbadb707eaa1b2b729",
+      "file:size": 1831473,
+      "file:checksum": "1220473a73e492de4c1ce470eca481d4971a43aa580e08c5353e5b034094d368ac4a",
       "roles": [
         "visual"
       ]
@@ -235,6 +243,25 @@
       "roles": [
         "documentation"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "zoning_overlays as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 195,
+      "phl:content_hash": "1859858242596082498699:195",
+      "file:size": 8523414,
+      "file:checksum": "1220a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641"
     }
-  }
+  },
+  "version": "2026-10-06",
+  "phl:source_updated": "2026-10-06T11:27:25Z",
+  "phl:update_frequency": "unstated",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/zoning-overlays/"
 }

@@ -4,7 +4,7 @@ Guidance for AI agents and LLMs working with this collection.
 
 ## Overview
 
-The city's own decoder for Philadelphia zoning district codes. 39 rows pairing a code such as `RSA-5` with its written name, "Residential Single-Family Attached-5".
+The city's own decoder for Philadelphia zoning district codes. Each row pairs a code such as `RSA-5` with its written name, "Residential Single-Family Attached-5".
 
 This is a lookup table with no geometry. It renders no map and ships no styles. Its purpose is to make [zoning_basedistricts](../zoning_basedistricts) readable.
 
@@ -19,8 +19,8 @@ SELECT * FROM read_parquet(
 ) LIMIT 5;
 ```
 
-Coordinates are EPSG:3857 (Web Mercator) metres. DuckDB reads `geometry`
-natively, so do not wrap it in `ST_GeomFromWKB`.
+The table has no geometry column. Join it to `zoning_basedistricts` for
+locations.
 
 ## Schema & field notes
 
@@ -28,7 +28,7 @@ natively, so do not wrap it in `ST_GeomFromWKB`.
 - `code_description` — the written name.
 - `objectid` — row identifier from the source service.
 
-The 39 codes fall into four families:
+The codes fall into four families:
 
 - **Residential** — RSD (single-family detached), RSA (single-family attached), RTA (two-family attached), RM (multi-family), RMX (residential mixed-use).
 - **Commercial** — CA (auto-oriented), CMX (mixed-use, from neighborhood CMX-1 to Center City core CMX-5).
@@ -41,7 +41,7 @@ No geometry column, so this collection is tabular. Spatial functions do not appl
 
 Covers base district codes only. Overlay symbols live in [zoning_overlays](../zoning_overlays) and are not decoded here.
 
-The table was written with DuckDB rather than `portolan extract`, which reports "0/0 layers" for ArcGIS services advertising a table instead of a layer. See [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). All 39 rows were verified against the source.
+The table was written with DuckDB rather than `portolan extract`, which reports "0/0 layers" for ArcGIS services advertising a table instead of a layer. See [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). Every row of the 2026-08-26 extract was verified against the source.
 
 ## Example queries
 
@@ -55,7 +55,7 @@ FROM read_parquet(getvariable('base') || '/zoning_descriptions/zoning_descriptio
 ORDER BY new_code;
 ```
 
-Label a zoning map. All 29,205 district polygons match:
+Label a zoning map. Every district polygon matches:
 
 ```sql
 SET VARIABLE base = 'https://data.source.coop/nlebovits/phl-housing-demo';
@@ -77,6 +77,17 @@ FROM read_parquet(getvariable('base') || '/zoning_descriptions/zoning_descriptio
 WHERE code_description LIKE 'Residential%'
 ORDER BY new_code;
 ```
+
+## Versions
+
+`zoning_descriptions.parquet` is always the current extract. Each earlier extract stays at
+`versions/<version>.parquet` and never changes. `collection.json` lists every
+version, with its checksum and the date the city last edited the rows.
+`2026-08-26` is the first version. The publisher states no update cadence
+([source](https://opendataphilly.org/datasets/zoning-descriptions/)). The catalog checks the source daily and
+records a new version at most every 7 days, and only when the rows changed.
+See "Versions" in the [catalog guide](../AGENTS.md) for a query that
+compares two versions.
 
 ## Related collections
 

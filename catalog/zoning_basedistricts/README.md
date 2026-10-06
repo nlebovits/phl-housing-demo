@@ -2,22 +2,18 @@
 
 Boundaries of Philadelphia's zoning base districts under the zoning code enacted in December 2011 and effective 22 August 2012. A base district sets what may be built on a parcel and how it may be used.
 
-29,205 polygons carry a district code in `long_code`, such as RSA-5 or CMX-2, and a broader grouping in `zoninggroup`. Residential and residential mixed-use account for 17,839 polygons, commercial 9,020, industrial 1,406, and special purpose 940. RSA-5, the row-house district that defines much of the city, is the single most common code at 8,730 polygons.
+Each polygon carries a district code in `long_code`, such as RSA-5 or CMX-2, and a broader grouping in `zoninggroup`. Residential and residential mixed-use polygons are the most numerous, followed by commercial, industrial, and special purpose. RSA-5, the row-house district that defines much of the city, is the single most common code.
 
-`long_code` joins to [zoning_descriptions](../zoning_descriptions) on `new_code` to get a readable name for every code. All 29,205 rows match. Columns for pending and sunset legislation track districts under active amendment.
+`long_code` joins to [zoning_descriptions](../zoning_descriptions) on `new_code` to get a readable name for every code. Every row matches. Columns for pending and sunset legislation track districts under active amendment.
 
 Source: [Zoning Base Districts](https://opendataphilly.org/datasets/zoning-base-districts/) on OpenDataPhilly.
 
 ![zoning](https://img.shields.io/badge/zoning-blue) ![districts](https://img.shields.io/badge/districts-blue) ![planning](https://img.shields.io/badge/planning-blue) ![land use regulation](https://img.shields.io/badge/land_use_regulation-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2802329, 39.8708219, -74.9558059, 40.1378579]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `zoning_basedistricts.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -39,17 +35,6 @@ Source: [Zoning Base Districts](https://opendataphilly.org/datasets/zoning-base-
 | Shape__Length | double |  |
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./zoning_basedistricts.parquet | 15.5 MB | 1220795792ff... |
-| ./zoning_basedistricts.pmtiles | 7.8 MB | 12206107cfaa... |
-| ./styles/default.json | 2.0 KB | 1220b8470efa... |
-| ./zoning_basedistricts.thumb.jpg | 316.1 KB | 122022cfe048... |
-| ./README.md | 3.4 KB | 12205f63c14f... |
-| ./styles/zoning-family.json | 833 B | 12205920820f... |
 
 ## Quick Start
 

@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "land_use",
   "stac_version": "1.1.0",
-  "description": "Land use assigned to each parcel in Philadelphia, maintained by the City Planning Commission. Land use records the activity on the ground, such as residential, commercial, or industrial, rather than what zoning permits.\n\nEvery parcel gets one of nine major classifications in `c_dig1`, and where possible a narrower sub-classification in `c_dig2` and `c_dig3`. Residential dominates at 471,793 of 559,077 parcels, followed by vacant at 48,464 and commercial at 22,607.\n\nCompare this against [zoning_basedistricts](../zoning_basedistricts) to find parcels used differently from how they are zoned. See [AGENTS.md](AGENTS.md) for the query.\n\nSource: [Land Use](https://opendataphilly.org/datasets/land-use/) on OpenDataPhilly.",
+  "description": "Land use assigned to each parcel in Philadelphia, maintained by the City Planning Commission. Land use records the activity on the ground, such as residential, commercial, or industrial, rather than what zoning permits.\n\nEvery parcel gets one of nine major classifications in `c_dig1`, and where possible a narrower sub-classification in `c_dig2` and `c_dig3`. Residential parcels dominate, followed by vacant and then commercial.\n\nCompare this against [zoning_basedistricts](../zoning_basedistricts) to find parcels used differently from how they are zoned. See [AGENTS.md](AGENTS.md) for the query.\n\nSource: [Land Use](https://opendataphilly.org/datasets/land-use/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,7 +57,8 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
   "geoparquet:feature_count": 559077,
@@ -134,18 +135,18 @@
     "spatial": {
       "bbox": [
         [
-          -75.2803069,
-          39.8674718645708,
-          -74.9557485597981,
-          40.137935
+          -75.2803067536,
+          39.8674718646,
+          -74.9557485598,
+          40.1379348427
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-08-26T12:27:17Z"
         ]
       ]
     }
@@ -183,7 +184,12 @@
       "file:checksum": "12201241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 559077,
+      "phl:content_hash": "5159993519258805151655550:559077"
     },
     "land_use-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/land_use/land_use.pmtiles",
@@ -244,5 +250,9 @@
         "style"
       ]
     }
-  }
+  },
+  "version": "2026-08-26",
+  "phl:source_updated": null,
+  "phl:update_frequency": "unstated",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/land-use/"
 }

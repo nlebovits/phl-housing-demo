@@ -4,70 +4,60 @@
 
 Ten collections describing property, zoning, vacancy, and affordable housing in Philadelphia, mirrored from the City of Philadelphia's ArcGIS services via [OpenDataPhilly](https://opendataphilly.org/). Together they answer what exists on a parcel, what the zoning code permits there, whether the city believes it is empty, and what publicly funded housing has been built.
 
-The catalog holds 1,780,845 features. Property parcels (607,957), land use (559,077), and building footprints (546,083) cover the whole city. Zoning base districts (29,205) and overlays (195) record what the code allows, and a 39-row lookup table decodes every zoning code. The city's vacancy model flags 28,737 likely-vacant lots and 9,041 likely-vacant buildings. Affordable housing production lists 501 DHCD-funded projects delivering 19,249 units since 1994.
+Property parcels, land use, and building footprints cover the whole city. Zoning base districts and overlays record what the code allows, and a lookup table decodes every zoning code. The city's vacancy model flags likely-vacant lots and likely-vacant buildings. Affordable housing production lists DHCD-funded projects completed since 1994 and the units each one delivered. The council districts give each location its political representation.
 
-Each collection ships as GeoParquet in the source CRS, EPSG:3857, with PMTiles for rendering and two to three verified map styles. Start at the catalog [AGENTS.md](AGENTS.md) for join keys, worked queries, and the data quirks that cause most wrong answers.
+Each collection ships as GeoParquet in CRS84 (longitude, latitude), with PMTiles for rendering and two to three verified map styles. Start at the catalog [AGENTS.md](AGENTS.md) for join keys, worked queries, and the data quirks that cause most wrong answers.
 
 ## Collections
 
 <details>
 <summary>📁 10 collections (click to expand)</summary>
 
-### [Affordable Housing Production](phl-housing-demo/affordable_housing/)
+### [Affordable Housing Production](affordable_housing/)
 
 Affordable housing projects funded by the Division of Housing and Community Development and completed since 1994. DHCD funds developers to build and maintain affordable units across the city.
 
-501 ...
-
-### [City Council Districts (2024)](phl-housing-demo/council_districts_2024/)
+### [City Council Districts (2024)](council_districts_2024/)
 
 The ten Philadelphia City Council districts as redrawn after the 2020 census. Each district elects one council member, and the city also seats seven at-large members who represent no district.
 
-Use...
-
-### [Property Parcels](phl-housing-demo/dor_parcel/)
+### [Property Parcels](dor_parcel/)
 
 Boundaries of every real estate property parcel in Philadelphia, drawn from legally recorded deed documents. The Department of Records maintains the layer and republishes it weekly.
 
-607,957 polygo...
+### [Land Use](land_use/)
 
-### [Land Use](phl-housing-demo/land_use/)
+Land use assigned to each parcel in Philadelphia, maintained by the City Planning Commission. Land use records the activity on the ground, such as residential, commercial, or industrial, rather than what zoning permits.
 
-Land use assigned to each parcel in Philadelphia, maintained by the City Planning Commission. Land use records the activity on the ground, such as residential, commercial, or industrial, rather tha...
+### [Building Footprints](li_building_footprints/)
 
-### [Building Footprints](phl-housing-demo/li_building_footprints/)
+Outlines of buildings and related structures across Philadelphia, captured photogrammetrically from aerial imagery. The layer covers residential, commercial, and industrial buildings, along with isolated garages, mobile homes, sheds, greenhouses, silos, and buildings under construction that have walls.
 
-Outlines of buildings and related structures across Philadelphia, captured photogrammetrically from aerial imagery. The layer covers residential, commercial, and industrial buildings, along with is...
+### [Vacant Property Indicators — Buildings](vacant_indicators_bldg/)
 
-### [Vacant Property Indicators — Buildings](phl-housing-demo/vacant_indicators_bldg/)
+Parcels across Philadelphia that the city's Vacant Property Indicators model flags as holding a likely vacant building. It is the structural counterpart to [vacant_indicators_land](../vacant_indicators_land), built by the same inter-agency model.
 
-Parcels across Philadelphia that the city's Vacant Property Indicators model flags as holding a likely vacant building. It is the structural counterpart to [vacant_indicators_land](../vacant_indica...
+### [Vacant Property Indicators — Land](vacant_indicators_land/)
 
-### [Vacant Property Indicators — Land](phl-housing-demo/vacant_indicators_land/)
+Parcels across Philadelphia that the city's Vacant Property Indicators model flags as likely vacant land. The model was built by the Office of Innovation and Technology with Licenses and Inspections, the Office of Property Assessment, the Philadelphia Land Bank, and the Philadelphia Water Department.
 
-Parcels across Philadelphia that the city's Vacant Property Indicators model flags as likely vacant land. The model was built by the Office of Innovation and Technology with Licenses and Inspection...
+### [Zoning Base Districts](zoning_basedistricts/)
 
-### [Zoning Base Districts](phl-housing-demo/zoning_basedistricts/)
+Boundaries of Philadelphia's zoning base districts under the zoning code enacted in December 2011 and effective 22 August 2012. A base district sets what may be built on a parcel and how it may be used.
 
-Boundaries of Philadelphia's zoning base districts under the zoning code enacted in December 2011 and effective 22 August 2012. A base district sets what may be built on a parcel and how it may be ...
+### [Zoning Code Descriptions](zoning_descriptions/)
 
-### [Zoning Code Descriptions](phl-housing-demo/zoning_descriptions/)
+Zoning Descriptions
 
-The city's own decoder for Philadelphia zoning district codes. 39 rows pair a code such as `RSA-5` with its written name, "Residential Single-Family Attached-5".
+### [Zoning Overlays](zoning_overlays/)
 
-This is a lookup table with no geo...
-
-### [Zoning Overlays](phl-housing-demo/zoning_overlays/)
-
-Boundaries of Philadelphia's zoning overlay districts, enacted 15 December 2011 and effective 22 August 2012. An overlay adds rules on top of the base district beneath it, so a parcel can sit under...
+Boundaries of Philadelphia's zoning overlay districts, enacted 15 December 2011 and effective 22 August 2012. An overlay adds rules on top of the base district beneath it, so a parcel can sit under several at once.
 
 </details>
 
 ## Coverage
 
-**Spatial Extent**
-
-- West: -75.2844, South: 39.8596, East: -74.9555, North: 40.1379
+The collections cover the City of Philadelphia. Each `collection.json` gives its exact bounding box.
 
 ## Source
 
@@ -76,10 +66,25 @@ Boundaries of Philadelphia's zoning overlay districts, enacted 15 December 2011 
 ## Processing Notes
 
 Extracted from City of Philadelphia ArcGIS FeatureServer endpoints on 2026-08-26 using `portolan extract arcgis`, one service per collection. Every layer is served from the city's ArcGIS Online organization fLeGjb7u4uXqeF9q. Feature counts were checked against each service's returnCountOnly response, and all ten collections match their source exactly.
-GeoParquet keeps the source CRS, EPSG:3857 (Web Mercator), for all collections. PMTiles are reprojected to Web Mercator for rendering.
+The services serve EPSG:3857 (Web Mercator). The GeoParquet is reprojected to CRS84 (longitude, latitude) for all collections, so `ST_Area(geometry)` returns square degrees; reproject to EPSG:2272 to measure. The `Shape__Area` and `Shape__Length` columns keep the publisher's Web Mercator metres.
 Column meanings come from three sources. ArcGIS field aliases supplied attested names such as `basereg` = "Base Registry Number". The [PASDA metadata record](https://www.pasda.psu.edu/uci/FullMetadataDisplay.aspx?file=PhiladelphiaBuildings2017.xml) supplied the building footprint FCODE key, which states "1810 = Building 1830 = Tank". The city data team's [post on the OpenDataPhilly forum](https://groups.google.com/g/opendataphilly/c/anMKnNH3pqc) supplied the vacancy rank semantics. Land use category labels were derived from the data; see AGENTS.md for the query.
 `zoning_descriptions` is a non-spatial lookup table. `portolan extract arcgis` reports "0/0 layers" for services that advertise a table rather than a layer, so that parquet was written with DuckDB from the same FeatureServer query endpoint. See [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812).
-Land use was reordered with `gpio sort hilbert` to give its row groups spatial locality.
+The 2026-08-26 extract reordered land use with `gpio sort hilbert` to give its row groups spatial locality.
+
+## Updates and versions
+
+A scheduled job checks every source daily. It re-extracts a collection only when the city edited its rows, and it records a new version only when the rows changed. Each refresh repeats the processing above and sorts every spatial collection with `gpio sort hilbert`. The current data is always at `<collection>/<collection>.parquet`. Each earlier version stays at `<collection>/versions/<version>.parquet` and never changes. Each `collection.json` lists every version with its dates and checksum. The first version of every collection is the 2026-08-26 extract.
+
+The publisher states an update cadence for three collections on OpenDataPhilly. A version is recorded at most once per interval below.
+
+| Collection | Stated cadence | Minimum days between versions |
+|---|---|---|
+| dor_parcel | Weekly | 7 |
+| li_building_footprints | Weekly | 7 |
+| council_districts_2024 | As needed | 1 |
+| All others | Not stated | 7 |
+
+Each collection carries `updated` (the newest version), `phl:source_updated` (when the city last edited those rows), and `phl:update_frequency`.
 
 
 ## Citation

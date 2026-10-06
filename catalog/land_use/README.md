@@ -2,7 +2,7 @@
 
 Land use assigned to each parcel in Philadelphia, maintained by the City Planning Commission. Land use records the activity on the ground, such as residential, commercial, or industrial, rather than what zoning permits.
 
-Every parcel gets one of nine major classifications in `c_dig1`, and where possible a narrower sub-classification in `c_dig2` and `c_dig3`. Residential dominates at 471,793 of 559,077 parcels, followed by vacant at 48,464 and commercial at 22,607.
+Every parcel gets one of nine major classifications in `c_dig1`, and where possible a narrower sub-classification in `c_dig2` and `c_dig3`. Residential parcels dominate, followed by vacant and then commercial. `table:row_count` in `collection.json` gives the current parcel count.
 
 Compare this against [zoning_basedistricts](../zoning_basedistricts) to find parcels used differently from how they are zoned. See [AGENTS.md](AGENTS.md) for the query.
 
@@ -10,14 +10,10 @@ Source: [Land Use](https://opendataphilly.org/datasets/land-use/) on OpenDataPhi
 
 ![land use](https://img.shields.io/badge/land_use-blue) ![zoning](https://img.shields.io/badge/zoning-blue) ![planning](https://img.shields.io/badge/planning-blue) ![parcels](https://img.shields.io/badge/parcels-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2803069, 39.8674718645708, -74.9557485597981, 40.137935]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `land_use.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -36,18 +32,6 @@ Source: [Land Use](https://opendataphilly.org/datasets/land-use/) on OpenDataPhi
 | Shape__Length | double |  |
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./land_use.parquet | 75.6 MB | 12201241a2a5... |
-| ./land_use.pmtiles | 84.0 MB | 12200d37e44a... |
-| ./styles/default.json | 839 B | 1220c2bfcbf8... |
-| ./land_use.thumb.jpg | 344.0 KB | 1220056410fd... |
-| ./README.md | 3.5 KB | 12202e97a2e0... |
-| ./styles/residential-density.json | 639 B | 1220216a318d... |
-| ./styles/vacant-parcels.json | 611 B | 12203f3e4185... |
 
 ## Quick Start
 
@@ -69,7 +53,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Land_Use FeatureServer. 29 invalid geometries were repaired with shapely.make_valid. Reordered with `gpio sort hilbert` so row groups carry spatial locality. Category labels were derived from the populated rows of `c_dig1desc`; see AGENTS.md for the query.
+Extracted 2026-08-26 from the Land_Use FeatureServer. Invalid geometries were repaired with shapely.make_valid. Reordered with `gpio sort hilbert` so row groups carry spatial locality. Category labels were derived from the populated rows of `c_dig1desc`; see AGENTS.md for the query.
 
 
 ## Citation
@@ -91,7 +75,7 @@ Nissim Lebovits <nissim.lebovits@radiant.earth>
 
 ## Known Issues
 
-The description columns are inconsistent. 515,369 of 559,077 rows (92%) store a bare digit in `c_dig1desc` rather than a label, so a reader sees "1" instead of "1 Residential". `c_dig2desc` and `c_dig3desc` behave the same way.
+The description columns are inconsistent. Most rows store a bare digit in `c_dig1desc` rather than a label, so a reader sees "1" instead of "1 Residential". `c_dig2desc` and `c_dig3desc` behave the same way.
 
 The numeric code columns `c_dig1`, `c_dig2`, and `c_dig3` are clean and fully populated. Every style in this collection keys on the code, and AGENTS.md gives a CASE expression that maps codes to labels.
 

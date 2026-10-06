@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "vacant_indicators_bldg",
   "stac_version": "1.1.0",
-  "description": "Parcels across Philadelphia that the city's Vacant Property Indicators model flags as holding a likely vacant building. It is the structural counterpart to [vacant_indicators_land](../vacant_indicators_land), built by the same inter-agency model.\n\n9,041 parcels each carry a `build_rank` between 0.5 and 1.0, measuring how many administrative signals agree the building is empty. The distribution leans low: 5,778 parcels score 0.5 and only 135 reach 1.0, so full agreement is rarer here than for vacant land.\n\n`bldg_desc` describes the structure, and `councildistrict` and `zoningbasedistrict` are carried through for aggregation without a spatial join.\n\nSource: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-property-indicators/) on OpenDataPhilly.",
+  "description": "Parcels across Philadelphia that the city's Vacant Property Indicators model flags as holding a likely vacant building. It is the structural counterpart to [vacant_indicators_land](../vacant_indicators_land), built by the same inter-agency model.\n\nEach parcel carries a `build_rank` between 0.5 and 1.0, measuring how many administrative signals agree the building is empty. Most parcels score 0.5 and few reach 1.0, so full agreement is rarer here than for vacant land.\n\n`bldg_desc` describes the structure, and `councildistrict` and `zoningbasedistrict` are carried through for aggregation without a spatial join.\n\nSource: [Vacant Property Indicators](https://opendataphilly.org/datasets/vacant-property-indicators/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,11 +57,12 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 9041,
-  "table:row_count": 9041,
+  "geoparquet:feature_count": 9569,
+  "table:row_count": 9569,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -110,7 +111,7 @@
     },
     {
       "name": "date_update",
-      "type": "timestamp[ms]"
+      "type": "timestamp[us]"
     },
     {
       "name": "Shape__Area",
@@ -129,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-10-06T20:34:27Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 13,
   "pmtiles:tile_type": "mvt",
@@ -141,23 +142,23 @@
   "pmtiles:layers": [
     "vacant_indicators_bldg"
   ],
-  "title": "Vacant Property Indicators \u2014 Buildings",
+  "title": "Vacant Property Indicators — Buildings",
   "extent": {
     "spatial": {
       "bbox": [
         [
-          -75.2739214974549,
-          39.8912306514407,
-          -74.9589405963185,
-          40.1329329
+          -75.2739214975,
+          39.8912306514,
+          -74.9589405963,
+          40.1329327787
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-10-04T15:24:43Z"
         ]
       ]
     }
@@ -191,18 +192,25 @@
     "vacant_indicators_bldg": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_bldg/vacant_indicators_bldg.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 1371993,
-      "file:checksum": "1220a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72",
+      "file:size": 1446474,
+      "file:checksum": "12200b10dc1dfe82d3a7fbd32d9851bb128b5c27e22da1a0fa41130365ee98897cdb",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-04T15:24:43Z",
+      "table:row_count": 9569,
+      "phl:content_hash": "89017312290803152208059:9569",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0
     },
     "vacant_indicators_bldg-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_bldg/vacant_indicators_bldg.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "vacant_indicators_bldg (vector tiles)",
-      "file:size": 2724905,
-      "file:checksum": "1220dc2aad33d9976de6be62af403a9e420916bafdfe09b43a3b561bbfddb30733c4",
+      "file:size": 2859019,
+      "file:checksum": "1220b35aca79ed974db84b9360ebcca1829471024e54669d10717198ef8bb9dc8fd7",
       "roles": [
         "visual"
       ]
@@ -245,6 +253,25 @@
       "roles": [
         "style"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_bldg/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "vacant_indicators_bldg as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 9041,
+      "phl:content_hash": "82918918162922042759097:9041",
+      "file:size": 1371993,
+      "file:checksum": "1220a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72"
     }
-  }
+  },
+  "version": "2026-10-06",
+  "phl:source_updated": "2026-10-04T15:24:43Z",
+  "phl:update_frequency": "unstated",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/vacant-property-indicators/"
 }

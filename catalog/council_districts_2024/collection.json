@@ -63,7 +63,8 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "Polygon",
   "geoparquet:feature_count": 10,
@@ -120,18 +121,18 @@
     "spatial": {
       "bbox": [
         [
-          -75.2803069,
-          39.8674808914178,
-          -74.955742,
-          40.137935
+          -75.280306754,
+          39.8674808914,
+          -74.9557424319,
+          40.1379348402
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-08-26T12:27:17Z"
         ]
       ]
     }
@@ -169,7 +170,12 @@
       "file:checksum": "12200ce93afcff960e6a2f9e9486e9759f970325392969e6fb75f269a0953c0363b5",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 10,
+      "phl:content_hash": "115106611492830853626:10"
     },
     "styles/default": {
       "href": "./styles/default.json",
@@ -210,5 +216,9 @@
         "documentation"
       ]
     }
-  }
+  },
+  "version": "2026-08-26",
+  "phl:source_updated": null,
+  "phl:update_frequency": "as needed",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/city-council-districts/"
 }

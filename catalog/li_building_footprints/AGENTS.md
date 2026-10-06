@@ -4,7 +4,7 @@ Guidance for AI agents and LLMs working with this collection.
 
 ## Overview
 
-Outlines of buildings and related structures, captured photogrammetrically from aerial imagery. 546,083 polygons covering residential, commercial, and industrial buildings, plus isolated garages, mobile homes, sheds, greenhouses, silos, and buildings under construction that have walls.
+Outlines of buildings and related structures, captured photogrammetrically from aerial imagery. The polygons cover residential, commercial, and industrial buildings, plus isolated garages, mobile homes, sheds, greenhouses, silos, and buildings under construction that have walls.
 
 Structures under 150 square feet are generally not captured.
 
@@ -19,30 +19,30 @@ SELECT * FROM read_parquet(
 ) LIMIT 5;
 ```
 
-Coordinates are EPSG:3857 (Web Mercator) metres. DuckDB reads `geometry`
-natively, so do not wrap it in `ST_GeomFromWKB`.
+Coordinates are longitude and latitude in CRS84 (WGS 84). DuckDB reads
+`geometry` natively, so do not wrap it in `ST_GeomFromWKB`.
 
 ## Schema & field notes
 
-- `bin` — Building Identification Number. Unique across all 546,083 rows, so it is a safe primary key.
-- `fcode` — feature code. The published key defines `1810 = Building` (545,339 rows) and `1830 = Tank` (61 rows). 683 rows carry `0`, which the key does not define.
-- `approx_hgt` — approximate height in feet above base. Median around 24.
+- `bin` — Building Identification Number. Unique across all rows, so it is a safe primary key.
+- `fcode` — feature code. The published key defines `1810 = Building` and `1830 = Tank`. Nearly every row is a building. A small share of rows carry `0`, which the key does not define.
+- `approx_hgt` — approximate height in feet above base.
 - `max_hgt` — maximum elevation of non-ground points within the footprint, minus the base measurement.
 - `base_elevation` — ground elevation at the footprint.
 - `square_ft` — footprint area in square feet, computed by the publisher. Prefer this to `Shape__Area`, which is distorted Web Mercator metres.
 - `address`, `dor_alternate_addr` — street address and an alternate form.
 - `building_name` — populated only for named buildings.
-- `parcel_id_num`, `parcel_id_source` — a parcel identifier and the department it came from. Every populated row shows `PWD`, the Water Department, so this does **not** join to `dor_parcel`.
+- `parcel_id_num`, `parcel_id_source` — a parcel identifier and the department it came from, `PWD` (Water Department) or `DOR` (Department of Records). It rarely matches `dor_parcel.basereg`, so it does **not** join to `dor_parcel`.
 
 The FCODE key is published in the [PASDA metadata record](https://www.pasda.psu.edu/uci/FullMetadataDisplay.aspx?file=PhiladelphiaBuildings2017.xml).
 
 ## Data quality & usage notes
 
-683 rows carry `fcode = 0`, undefined in the published key.
+A small share of rows carry `fcode = 0`, undefined in the published key.
 
-235 rows have null `approx_hgt`. The height style places them in the lowest bin rather than dropping them, so a map shows them.
+A few rows have null `approx_hgt`. Filter them with `WHERE approx_hgt IS NOT NULL` before you analyse height.
 
-Height distribution: 57,606 under 20 ft, 427,111 between 20 and 35 ft, 58,494 between 35 and 60 ft, and 2,637 at 60 ft or above.
+The height style breaks at 20, 35, and 60 ft. Most buildings fall between 20 and 35 ft, and few reach 60 ft or above.
 
 Tippecanoe dropped features from z10 and z11 tiles to stay under its 200,000-feature limit. The GeoParquet holds every feature, and the PMTiles are complete from z12 up.
 
@@ -82,8 +82,19 @@ WHERE fcode = 1830
 ORDER BY square_ft DESC;
 ```
 
+## Versions
+
+`li_building_footprints.parquet` is always the current extract. Each earlier extract stays at
+`versions/<version>.parquet` and never changes. `collection.json` lists every
+version, with its checksum and the date the city last edited the rows.
+`2026-08-26` is the first version. The publisher states a weekly update cadence
+([source](https://opendataphilly.org/datasets/building-footprints/)). The catalog checks the source daily and
+records a new version at most every 7 days, and only when the rows changed.
+See "Versions" in the [catalog guide](../AGENTS.md) for a query that
+compares two versions.
+
 ## Related collections
 
-- [dor_parcel](../dor_parcel) — parcel boundaries. Join spatially or on address; `parcel_id_num` is a Water Department identifier and will not match.
+- [dor_parcel](../dor_parcel) — parcel boundaries. Join spatially or on address. `parcel_id_num` rarely matches `dor_parcel.basereg`.
 - [vacant_indicators_bldg](../vacant_indicators_bldg) — which of these structures the city believes are empty.
 - [land_use](../land_use) — what the building is used for.

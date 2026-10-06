@@ -42,7 +42,8 @@
   "stac_extensions": [
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
-    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "updated": "2026-08-26T11:27:09Z",
   "table:columns": [
@@ -75,8 +76,8 @@
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T11:27:09Z",
+          "2026-08-26T11:27:09Z"
         ]
       ]
     }
@@ -114,7 +115,16 @@
       "file:checksum": "1220cd02146d882cf425b6d15e82e6208e9be90bfc166396d603e60ada9bda04de3e",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T11:27:09Z",
+      "phl:source_updated": null,
+      "table:row_count": 39,
+      "phl:content_hash": "344055168904233294621:39"
     }
-  }
+  },
+  "version": "2026-08-26",
+  "phl:source_updated": null,
+  "phl:update_frequency": "unstated",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/zoning-descriptions/"
 }

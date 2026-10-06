@@ -4,11 +4,11 @@ Guidance for AI agents and LLMs working with this collection.
 
 ## Overview
 
-Parcels the City of Philadelphia's Vacant Property Indicators model flags as likely vacant land. 28,737 parcels.
+Parcels the City of Philadelphia's Vacant Property Indicators model flags as likely vacant land.
 
 The model was built by the Office of Innovation and Technology with Licenses and Inspections, the Office of Property Assessment, the Philadelphia Land Bank, and the Philadelphia Water Department. It reads administrative traces rather than observing the ground: a recently disconnected gas supply is one such signal, which is why a property that looks occupied from the street can still appear here.
 
-8,413 parcels score 1.0, where every indicator agrees the lot is empty.
+A score of 1.0 means every indicator agrees the lot is empty.
 
 ## Accessing the data
 
@@ -21,12 +21,12 @@ SELECT * FROM read_parquet(
 ) LIMIT 5;
 ```
 
-Coordinates are EPSG:3857 (Web Mercator) metres. DuckDB reads `geometry`
-natively, so do not wrap it in `ST_GeomFromWKB`.
+Coordinates are longitude and latitude in CRS84 (WGS 84). DuckDB reads
+`geometry` natively, so do not wrap it in `ST_GeomFromWKB`.
 
 ## Schema & field notes
 
-- `land_rank` — the model's confidence, from 0.5 to 1.0. It measures how many independent administrative signals agree, so a higher value means more agreement. Distribution: 0.5 (16,294 parcels), 0.667 (3,635), 0.833 (395), 1.0 (8,413).
+- `land_rank` — the model's confidence, from 0.5 to 1.0. It measures how many independent administrative signals agree, so a higher value means more agreement. It takes four values: 0.5, 0.667, 0.833, and 1.0. The "Distribution of confidence" query below counts parcels at each.
 - `address` — street address. Join on this, normalized, to [dor_parcel](../dor_parcel).
 - `owner1`, `owner2` — recorded owners.
 - `bldg_desc` — description of the structure.
@@ -86,9 +86,20 @@ WHERE v.land_rank >= 0.95
 ORDER BY p.Shape__Area DESC LIMIT 20;
 ```
 
+## Versions
+
+`vacant_indicators_land.parquet` is always the current extract. Each earlier extract stays at
+`versions/<version>.parquet` and never changes. `collection.json` lists every
+version, with its checksum and the date the city last edited the rows.
+`2026-08-26` is the first version. The publisher states no update cadence
+([source](https://opendataphilly.org/datasets/vacant-property-indicators/)). The catalog checks the source daily and
+records a new version at most every 7 days, and only when the rows changed.
+See "Versions" in the [catalog guide](../AGENTS.md) for a query that
+compares two versions.
+
 ## Related collections
 
 - [vacant_indicators_bldg](../vacant_indicators_bldg) — vacant structures rather than vacant lots.
-- [dor_parcel](../dor_parcel) — join on normalized address, 96% match rate.
+- [dor_parcel](../dor_parcel) — join on normalized address. Most parcels match, but not all.
 - [land_use](../land_use) — class 9 is the planning department's own vacancy assessment, broader than this model's.
-- [council_districts_2024](../council_districts_2024) — District 5 holds 9,178 vacant parcels against 268 in District 10.
+- [council_districts_2024](../council_districts_2024) — vacant land concentrates in some districts, such as District 5, and is sparse in others, such as District 10. The council district query above gives the counts.

@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "affordable_housing",
   "stac_version": "1.1.0",
-  "description": "Affordable housing projects funded by the Division of Housing and Community Development and completed since 1994. DHCD funds developers to build and maintain affordable units across the city.\n\n501 projects account for 19,249 units, spanning fiscal years 1995 through 2026. Rental is the most common project type at 242 projects, followed by special needs at 128 and homeownership at 109. Each row records total units alongside accessible, sensory, and visitable unit counts, so accessibility can be measured directly.\n\n`development_type` separates new construction from rehabilitation of vacant buildings and preservation of occupied ones. Read this against [vacant_indicators_bldg](../vacant_indicators_bldg) to see where rehabilitation has returned vacant structures to use.\n\nSource: [Affordable Housing Production](https://opendataphilly.org/datasets/affordable-housing-production/) on OpenDataPhilly.",
+  "description": "Affordable housing projects funded by the Division of Housing and Community Development and completed since 1994. DHCD funds developers to build and maintain affordable units across the city.\n\nEach row is one project with its fiscal year of completion. Rental is the most common project type, followed by special needs and homeownership. Each row records total units alongside accessible, sensory, and visitable unit counts, so accessibility can be measured directly.\n\n`development_type` separates new construction from rehabilitation of vacant buildings and preservation of occupied ones. Read this against [vacant_indicators_bldg](../vacant_indicators_bldg) to see where rehabilitation has returned vacant structures to use.\n\nSource: [Affordable Housing Production](https://opendataphilly.org/datasets/affordable-housing-production/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,7 +57,8 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "Point",
   "geoparquet:feature_count": 501,
@@ -121,7 +122,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-10-06T20:34:27Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 8,
   "pmtiles:tile_type": "mvt",
@@ -138,18 +139,18 @@
     "spatial": {
       "bbox": [
         [
-          -75.248901,
-          39.901828,
-          -74.9828976135199,
-          40.1217132292974
+          -75.2488964996,
+          39.900366,
+          -74.9821635003,
+          40.121685
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-08-27T18:34:44Z"
         ]
       ]
     }
@@ -183,18 +184,25 @@
     "affordable_housing": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/affordable_housing/affordable_housing.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 36962,
-      "file:checksum": "1220f5df81ae394902a078da5f2f4618a8bbc9b238576fe5f13e2bd99076bd92a354",
+      "file:size": 36588,
+      "file:checksum": "1220b195eccab97751bf626675f51f408608a537439864a68be8532bae48a7bccdda",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-08-27T18:34:44Z",
+      "table:row_count": 501,
+      "phl:content_hash": "4644241105961061216805:501",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 22
     },
     "affordable_housing-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/affordable_housing/affordable_housing.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "affordable_housing (vector tiles)",
-      "file:size": 46952,
-      "file:checksum": "1220306eb8ce727d7ef30f0cdc99d49196c33d2fa41d4d5316f7ad7fab5fbcd9b742",
+      "file:size": 46363,
+      "file:checksum": "12201406fcac48ca6c2db8e73491e3f76e88ae993eda07f2ba17b24d93b8030a685d",
       "roles": [
         "data"
       ]
@@ -237,6 +245,25 @@
       "roles": [
         "style"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/affordable_housing/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "affordable_housing as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 501,
+      "phl:content_hash": "4678859374191473874558:501",
+      "file:size": 36962,
+      "file:checksum": "1220f5df81ae394902a078da5f2f4618a8bbc9b238576fe5f13e2bd99076bd92a354"
     }
-  }
+  },
+  "version": "2026-10-06",
+  "phl:source_updated": "2026-08-27T18:34:44Z",
+  "phl:update_frequency": "unstated",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/affordable-housing-production/"
 }

@@ -32,6 +32,13 @@ Both AWS calls go through one session, built by ``aws_session`` from the
 optional ``profile`` and ``region`` keys. Source Cooperative wants a named
 profile, and the default session can select the wrong account without one.
 
+Two environment variables override the config for the scheduled refresh,
+which signs in to the Source data proxy and not to the raw bucket.
+``PUBLISH_WRITE_PREFIX`` replaces ``write_prefix`` and ``PUBLISH_DATA_DIR``
+replaces ``data_dir``. Neither one widens the walk. When
+``AWS_ENDPOINT_URL_S3`` is set, boto3 sends every call to that endpoint and
+this script asks for path-style addressing, which the proxy requires.
+
 Uploads run on a bounded thread pool of MAX_UPLOAD_WORKERS threads. A failed
 object is named on stderr and the run exits non-zero. One failure does not
 stop the other uploads.
@@ -40,6 +47,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import os
 import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -87,6 +95,13 @@ MAX_UPLOAD_WORKERS = 16
 # publish of thousands of files stays readable.
 PROGRESS_EVERY = 100
 
+# Environment variables that replace a config key. The scheduled refresh sets
+# them; a maintainer publishing by hand leaves them unset.
+ENV_OVERRIDES = {
+    "PUBLISH_WRITE_PREFIX": "write_prefix",
+    "PUBLISH_DATA_DIR": "data_dir",
+}
+
 
 @dataclass(frozen=True)
 class Upload:
@@ -106,6 +121,7 @@ def load_config(path: Path = CONFIG) -> dict[str, str]:
 
     ``write_prefix``, ``public_base`` and ``publish_dir`` are required.
     ``region`` and ``profile`` are optional scalars and may be absent or empty.
+    A non-empty variable in ENV_OVERRIDES replaces its key.
     """
     config: dict[str, str] = {}
     for line in path.read_text().splitlines():
@@ -114,6 +130,9 @@ def load_config(path: Path = CONFIG) -> dict[str, str]:
             continue
         key, value = line.split(":", 1)
         config[key.strip()] = value.strip().strip("'\"")
+    for variable, key in ENV_OVERRIDES.items():
+        if os.environ.get(variable):
+            config[key] = os.environ[variable]
     missing = {"write_prefix", "public_base", "publish_dir"} - config.keys()
     if missing:
         sys.exit(f"{path.name} is missing: {', '.join(sorted(missing))}")
@@ -220,12 +239,26 @@ def aws_session(config: dict[str, str]):
     )
 
 
+def s3_client(session):
+    """An S3 client from the session, path-style when an endpoint is set.
+
+    The Source data proxy names the account as the bucket
+    (``s3://<account>/<product>/...``) and serves no per-bucket hostnames,
+    so a virtual-hosted request does not reach it.
+    """
+    if not os.environ.get("AWS_ENDPOINT_URL_S3"):
+        return session.client("s3")
+    from botocore.config import Config
+
+    return session.client("s3", config=Config(s3={"addressing_style": "path"}))
+
+
 def remote_index(
     bucket: str, prefix: str, config: dict[str, str]
 ) -> dict[str, tuple[int, str]]:
     """Size and ETag for every object under the prefix, or {} when unreadable."""
     try:
-        client = aws_session(config).client("s3")
+        client = s3_client(aws_session(config))
         index = {}
         paginator = client.get_paginator("list_objects_v2")
         for page in paginator.paginate(Bucket=bucket, Prefix=prefix):
@@ -259,7 +292,7 @@ def upload_all(session, bucket: str, uploads: list[Upload]) -> list[str]:
         if existing is not None:
             return existing
         with new_client:
-            thread_state.client = session.client("s3")
+            thread_state.client = s3_client(session)
         return thread_state.client
 
     def put(upload: Upload) -> None:

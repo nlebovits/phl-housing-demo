@@ -2,7 +2,7 @@
   "type": "Collection",
   "id": "li_building_footprints",
   "stac_version": "1.1.0",
-  "description": "Outlines of buildings and related structures across Philadelphia, captured photogrammetrically from aerial imagery. The layer covers residential, commercial, and industrial buildings, along with isolated garages, mobile homes, sheds, greenhouses, silos, and buildings under construction that have walls.\n\n546,083 polygons carry an approximate height (`approx_hgt`), a footprint area in square feet, and a feature code. The published FCODE key defines 1810 as Building (545,339 rows) and 1830 as Tank (61 rows).\n\n`parcel_id_num` links a footprint to its parcel in [dor_parcel](../dor_parcel). See [AGENTS.md](AGENTS.md) for the join.\n\nSource: [Building Footprints](https://opendataphilly.org/datasets/building-footprints/) on OpenDataPhilly.",
+  "description": "Outlines of buildings and related structures across Philadelphia, captured photogrammetrically from aerial imagery. The layer covers residential, commercial, and industrial buildings, along with isolated garages, mobile homes, sheds, greenhouses, silos, and buildings under construction that have walls.\n\nEach polygon carries an approximate height (`approx_hgt`), a footprint area in square feet, and a feature code. The published FCODE key defines 1810 as Building and 1830 as Tank. Nearly every row is a building, and tanks are rare.\n\nJoin a footprint to its parcel in [dor_parcel](../dor_parcel) spatially. `parcel_id_num` rarely matches a parcel identifier. See [AGENTS.md](AGENTS.md) for the join.\n\nSource: [Building Footprints](https://opendataphilly.org/datasets/building-footprints/) on OpenDataPhilly.",
   "links": [
     {
       "rel": "root",
@@ -57,11 +57,12 @@
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
     "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 546083,
-  "table:row_count": 546083,
+  "geoparquet:feature_count": 546047,
+  "table:row_count": 546047,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -129,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-10-06T20:34:27Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 15,
   "pmtiles:tile_type": "mvt",
@@ -146,18 +147,18 @@
     "spatial": {
       "bbox": [
         [
-          -75.2794332707506,
-          39.87237,
-          -74.957297,
-          40.1377813500408
+          -75.2794332708,
+          39.8723704386,
+          -74.9572974503,
+          40.13778135
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          null,
-          null
+          "2026-08-26T12:27:17Z",
+          "2026-10-05T22:19:45Z"
         ]
       ]
     }
@@ -191,18 +192,25 @@
     "li_building_footprints": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/li_building_footprints/li_building_footprints.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 102810229,
-      "file:checksum": "12200771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a",
+      "file:size": 102986382,
+      "file:checksum": "122053ae3e0f5d5451d3eb99a4b682ff74657ba7c449d6996efdf6706fc5aae34b12",
       "roles": [
         "data"
-      ]
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-05T22:19:45Z",
+      "table:row_count": 546047,
+      "phl:content_hash": "5039116006493584028887034:546047",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0
     },
     "li_building_footprints-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/li_building_footprints/li_building_footprints.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "li_building_footprints (vector tiles)",
-      "file:size": 210430426,
-      "file:checksum": "12200397f086d44857ffb80d9c55a4de5cf2bb592dd7bd2d3a03158b0e4c61282426",
+      "file:size": 210900715,
+      "file:checksum": "122069fad3863067089b4f38bd5cac4b49c980b1077ab4279f5273b135ba0e4e9b4a",
       "roles": [
         "visual"
       ]
@@ -245,6 +253,25 @@
       "roles": [
         "style"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/li_building_footprints/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "li_building_footprints as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 546083,
+      "phl:content_hash": "5028995348252396185420674:546083",
+      "file:size": 102810229,
+      "file:checksum": "12200771b36fd7fb1f52dd16610c61b9bb3b2882c80c8453a70eae126a064e23c05a"
     }
-  }
+  },
+  "version": "2026-10-06",
+  "phl:source_updated": "2026-10-05T22:19:45Z",
+  "phl:update_frequency": "weekly",
+  "phl:update_frequency_source": "https://opendataphilly.org/datasets/building-footprints/"
 }

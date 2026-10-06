@@ -19,8 +19,8 @@ SELECT * FROM read_parquet(
 ) LIMIT 5;
 ```
 
-Coordinates are EPSG:3857 (Web Mercator) metres. DuckDB reads `geometry`
-natively, so do not wrap it in `ST_GeomFromWKB`.
+Coordinates are longitude and latitude in CRS84 (WGS 84). DuckDB reads
+`geometry` natively, so do not wrap it in `ST_GeomFromWKB`.
 
 ## Schema & field notes
 
@@ -71,6 +71,17 @@ SELECT district, district_num
 FROM read_parquet(getvariable('base') || '/council_districts_2024/council_districts_2024.parquet')
 ORDER BY district_num;
 ```
+
+## Versions
+
+`council_districts_2024.parquet` is always the current extract. Each earlier extract stays at
+`versions/<version>.parquet` and never changes. `collection.json` lists every
+version, with its checksum and the date the city last edited the rows.
+`2026-08-26` is the first version. The publisher updates it as needed
+([source](https://opendataphilly.org/datasets/city-council-districts/)). The catalog checks the source daily and
+records a new version at most every 1 day, and only when the rows changed.
+See "Versions" in the [catalog guide](../AGENTS.md) for a query that
+compares two versions.
 
 ## Related collections
 

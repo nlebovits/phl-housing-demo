@@ -1,0 +1,252 @@
+name: Refresh
+
+# Re-extract the collections whose source data changed, and publish each
+# change as a new version. The outgoing version is archived under versions/.
+# See docs/refresh.md.
+#
+# The probe is cheap: two small ArcGIS requests per collection. A collection
+# is extracted only when its source edited rows after the current version and
+# its min_days (tools/sources.json) have passed. Most runs extract nothing.
+#
+# 07:00 UTC is after the city's working day. The observed source edits fall
+# between 11:00 and 23:00 UTC.
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated collection ids (empty = all)"
+        required: false
+        default: ""
+      force:
+        description: "Ignore min_days and the source edit date"
+        type: boolean
+        default: false
+      dry_run:
+        description: "Print what is due and stop"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# One writer at a time. A second run would archive the same current file
+# and write the same version label.
+concurrency:
+  group: catalog-write
+  cancel-in-progress: false
+
+env:
+  PUBLISH_DATA_DIR: ${{ github.workspace }}/../refresh-staging
+
+jobs:
+  refresh:
+    # Only main publishes. The commit job pushes to main, and a run from
+    # another branch would carry that branch's commits with it.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    # The Source Cooperative service account trusts this environment, not a
+    # branch. A pull request job never runs in it, so it never gets write
+    # credentials.
+    environment: source-coop
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}
+      failed: ${{ steps.refresh.outputs.failed }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Install the refresh tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q tippecanoe
+          python -m pip install -r tools/requirements-refresh.txt \
+            'rashid>=0.1.5,<0.2.0' stac-check
+          curl -fsSL --retry 3 -o /tmp/duckdb.zip \
+            https://github.com/duckdb/duckdb/releases/download/v1.5.1/duckdb_cli-linux-amd64.zip
+          sudo unzip -q /tmp/duckdb.zip -d /usr/local/bin
+
+      # A collection that fails is rolled back and reported. The others still
+      # publish, and the job fails at the end.
+      - name: Refresh what is due
+        id: refresh
+        env:
+          ONLY: ${{ inputs.only }}
+          FORCE: ${{ inputs.force }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          mkdir -p "$PUBLISH_DATA_DIR"
+          args=(--report refresh-report.json)
+          [ -n "$ONLY" ] && args+=(--only "$ONLY")
+          [ "$FORCE" = "true" ] && args+=(--force)
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          set +e
+          python tools/refresh.py "${args[@]}"
+          code=$?
+          set -e
+          echo "failed=$([ $code -ne 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          [ -f refresh-report.json ] || { echo "refresh.py wrote no report"; exit 1; }
+          python - <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          report = json.load(open("refresh-report.json"))
+          print("| Collection | Outcome | Detail |\n|---|---|---|")
+          for name, r in sorted(report.items()):
+              first = r["detail"].strip().splitlines()[-1] if r["status"] == "error" \
+                  else r["detail"].splitlines()[0]
+              print(f"| {name} | {r['status']} | {first} |")
+          EOF
+
+      - name: Look for changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain -- catalog state)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git status --short -- catalog state
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "nothing to publish"
+          fi
+
+      # The same gates CI runs, on the refreshed metadata, before any upload.
+      - name: Catalog gates
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          CI_LIGHT: "1"
+          QUERY_CHECK_REMOTE: "0"
+        run: python tests/run_all.py
+
+      # Credentials are requested here, after the extract, so the one-hour
+      # token covers only the upload.
+      - name: Sign in to Source Cooperative
+        if: steps.changes.outputs.changed == 'true'
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.SOURCE_SA_ID }}:role/FullAccess
+          audience: https://data.source.coop
+          sts-endpoint: https://data.source.coop/.sts
+          aws-region: us-west-2
+
+      # Data first, then metadata. upload_data.py finishes every archive under
+      # versions/ before it replaces any current file.
+      - name: Upload data and publish metadata
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          AWS_ENDPOINT_URL_S3: https://data.source.coop
+          PUBLISH_WRITE_PREFIX: s3://nlebovits/phl-housing-demo
+        run: |
+          if [ -n "$(find "$PUBLISH_DATA_DIR" -type f -print -quit)" ]; then
+            python tools/upload_data.py --confirm
+          fi
+          python tools/publish.py --confirm
+
+      # Every documented query against what is now public.
+      - name: Check the published catalog
+        if: steps.changes.outputs.changed == 'true'
+        run: python tests/test_queries.py
+
+      - name: Keep the published metadata for the commit job
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: refreshed-metadata
+          path: |
+            catalog/
+            state/
+          retention-days: 7
+
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: refresh-report
+          path: refresh-report.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Fail when a collection failed
+        if: steps.refresh.outputs.failed == 'true'
+        run: |
+          echo "::error::one or more collections failed; see refresh-report.json"
+          exit 1
+
+  # Git is the record of every version. This job holds the only write token
+  # for the repository, and no cloud credentials.
+  commit:
+    needs: refresh
+    if: always() && needs.refresh.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: refreshed-metadata
+          path: refreshed
+
+      - name: Commit the published metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          rsync -a refreshed/catalog/ catalog/
+          if [ -d refreshed/state ]; then rsync -a refreshed/state/ state/; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalog state
+          git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
+          git commit -m "Refresh catalog versions" \
+            -m "The scheduled refresh published these versions. See the workflow run for the report."
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
+          git pull --rebase "$remote" main
+          git push "$remote" HEAD:main
+
+  # A failed collection opens one issue, or comments on the open one.
+  report:
+    needs: refresh
+    if: always() && needs.refresh.outputs.failed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: refresh-report
+
+      - name: Open or update the refresh issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python - <<'EOF' > body.md
+          import json, os
+          report = json.load(open("refresh-report.json"))
+          print(f"The scheduled refresh failed for one or more collections. Run: {os.environ['RUN_URL']}\n")
+          print("A failed collection was rolled back. It publishes nothing until the cause is fixed.\n")
+          for name, r in sorted(report.items()):
+              if r["status"] in ("style", "error"):
+                  print(f"## {name} ({r['status']})\n\n```\n{r['detail'].strip()[-3000:]}\n```\n")
+          EOF
+          title="Scheduled refresh failed"
+          number=$(gh issue list --state open --search "in:title \"$title\"" \
+            --json number --jq '.[0].number')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body-file body.md
+          else
+            gh issue create --title "$title" --body-file body.md
+          fi

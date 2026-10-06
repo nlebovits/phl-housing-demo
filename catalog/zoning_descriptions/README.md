@@ -1,8 +1,8 @@
 # Zoning Code Descriptions
 
-The city's own decoder for Philadelphia zoning district codes. 39 rows pair a code such as `RSA-5` with its written name, "Residential Single-Family Attached-5".
+The city's own decoder for Philadelphia zoning district codes. Each row pairs a code such as `RSA-5` with its written name, "Residential Single-Family Attached-5".
 
-This is a lookup table with no geometry. Join `new_code` here to `long_code` in [zoning_basedistricts](../zoning_basedistricts) to label a zoning map. All 29,205 district polygons match a row in this table.
+This is a lookup table with no geometry. Join `new_code` here to `long_code` in [zoning_basedistricts](../zoning_basedistricts) to label a zoning map. Every district polygon matches a row in this table.
 
 The codes divide into residential (RSD, RSA, RTA, RM, RMX), commercial (CA, CMX), industrial (I, ICMX, IRMX), and special purpose (SP) families. See [AGENTS.md](AGENTS.md) for the join.
 
@@ -10,14 +10,10 @@ Source: [Zoning Descriptions](https://opendataphilly.org/datasets/zoning-descrip
 
 ![zoning](https://img.shields.io/badge/zoning-blue) ![lookup table](https://img.shields.io/badge/lookup_table-blue) ![codes](https://img.shields.io/badge/codes-blue) ![reference](https://img.shields.io/badge/reference-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2843924339013, 39.859589, -74.9554859388087, 40.137935]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `zoning_descriptions.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -26,12 +22,6 @@ Source: [Zoning Descriptions](https://opendataphilly.org/datasets/zoning-descrip
 | objectid | int32 |  |
 | new_code | string |  |
 | code_description | string |  |
-
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./zoning_descriptions.parquet | 1.2 KB | 1220cd02146d... |
 
 ## Quick Start
 
@@ -53,7 +43,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Written 2026-08-26 from the zoning_descriptions FeatureServer query endpoint using DuckDB. `portolan extract arcgis` reports "0/0 layers" for services that advertise a table rather than a layer, so the CLI could not carry it; see [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). All 39 rows were verified against the source.
+Written 2026-08-26 from the zoning_descriptions FeatureServer query endpoint using DuckDB. `portolan extract arcgis` reports "0/0 layers" for services that advertise a table rather than a layer, so the CLI could not carry it; see [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). Every row was verified against the source.
 
 
 ## Citation

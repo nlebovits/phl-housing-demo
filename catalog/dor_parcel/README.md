@@ -2,22 +2,18 @@
 
 Boundaries of every real estate property parcel in Philadelphia, drawn from legally recorded deed documents. The Department of Records maintains the layer and republishes it weekly.
 
-607,957 polygons cover the city. Each row carries a registry identifier (`basereg`, `mapreg`), a parsed street address, and flags for condominium units and stacked parcels. `geoid` is the Geographic Unique ID, and `pin` the parcel identification number.
+Polygons cover the whole city, and `table:row_count` in `collection.json` gives the current count. Each row carries a registry identifier (`basereg`, `mapreg`), a parsed street address, and flags for condominium units and stacked parcels. `geoid` is the Geographic Unique ID, and `pin` the parcel identification number.
 
-Parcels are the join key for most Philadelphia property data. `opa_id` in the vacancy collections and `parcel_id_num` in building footprints both point back here. See [AGENTS.md](AGENTS.md) for queries that run.
+Parcels are the join key for most Philadelphia property data. The vacancy collections and building footprints join to it by address or spatially, not by identifier. See [AGENTS.md](AGENTS.md) for queries that run.
 
 Source: [Department of Records Property Parcels](https://opendataphilly.org/datasets/department-of-records-property-parcels/) on OpenDataPhilly.
 
 ![parcels](https://img.shields.io/badge/parcels-blue) ![cadastral](https://img.shields.io/badge/cadastral-blue) ![property](https://img.shields.io/badge/property-blue) ![deeds](https://img.shields.io/badge/deeds-blue) ![land records](https://img.shields.io/badge/land_records-blue)
 
-## Spatial Coverage
+## Versions
 
-- **Bounding Box**: [-75.2777569, 39.8705549624657, -74.9557605644352, 40.1378739]
-
-## Temporal Coverage
-
-- **Start**: open
-- **End**: ongoing
+- `dor_parcel.parquet` is the current extract. `collection.json` names its version in `version`.
+- Each earlier version stays at `versions/<version>.parquet` and never changes. `collection.json` lists every version with its dates and checksum.
 
 ## Schema
 
@@ -66,17 +62,6 @@ Source: [Department of Records Property Parcels](https://opendataphilly.org/data
 | bbox | struct<xmin: double, ymin: double, xmax: double, ymax: double> |  |
 | geometry | binary |  |
 
-## Files
-
-| File | Size | Checksum |
-|------|------|----------|
-| ./dor_parcel.parquet | 66.0 MB | 12208e4444ea... |
-| ./dor_parcel.pmtiles | 136.8 MB | 1220c7659e99... |
-| ./styles/default.json | 757 B | 1220a1e42945... |
-| ./dor_parcel.thumb.jpg | 252.7 KB | 12200623e7eb... |
-| ./README.md | 4.3 KB | 1220382e08e6... |
-| ./styles/condominium.json | 611 B | 12204d78ba8b... |
-
 ## Quick Start
 
 ```python
@@ -97,7 +82,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the DOR_Parcel FeatureServer. 4 invalid geometries were repaired with shapely.make_valid; 37 rows carry null geometry and sort to the end of the file. Column meanings come from the service's own field aliases.
+Extracted 2026-08-26 from the DOR_Parcel FeatureServer. Invalid geometries were repaired with shapely.make_valid. Some rows carry null geometry and sort to the end of the file. Column meanings come from the service's own field aliases.
 
 
 ## Citation
@@ -119,11 +104,11 @@ Nissim Lebovits <nissim.lebovits@radiant.earth>
 
 ## Known Issues
 
-37 of 607,957 rows have no geometry.
+Some rows have no geometry.
 
 `muniment_type`, `muniment_id`, `separated_rights`, `dor_review`, `opa_review`, `pwd_review`, `matchflag`, and the integer `status` are undocumented. Their field aliases repeat the column name and the city metadata portal returns no reachable data dictionary. They are carried as published rather than guessed.
 
-`status` holds 1 (571,350 rows), 2 (33,856), 3 (2,722), 4 (7), 5 (6), and null (11). The meaning of each code is not published.
+`status` holds the codes 1, 2, 3, 4, 5, and 9, and is null on some rows. Code 1 is by far the most common. The meaning of each code is not published.
 
 
 ---
