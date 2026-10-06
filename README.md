@@ -6,26 +6,32 @@ Cooperative. Ten collections describing property, zoning, vacancy, and
 affordable housing in Philadelphia, mirrored from the City of Philadelphia's
 ArcGIS services via [OpenDataPhilly](https://opendataphilly.org/).
 
-The catalog holds 1,780,845 features. This repository holds its STAC metadata,
-map styles, thumbnails, and documentation. The data lives in the bucket.
+This repository holds the catalog's STAC metadata, map styles, thumbnails,
+documentation, and the refresh pipeline. The data lives in the bucket.
 
-| Collection | Rows | Geometry |
+| Collection | Geometry | What it answers |
 |---|---|---|
-| Property parcels | 607,957 | Polygon |
-| Land use | 559,077 | Polygon |
-| Building footprints | 546,083 | Polygon |
-| Zoning base districts | 29,205 | Polygon |
-| Vacant indicators — land | 28,737 | Polygon |
-| Vacant indicators — buildings | 9,041 | Polygon |
-| Affordable housing production | 501 | Point |
-| Zoning overlays | 195 | Polygon |
-| Zoning code descriptions | 39 | None |
-| City council districts (2024) | 10 | Polygon |
+| Property parcels | Polygon | Where are the property boundaries? |
+| Land use | Polygon | What is happening on this land? |
+| Building footprints | Polygon | Where are the buildings, and how tall? |
+| Zoning base districts | Polygon | What does the code permit here? |
+| Vacant indicators — land | Polygon | Which lots look empty? |
+| Vacant indicators — buildings | Polygon | Which buildings look empty? |
+| Affordable housing production | Point | Where has the city funded housing? |
+| Zoning overlays | Polygon | What extra rules apply here? |
+| Zoning code descriptions | None | What does this zoning code mean? |
+| City council districts (2024) | Polygon | Who represents this area? |
 
 ## Reading the data
 
-Every collection is GeoParquet in EPSG:3857, with PMTiles alongside for
-rendering. Read one over HTTP with DuckDB:
+Every collection is GeoParquet in CRS84 (longitude, latitude), with PMTiles
+alongside for rendering. Each one has a fixed URL for its current data:
+
+```
+https://data.source.coop/nlebovits/phl-housing-demo/<collection>/<collection>.parquet
+```
+
+Read one over HTTP with DuckDB:
 
 ```sql
 INSTALL spatial; LOAD spatial;
@@ -43,9 +49,39 @@ JOIN read_parquet(getvariable('base')
 GROUP BY 1, 2 ORDER BY 3 DESC;
 ```
 
+Coordinates are degrees, so `ST_Area(geometry)` returns square degrees.
+Reproject to EPSG:2272 before you measure.
+
 [catalog/AGENTS.md](catalog/AGENTS.md) covers join keys, worked queries, and
-the four data quirks that cause most wrong answers. Each collection has its own
+the data quirks that cause most wrong answers. Each collection has its own
 agent guide beside its `collection.json`.
+
+## Versions
+
+A scheduled job checks every source daily. When the city changes a
+collection's rows, the job records a new version:
+
+```
+<collection>/<collection>.parquet           the current version
+<collection>/versions/<version>.parquet     each earlier version, never changed
+<collection>/collection.json                every version, with its dates and checksum
+```
+
+The version is the date of the extract. The first version of every collection
+is `2026-08-26`. Read an earlier version like the current one:
+
+```sql
+SELECT count(*)
+FROM read_parquet(getvariable('base')
+     || '/dor_parcel/versions/2026-08-26.parquet');
+```
+
+The current row count of each collection is `table:row_count` in its
+`collection.json`. The documentation quotes no counts, because they change
+with every version.
+
+[docs/refresh.md](docs/refresh.md) explains how the job decides what to
+refresh, how often each collection can change, and how to run it by hand.
 
 ## Contributing
 
@@ -58,18 +94,24 @@ git clone https://github.com/nlebovits/phl-housing-demo
 cd phl-housing-demo
 
 python3 -m venv .venv
-.venv/bin/pip install 'rashid>=0.1.5,<0.2.0' stac-check
+.venv/bin/pip install 'rashid>=0.1.5,<0.2.0' stac-check duckdb pyarrow
 
 # make the edit, then
 .venv/bin/python3 tests/run_all.py
 ```
 
-CI runs the same gates on every pull request: `rashid` for Portolan
-conformance, `stac-check` for STAC hygiene, link resolution, and every SQL
-block in the documentation executed against the published bucket.
+CI runs the same gates on every pull request:
 
-That last gate is the unusual one. A query in the docs that no longer runs is a
-bug, so CI fails when one breaks.
+- `rashid` for Portolan conformance and `stac-check` for STAC hygiene
+- link resolution
+- the refresh pipeline's offline contract
+- a check that the docs quote no counts or percentages from the data
+- every SQL block in the documentation, run against the published bucket
+
+A query in the docs that no longer runs is a bug, so CI fails when one breaks.
+
+Do not run `portolan push` on this catalog. The refresh workflow is the only
+tool that writes data to the bucket. See [AGENTS.md](AGENTS.md).
 
 ## License
 
