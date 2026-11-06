@@ -56,7 +56,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Zoning_BaseDistricts FeatureServer. The publisher also offers vintages for 2015, 2016, 2020, 2021, and 2025; this collection carries the current layer only.
+The scheduled refresh extracts each version from the Zoning_BaseDistricts FeatureServer. `collection.json` lists every version and its date. The publisher also offers vintages for 2015, 2016, 2020, 2021, and 2025; this collection carries the current layer only.
 
 
 ## Citation

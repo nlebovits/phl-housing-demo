@@ -56,7 +56,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Zoning_Overlays FeatureServer. Invalid geometries were repaired with shapely.make_valid.
+The scheduled refresh extracts each version from the Zoning_Overlays FeatureServer. `collection.json` lists every version and its date. Each extract repairs invalid geometries.
 
 
 ## Citation

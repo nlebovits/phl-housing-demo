@@ -43,7 +43,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Written 2026-08-26 from the zoning_descriptions FeatureServer query endpoint using DuckDB. `portolan extract arcgis` reports "0/0 layers" for services that advertise a table rather than a layer, so the CLI could not carry it; see [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). Every row was verified against the source.
+The scheduled refresh fetches each version from the zoning_descriptions FeatureServer query endpoint with a paged query. `portolan extract arcgis` reports "0/0 layers" for services that advertise a table rather than a layer, so the CLI cannot carry it; see [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). Each extract checks its row count against the service's count. `collection.json` lists every version and its date. The first version was written with DuckDB.
 
 
 ## Citation

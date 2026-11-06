@@ -54,7 +54,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the AffordableHousingProduction FeatureServer. The service names the layer "Affordable_Housing" and covers 1994 through September 2024, though the data includes projects completed in later fiscal years.
+The scheduled refresh extracts each version from the AffordableHousingProduction FeatureServer. `collection.json` lists every version and its date. The service names the layer "Affordable_Housing" and covers 1994 through September 2024, though the data includes projects completed in later fiscal years.
 
 
 ## Citation

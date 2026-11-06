@@ -1,0 +1,83 @@
+name: Publish
+
+# Publish catalog/ when a change to it lands on main. The scheduled refresh
+# publishes new data versions itself (refresh.yml). This workflow covers the
+# rest: a fixed README, an edited description, a new style. Without it, a
+# metadata change on main stays out of the bucket until the next refresh
+# that finds new data.
+#
+# It uploads metadata only. tools/publish.py syncs catalog/ and never
+# deletes. Data files stay with the refresh. See docs/refresh.md.
+#
+# The refresh commit job pushes with GITHUB_TOKEN, which starts no workflow,
+# so a refresh does not publish twice.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "catalog/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# The same group as the refresh. A publish never runs while a refresh writes.
+concurrency:
+  group: catalog-write
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: source-coop
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Install the gates and the publisher
+        run: |
+          python -m pip install 'rashid>=0.1.5,<0.2.0' stac-check \
+            duckdb pyarrow boto3
+          curl -fsSL --retry 3 -o /tmp/duckdb.zip \
+            https://github.com/duckdb/duckdb/releases/download/v1.5.1/duckdb_cli-linux-amd64.zip
+          sudo unzip -q /tmp/duckdb.zip -d /usr/local/bin
+
+      - name: Catalog gates
+        env:
+          CI_LIGHT: "1"
+          QUERY_CHECK_REMOTE: "0"
+        run: python tests/run_all.py
+
+      # A refresh that published and then failed to commit leaves the bucket
+      # ahead of git. Publishing this checkout would then replace the newer
+      # collection.json files. Stop instead.
+      - name: Check that git has every published version
+        run: python tools/check_sync.py
+
+      - name: Sign in to Source Cooperative
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.SOURCE_SA_ID }}:role/FullAccess
+          audience: https://data.source.coop
+          sts-endpoint: https://data.source.coop/.sts
+          aws-region: us-west-2
+
+      - name: Publish the metadata
+        env:
+          AWS_ENDPOINT_URL_S3: https://data.source.coop
+          PUBLISH_WRITE_PREFIX: s3://nlebovits/phl-housing-demo
+        run: python tools/publish.py --confirm
+
+      # Every documented query against what is now public.
+      - name: Check the published catalog
+        run: python tests/test_queries.py

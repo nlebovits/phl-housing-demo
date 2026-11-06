@@ -10,7 +10,8 @@ is checked here without network access:
   step class, or a new unstyled value each fail.
 - ``stac_versions``: the Collection's current asset points at
   ``<coll>.parquet``. A new version moves the previous one to an archive
-  asset at ``versions/<version>.parquet`` with its checksum intact.
+  asset at ``versions/<version>.parquet`` with its checksum intact. The root
+  Catalog's ``updated`` follows the newest Collection.
 
 Needs pyarrow and duckdb.
 
@@ -182,6 +183,20 @@ with tempfile.TemporaryDirectory() as tmp:
           "no per-version item links remain")
     check(stac.next_version(catalog, "c", "2026-10-08") == "2026-10-08-2",
           "a repeated day gets a suffix, never a reused version")
+
+    # --- the root Catalog follows its newest Collection --------------------
+    (catalog / "d").mkdir()
+    (catalog / "d" / "collection.json").write_text(json.dumps(
+        {"type": "Collection", "id": "d", "updated": "2026-09-01T00:00:00Z"}))
+    root = catalog / "catalog.json"
+    root.write_text(json.dumps({"type": "Catalog", "id": "r",
+                                "updated": "2026-08-26T00:00:00Z"}))
+    stac.stamp_catalog(catalog)
+    check(json.loads(root.read_text())["updated"] == "2026-10-08T07:00:00Z",
+          "the root Catalog takes the newest Collection's updated")
+    before = root.read_text()
+    stac.stamp_catalog(catalog)
+    check(root.read_text() == before, "a second stamp changes nothing")
 
 if errors:
     print("\n".join(f"error  {e}" for e in errors))

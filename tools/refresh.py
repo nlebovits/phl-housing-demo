@@ -18,6 +18,9 @@ For each collection in ``tools/sources.json``:
    - the new ``<coll>/<coll>.parquet`` and ``<coll>/<coll>.pmtiles``
 6. Record the new version in ``collection.json`` (``tools/stac_versions.py``).
 
+After the last collection, the root ``catalog.json`` takes the ``updated``
+of the newest Collection.
+
 A collection that fails at any step is rolled back: its ``catalog/`` folder
 and its staged files return to their state before the run. The others go on.
 Nothing here uploads. The workflow runs the gates, then ``upload_data.py``
@@ -44,6 +47,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import arcgis  # noqa: E402
 import check_styles  # noqa: E402
+import check_sync  # noqa: E402
 import extract as extractor  # noqa: E402
 import stac_versions as stac  # noqa: E402
 from publish import ROOT, load_config  # noqa: E402
@@ -140,19 +144,6 @@ class Context:
         self.stamp = now.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def published_version(ctx: Context, collection: str) -> str | None:
-    """The ``version`` of the published Collection, or None."""
-    url = f"{ctx.public_base}/{collection}/collection.json"
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    try:
-        with urllib.request.urlopen(request, timeout=60) as response:
-            return json.load(response).get("version")
-    except urllib.error.HTTPError as exc:
-        if exc.code == 404:
-            return None
-        raise
-
-
 def assert_in_sync(ctx: Context, collection: str) -> None:
     """Refuse to run when the bucket holds a version git does not.
 
@@ -160,8 +151,8 @@ def assert_in_sync(ctx: Context, collection: str) -> None:
     from the older checkout would archive the wrong file under the wrong
     label, and the bucket and git would disagree about history.
     """
-    remote = published_version(ctx, collection)
-    if remote is not None and remote not in stac.versions(ctx.catalog, collection):
+    remote = check_sync.ahead_of(ctx.catalog, ctx.public_base, collection)
+    if remote is not None:
         raise RuntimeError(
             f"{collection}: the bucket is at version {remote}, which this "
             "checkout does not have. Commit the published catalog/ state "
@@ -301,6 +292,7 @@ def main() -> int:
 
     if not args.dry_run:
         save_state(state)
+        stac.stamp_catalog(ctx.catalog)
     if args.report:
         args.report.write_text(json.dumps(report, indent=2) + "\n")
     failed = [n for n, r in report.items() if r["status"] in ("style", "error")]
