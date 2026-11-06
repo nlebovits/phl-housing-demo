@@ -14,6 +14,7 @@ No network, no AWS, no credentials.
 Run: python3 tests/test_upload_data.py
 """
 import io
+import os
 import sys
 import tempfile
 from contextlib import redirect_stderr, redirect_stdout
@@ -155,13 +156,21 @@ with tempfile.TemporaryDirectory() as tmp:
 
 # --- the unedited template exits cleanly -------------------------------
 # The shipped catalog.publish.yaml sets no data_dir, so main() must report
-# that instead of raising a traceback.
+# that instead of raising a traceback. The refresh workflow sets
+# PUBLISH_DATA_DIR for every step, and load_config() applies it. The check
+# removes the overrides so that main() reads the template alone.
 argv = sys.argv
 sys.argv = ["upload_data.py"]
+saved = {k: os.environ.pop(k, None)
+         for k in ("PUBLISH_WRITE_PREFIX", "PUBLISH_DATA_DIR")}
 try:
     message = exit_message(upload_data.main)
 finally:
     sys.argv = argv
+    for key, value in saved.items():
+        os.environ.pop(key, None)
+        if value is not None:
+            os.environ[key] = value
 check("data_dir" in message, f"the template exits on data_dir: {message!r}")
 
 # --- the sentinel guard ------------------------------------------------
