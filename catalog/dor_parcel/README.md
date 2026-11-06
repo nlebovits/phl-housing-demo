@@ -82,7 +82,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the DOR_Parcel FeatureServer. Invalid geometries were repaired with shapely.make_valid. Some rows carry null geometry and sort to the end of the file. Column meanings come from the service's own field aliases.
+The scheduled refresh extracts each version from the DOR_Parcel FeatureServer. `collection.json` lists every version and its date. Each extract repairs invalid geometries. Some rows carry null geometry and sort to the end of the file. Column meanings come from the service's own field aliases.
 
 
 ## Citation

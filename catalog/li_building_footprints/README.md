@@ -56,7 +56,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the LI_BUILDING_FOOTPRINTS FeatureServer. FCODE values were decoded from the [PASDA metadata record](https://www.pasda.psu.edu/uci/FullMetadataDisplay.aspx?file=PhiladelphiaBuildings2017.xml), which states "FCODE Key 1810 = Building 1830 = Tank". The same record describes the capture rules, including a 150 square foot minimum structure size.
+The scheduled refresh extracts each version from the LI_BUILDING_FOOTPRINTS FeatureServer. `collection.json` lists every version and its date. The FCODE key comes from the [PASDA metadata record](https://www.pasda.psu.edu/uci/FullMetadataDisplay.aspx?file=PhiladelphiaBuildings2017.xml), which states "FCODE Key 1810 = Building 1830 = Tank". The same record describes the capture rules, including a 150 square foot minimum structure size.
 
 
 ## Citation

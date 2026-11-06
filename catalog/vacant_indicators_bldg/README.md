@@ -56,7 +56,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Vacant_Indicators_Bldg FeatureServer. Rank semantics come from the city data team's [post on the OpenDataPhilly forum](https://groups.google.com/g/opendataphilly/c/anMKnNH3pqc), which states that a BUILD_RANK of 0.50 or higher marks a property as a likely vacant building.
+The scheduled refresh extracts each version from the Vacant_Indicators_Bldg FeatureServer. `collection.json` lists every version and its date. Rank semantics come from the city data team's [post on the OpenDataPhilly forum](https://groups.google.com/g/opendataphilly/c/anMKnNH3pqc), which states that a BUILD_RANK of 0.50 or higher marks a property as a likely vacant building.
 
 
 ## Citation

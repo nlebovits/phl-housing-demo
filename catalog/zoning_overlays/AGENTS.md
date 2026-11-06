@@ -34,7 +34,7 @@ Coordinates are longitude and latitude in CRS84 (WGS 84). DuckDB reads
 
 **Overlays intersect by design.** They are not a partition of the city. Summing `Shape__Area` across overlays double-counts any ground covered by more than one. Dissolve first if you need total covered area.
 
-Invalid geometries were repaired during the 2026-08-26 extraction.
+Each extract repairs invalid geometries.
 
 Some rows carry `[N/A]` as their symbol, a literal string rather than a null. Filter with `overlay_symbol <> '[N/A]'`, not `IS NOT NULL`.
 

@@ -41,7 +41,7 @@ No geometry column, so this collection is tabular. Spatial functions do not appl
 
 Covers base district codes only. Overlay symbols live in [zoning_overlays](../zoning_overlays) and are not decoded here.
 
-The table was written with DuckDB rather than `portolan extract`, which reports "0/0 layers" for ArcGIS services advertising a table instead of a layer. See [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). Every row of the 2026-08-26 extract was verified against the source.
+The refresh fetches the table with a paged query against the FeatureServer query endpoint rather than `portolan extract`, which reports "0/0 layers" for ArcGIS services advertising a table instead of a layer. See [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812). Each extract checks its row count against the service's count.
 
 ## Example queries
 

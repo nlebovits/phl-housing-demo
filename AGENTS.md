@@ -25,6 +25,8 @@ The refresh workflow is the only tool that writes data to the bucket. See
   bucket.
 - `tools/publish.py` uploads everything under `catalog/`, including every
   `AGENTS.md`.
+- `.github/workflows/publish.yml` runs `tools/publish.py` when a change to
+  `catalog/` lands on `main`. It uploads metadata only.
 
 Never run `portolan push` on this catalog. It rewrites `<coll>/<coll>.parquet`
 without archiving the version it replaces, and its `versions.json` state
@@ -77,6 +79,12 @@ a query that the reader can run. The current row count is `table:row_count`
 in each `collection.json`. Codes, EPSG codes, dates, and thresholds that the
 publisher defines are not data numbers.
 
+Never write an extraction date into a README, an AGENTS.md, or a
+`description`. Write that the refresh extracts each version, and point to
+the version list in `collection.json`. Only a sentence about the first
+version names a date. `tests/test_no_data_numbers.py` and
+`tests/test_no_stale_dates.py` enforce both rules.
+
 Three findings in this catalog came from outside the service metadata and are
 cited where they are used: the building FCODE key from the
 [PASDA metadata record](https://www.pasda.psu.edu/uci/FullMetadataDisplay.aspx?file=PhiladelphiaBuildings2017.xml),
@@ -103,7 +111,7 @@ Two specific traps in this data:
 - Vacancy ranks are repeating decimals (`0.6666666700000001`). A `match` on
   `0.67` matches nothing. Use `step`.
 - Land use codes 52, 72, 81, 91, and 92 are easy to omit. Code 91 alone covers
-  36,646 parcels.
+  a large share of parcels.
 
 ## The conformance allow-list
 

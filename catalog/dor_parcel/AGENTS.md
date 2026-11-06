@@ -58,7 +58,7 @@ GROUP BY 1 ORDER BY 1;
 
 Some rows have null geometry. They carry attributes but cannot be mapped, and they sort to the end of the file. Filter them with `WHERE geometry IS NOT NULL`.
 
-Invalid geometries were repaired with `shapely.make_valid` during the 2026-08-26 extraction. No invalid geometry remains.
+Each extract repairs invalid geometries, so no invalid geometry remains.
 
 `Shape__Area` is in Web Mercator square metres, so it overstates ground area by roughly 1.7x at Philadelphia's latitude. Reproject to EPSG:2272 for real areas.
 

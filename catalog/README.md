@@ -65,11 +65,11 @@ The collections cover the City of Philadelphia. Each `collection.json` gives its
 
 ## Processing Notes
 
-Extracted from City of Philadelphia ArcGIS FeatureServer endpoints on 2026-08-26 using `portolan extract arcgis`, one service per collection. Every layer is served from the city's ArcGIS Online organization fLeGjb7u4uXqeF9q. Feature counts were checked against each service's returnCountOnly response, and all ten collections match their source exactly.
+The scheduled refresh extracts every collection from City of Philadelphia ArcGIS FeatureServer endpoints with `portolan extract arcgis`, one service per collection. Every layer is served from the city's ArcGIS Online organization fLeGjb7u4uXqeF9q. Each extract checks its feature count against the service's returnCountOnly response, and a version that does not match is not published.
 The services serve EPSG:3857 (Web Mercator). The GeoParquet is reprojected to CRS84 (longitude, latitude) for all collections, so `ST_Area(geometry)` returns square degrees; reproject to EPSG:2272 to measure. The `Shape__Area` and `Shape__Length` columns keep the publisher's Web Mercator metres.
 Column meanings come from three sources. ArcGIS field aliases supplied attested names such as `basereg` = "Base Registry Number". The [PASDA metadata record](https://www.pasda.psu.edu/uci/FullMetadataDisplay.aspx?file=PhiladelphiaBuildings2017.xml) supplied the building footprint FCODE key, which states "1810 = Building 1830 = Tank". The city data team's [post on the OpenDataPhilly forum](https://groups.google.com/g/opendataphilly/c/anMKnNH3pqc) supplied the vacancy rank semantics. Land use category labels were derived from the data; see AGENTS.md for the query.
-`zoning_descriptions` is a non-spatial lookup table. `portolan extract arcgis` reports "0/0 layers" for services that advertise a table rather than a layer, so that parquet was written with DuckDB from the same FeatureServer query endpoint. See [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812).
-The 2026-08-26 extract reordered land use with `gpio sort hilbert` to give its row groups spatial locality.
+`zoning_descriptions` is a non-spatial lookup table. `portolan extract arcgis` reports "0/0 layers" for services that advertise a table rather than a layer, so the refresh fetches that parquet with a paged query against the same FeatureServer query endpoint. See [portolan-cli#812](https://github.com/portolan-sdi/portolan-cli/issues/812).
+Each extract reorders every spatial collection with `gpio sort hilbert` to give its row groups spatial locality.
 
 ## Updates and versions
 

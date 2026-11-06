@@ -20,6 +20,7 @@ TESTS = [
     "test_conformance.py",
     "test_refresh.py",     # due logic, style gate, versions
     "test_no_data_numbers.py",  # no counts or percentages in the docs
+    "test_no_stale_dates.py",  # no extraction dates in the docs
     "test_queries.py",     # runs every SQL block in the AGENTS.md files
 ]
 

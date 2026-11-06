@@ -58,7 +58,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Vacant_Indicators_Land FeatureServer. Rank semantics come from the city data team's [post on the OpenDataPhilly forum](https://groups.google.com/g/opendataphilly/c/anMKnNH3pqc), which states that a LAND_RANK of 0.50 or higher marks a property as likely vacant land and that "the greater the percentage value of either indicator, the more likely the property is vacant".
+The scheduled refresh extracts each version from the Vacant_Indicators_Land FeatureServer. `collection.json` lists every version and its date. Rank semantics come from the city data team's [post on the OpenDataPhilly forum](https://groups.google.com/g/opendataphilly/c/anMKnNH3pqc), which states that a LAND_RANK of 0.50 or higher marks a property as likely vacant land and that "the greater the percentage value of either indicator, the more likely the property is vacant".
 
 
 ## Citation

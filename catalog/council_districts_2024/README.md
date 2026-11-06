@@ -46,7 +46,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Council_Districts_2024 FeatureServer. The publisher also offers 1990, 2000, and 2016 boundaries; this collection carries the current districts only.
+The scheduled refresh extracts each version from the Council_Districts_2024 FeatureServer. `collection.json` lists every version and its date. The publisher also offers 1990, 2000, and 2016 boundaries; this collection carries the current districts only.
 
 
 ## Citation

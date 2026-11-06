@@ -46,7 +46,7 @@ Major classes, which the first example query below counts:
 
 Sub-classes seen in the data: 11 Residential Low Density, 12 Residential Medium Density, 13 Residential High Density, 21 Commercial Consumer, 22 Commercial Business/Professional, 23 Commercial Mixed Residential, 31 Industrial, 41 Civic/Institution, 51 Transportation, 52 Greened ROW, 61 Culture/Amusement, 62 Active Recreation, 71 Park/Open Space, 72 Cemetery, 81 Water, 91 Vacant, 92 Other/Unknown.
 
-- `year` — survey year. Every row is 2023 or 2025.
+- `year` — survey year. A new survey adds a new year; list the years present with `SELECT DISTINCT year`.
 - `vacbldg` — `V` on a handful of rows, null on the rest. Effectively unpopulated, so use the [vacancy collections](../vacant_indicators_bldg) instead.
 
 ## Data quality & usage notes
@@ -55,7 +55,7 @@ Sub-classes seen in the data: 11 Residential Low Density, 12 Residential Medium 
 
 The numeric code columns are clean and fully populated. Read those and map them yourself, as the first query below does.
 
-Invalid geometries were repaired during the 2026-08-26 extraction. The file is Hilbert-sorted, so row groups carry spatial locality and a bbox filter can skip most of the file.
+Each extract repairs invalid geometries. The file is Hilbert-sorted, so row groups carry spatial locality and a bbox filter can skip most of the file.
 
 ## Example queries
 

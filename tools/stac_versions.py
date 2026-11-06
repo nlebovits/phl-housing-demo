@@ -180,5 +180,29 @@ def add_version(
     write_json(path, doc)
 
 
+def newest_update(catalog: Path) -> str | None:
+    """The latest ``updated`` of any Collection under ``catalog``."""
+    stamps = [json.loads(p.read_text()).get("updated")
+              for p in catalog.glob("*/collection.json")]
+    stamps = [s for s in stamps if s]
+    return max(stamps) if stamps else None
+
+
+def stamp_catalog(catalog: Path) -> None:
+    """Set the root Catalog's ``updated`` to the newest Collection's.
+
+    A new version changes one Collection. The root Catalog changes too,
+    because its children changed. tests/test_no_stale_dates.py fails when
+    the two disagree.
+    """
+    newest = newest_update(catalog)
+    path = catalog / "catalog.json"
+    doc = json.loads(path.read_text())
+    if newest is None or doc.get("updated") == newest:
+        return
+    doc["updated"] = newest
+    write_json(path, doc)
+
+
 def write_json(path: Path, doc: dict) -> None:
     path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")

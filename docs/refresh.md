@@ -99,16 +99,43 @@ history shows a better one.
 | `updated` | Collection | When the current version was extracted |
 | `phl:update_frequency` | Collection | The publisher's stated cadence, or `unstated` |
 | `extent.temporal` | Collection | First to newest version |
+| `updated` | Root `catalog.json` | The newest Collection `updated` |
 
 The 2026-08-26 versions predate this pipeline, so their source edit date is
 unknown. Their `phl:source_updated` is null.
 
-## Numbers in the documentation
+## Numbers and dates in the documentation
 
 The READMEs and AGENTS.md files quote no numbers measured from the data. A
 refresh changes the data, so a quoted count goes stale. The docs describe
 what the data holds and give queries. The current row count is
 `table:row_count` in each `collection.json`.
+
+The docs also name no extraction date. A sentence such as "Extracted
+2026-08-26" is wrong after the next version, and nothing rewrites it. The
+docs say that the refresh extracts each version and point to the version
+list in `collection.json`. A sentence that names the first version keeps
+its date, because the first version never changes.
+
+Two gates enforce both rules on the READMEs, the AGENTS.md files, and the
+`description` of the root Catalog and of every Collection:
+
+- `tests/test_no_data_numbers.py` fails on a thousands-separated number, a
+  percentage, or any count that a `collection.json` records.
+- `tests/test_no_stale_dates.py` fails on an ISO date or a dated
+  "extracted" claim. It also fails when the root `catalog.json` `updated`
+  differs from the newest Collection `updated`.
+
+The refresh runs both gates before it uploads, so a version never ships
+with a stale claim.
+
+## Publishing a metadata change
+
+`.github/workflows/publish.yml` publishes `catalog/` when a change to it
+lands on `main`. Fix a README, merge, and the bucket follows. The workflow
+runs the gates, then `tools/check_sync.py`, then `tools/publish.py`. It
+uploads metadata only and never deletes. It shares the `catalog-write`
+concurrency group with the refresh, so the two never run at once.
 
 ## Why there is no Iceberg table
 
@@ -179,7 +206,8 @@ inputs are `only`, `force`, and `dry_run`. The workflow publishes only from
 - **"the bucket is at version X, which this checkout does not have"**: a
   run published and then failed to commit. Download the run's
   `refreshed-metadata` artifact, copy it over `catalog/` and `state/`, and
-  commit it. Then run the refresh again.
+  commit it. Then run the refresh again. The publish workflow stops with
+  the same message from `tools/check_sync.py`, for the same reason.
 - **"does not match the checksum of version X"**: the current file in the
   bucket changed outside the refresh. Find out what wrote it before you do
   anything else.

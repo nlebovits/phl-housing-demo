@@ -6,7 +6,7 @@
   ],
   "id": "phl-housing-demo",
   "title": "Philadelphia Housing and Land Use",
-  "description": "Ten collections describing property, zoning, vacancy, and affordable housing in Philadelphia, mirrored from the City of Philadelphia's ArcGIS services via [OpenDataPhilly](https://opendataphilly.org/). Together they answer what exists on a parcel, what the zoning code permits there, whether the city believes it is empty, and what publicly funded housing has been built.\n\nThe catalog holds 1,780,845 features. Property parcels (607,957), land use (559,077), and building footprints (546,083) cover the whole city. Zoning base districts (29,205) and overlays (195) record what the code allows, and a 39-row lookup table decodes every zoning code. The city's vacancy model flags 28,737 likely-vacant lots and 9,041 likely-vacant buildings. Affordable housing production lists 501 DHCD-funded projects delivering 19,249 units since 1994.\n\nEach collection ships as GeoParquet in the source CRS, EPSG:3857, with PMTiles for rendering and two to three verified map styles. Start at the catalog [AGENTS.md](AGENTS.md) for join keys, worked queries, and the data quirks that cause most wrong answers.",
+  "description": "Ten collections describing property, zoning, vacancy, and affordable housing in Philadelphia, mirrored from the City of Philadelphia's ArcGIS services via [OpenDataPhilly](https://opendataphilly.org/). Together they answer what exists on a parcel, what the zoning code permits there, whether the city believes it is empty, and what publicly funded housing has been built.\n\nProperty parcels, land use, and building footprints cover the whole city. Zoning base districts and overlays record what the code allows, and a lookup table decodes every zoning code. The city's vacancy model flags likely-vacant lots and likely-vacant buildings. Affordable housing production lists the DHCD-funded projects completed since 1994 and the units each one delivered. Each collection's `table:row_count` gives its current size.\n\nEach collection ships as GeoParquet in CRS84 (longitude, latitude), with PMTiles for rendering and two to three verified map styles. Start at the catalog [AGENTS.md](AGENTS.md) for join keys, worked queries, and the data quirks that cause most wrong answers.",
   "links": [
     {
       "rel": "root",
@@ -69,13 +69,13 @@
       "rel": "child",
       "href": "./vacant_indicators_bldg/collection.json",
       "type": "application/json",
-      "title": "Vacant Property Indicators \u2014 Buildings"
+      "title": "Vacant Property Indicators — Buildings"
     },
     {
       "rel": "child",
       "href": "./vacant_indicators_land/collection.json",
       "type": "application/json",
-      "title": "Vacant Property Indicators \u2014 Land"
+      "title": "Vacant Property Indicators — Land"
     },
     {
       "rel": "child",
@@ -96,5 +96,5 @@
       "title": "Zoning Overlays"
     }
   ],
-  "updated": "2026-08-26T00:00:00Z"
+  "updated": "2026-11-06T12:15:35Z"
 }

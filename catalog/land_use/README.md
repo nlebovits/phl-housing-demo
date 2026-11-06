@@ -53,7 +53,7 @@ print(gdf.head())
 
 ## Processing Notes
 
-Extracted 2026-08-26 from the Land_Use FeatureServer. Invalid geometries were repaired with shapely.make_valid. Reordered with `gpio sort hilbert` so row groups carry spatial locality. Category labels were derived from the populated rows of `c_dig1desc`; see AGENTS.md for the query.
+The scheduled refresh extracts each version from the Land_Use FeatureServer. `collection.json` lists every version and its date. Each extract repairs invalid geometries and reorders the rows with `gpio sort hilbert`, so row groups carry spatial locality. Category labels were derived from the populated rows of `c_dig1desc`; see AGENTS.md for the query.
 
 
 ## Citation
