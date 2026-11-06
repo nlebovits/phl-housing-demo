@@ -61,8 +61,8 @@
     "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 29206,
-  "table:row_count": 29206,
+  "geoparquet:feature_count": 29210,
+  "table:row_count": 29210,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -130,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-10-06T20:34:27Z",
+  "updated": "2026-11-06T12:15:35Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 13,
   "pmtiles:tile_type": "mvt",
@@ -158,7 +158,7 @@
       "interval": [
         [
           "2026-08-26T12:27:17Z",
-          "2026-10-06T11:24:24Z"
+          "2026-11-06T12:23:55Z"
         ]
       ]
     }
@@ -192,25 +192,25 @@
     "zoning_basedistricts": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_basedistricts/zoning_basedistricts.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 16230441,
-      "file:checksum": "1220ff2f0a2ba7ece081ce0e751948fdc45be20a4a4dfff654b13fe9eb3aa2787bd2",
       "roles": [
         "data"
       ],
-      "version": "2026-10-06",
-      "created": "2026-10-06T20:34:27Z",
-      "phl:source_updated": "2026-10-06T11:24:24Z",
-      "table:row_count": 29206,
-      "phl:content_hash": "269790599981843369739571:29206",
+      "version": "2026-11-06",
+      "created": "2026-11-06T12:15:35Z",
+      "phl:source_updated": "2026-11-06T12:23:55Z",
+      "table:row_count": 29210,
+      "phl:content_hash": "268917811270508098791870:29210",
       "phl:repaired_geometries": 0,
-      "phl:null_geometries": 0
+      "phl:null_geometries": 0,
+      "file:size": 16231189,
+      "file:checksum": "122001be521488875c4744881c6ca235f84f247f7b40a5a77fd0643a37e30c266ba8"
     },
     "zoning_basedistricts-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_basedistricts/zoning_basedistricts.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "zoning_basedistricts (vector tiles)",
-      "file:size": 8201942,
-      "file:checksum": "1220e196f61f046a692ea69555155446139be1d687ec875886b8b6db3c90018ec3f6",
+      "file:size": 8202944,
+      "file:checksum": "122066967b53e8a5cf841644f1cdb516c234d94adec42b08c93afb407297f6283e44",
       "roles": [
         "data"
       ]
@@ -268,10 +268,27 @@
       "phl:content_hash": "269130379686740813960542:29205",
       "file:size": 16230250,
       "file:checksum": "1220795792ff598cd8a24a15e8b5b4994b124d137191d62e8f90f8e7d4b6b43663c7"
+    },
+    "version-2026-10-06": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_basedistricts/versions/2026-10-06.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "zoning_basedistricts as extracted on 2026-10-06",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-06T11:24:24Z",
+      "table:row_count": 29206,
+      "phl:content_hash": "269790599981843369739571:29206",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0,
+      "file:size": 16230441,
+      "file:checksum": "1220ff2f0a2ba7ece081ce0e751948fdc45be20a4a4dfff654b13fe9eb3aa2787bd2"
     }
   },
-  "version": "2026-10-06",
-  "phl:source_updated": "2026-10-06T11:24:24Z",
+  "version": "2026-11-06",
+  "phl:source_updated": "2026-11-06T12:23:55Z",
   "phl:update_frequency": "unstated",
   "phl:update_frequency_source": "https://opendataphilly.org/datasets/zoning-base-districts/"
 }

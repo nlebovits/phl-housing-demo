@@ -61,8 +61,8 @@
     "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 196,
-  "table:row_count": 196,
+  "geoparquet:feature_count": 198,
+  "table:row_count": 198,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -130,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-10-06T20:34:27Z",
+  "updated": "2026-11-06T12:15:35Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 14,
   "pmtiles:tile_type": "mvt",
@@ -158,7 +158,7 @@
       "interval": [
         [
           "2026-08-26T12:27:17Z",
-          "2026-10-06T11:27:25Z"
+          "2026-11-06T12:24:06Z"
         ]
       ]
     }
@@ -192,25 +192,25 @@
     "zoning_overlays": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/zoning_overlays.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 8477047,
-      "file:checksum": "1220f76c39b382dd42244345f73f025ee159ec3dcd823253b009eb9b198b7dbe803e",
       "roles": [
         "data"
       ],
-      "version": "2026-10-06",
-      "created": "2026-10-06T20:34:27Z",
-      "phl:source_updated": "2026-10-06T11:27:25Z",
-      "table:row_count": 196,
-      "phl:content_hash": "1857321154659228809161:196",
+      "version": "2026-11-06",
+      "created": "2026-11-06T12:15:35Z",
+      "phl:source_updated": "2026-11-06T12:24:06Z",
+      "table:row_count": 198,
+      "phl:content_hash": "1736057313230304820166:198",
       "phl:repaired_geometries": 0,
-      "phl:null_geometries": 0
+      "phl:null_geometries": 0,
+      "file:size": 8468653,
+      "file:checksum": "122015983cadbc6c0824c7fdd1692640b962f1978af90774399fd494fe48b502c729"
     },
     "zoning_overlays-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/zoning_overlays.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "zoning_overlays (vector tiles)",
-      "file:size": 1831473,
-      "file:checksum": "1220473a73e492de4c1ce470eca481d4971a43aa580e08c5353e5b034094d368ac4a",
+      "file:size": 1860754,
+      "file:checksum": "1220505b3c13a7abbb59d4093b977360e7a4b3c92a2837b16f589fc49131387aab94",
       "roles": [
         "visual"
       ]
@@ -258,10 +258,27 @@
       "phl:content_hash": "1859858242596082498699:195",
       "file:size": 8523414,
       "file:checksum": "1220a0e0b368a763f620240b0b4a68b02294290e82ce079242552fc95a2735a50641"
+    },
+    "version-2026-10-06": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/zoning_overlays/versions/2026-10-06.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "zoning_overlays as extracted on 2026-10-06",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-06T11:27:25Z",
+      "table:row_count": 196,
+      "phl:content_hash": "1857321154659228809161:196",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0,
+      "file:size": 8477047,
+      "file:checksum": "1220f76c39b382dd42244345f73f025ee159ec3dcd823253b009eb9b198b7dbe803e"
     }
   },
-  "version": "2026-10-06",
-  "phl:source_updated": "2026-10-06T11:27:25Z",
+  "version": "2026-11-06",
+  "phl:source_updated": "2026-11-06T12:24:06Z",
   "phl:update_frequency": "unstated",
   "phl:update_frequency_source": "https://opendataphilly.org/datasets/zoning-overlays/"
 }

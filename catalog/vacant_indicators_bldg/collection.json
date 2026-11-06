@@ -61,8 +61,8 @@
     "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 9569,
-  "table:row_count": 9569,
+  "geoparquet:feature_count": 9593,
+  "table:row_count": 9593,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -130,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-10-06T20:34:27Z",
+  "updated": "2026-11-06T12:15:35Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 13,
   "pmtiles:tile_type": "mvt",
@@ -158,7 +158,7 @@
       "interval": [
         [
           "2026-08-26T12:27:17Z",
-          "2026-10-04T15:24:43Z"
+          "2026-11-01T16:23:54Z"
         ]
       ]
     }
@@ -192,25 +192,25 @@
     "vacant_indicators_bldg": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_bldg/vacant_indicators_bldg.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 1446474,
-      "file:checksum": "12200b10dc1dfe82d3a7fbd32d9851bb128b5c27e22da1a0fa41130365ee98897cdb",
       "roles": [
         "data"
       ],
-      "version": "2026-10-06",
-      "created": "2026-10-06T20:34:27Z",
-      "phl:source_updated": "2026-10-04T15:24:43Z",
-      "table:row_count": 9569,
-      "phl:content_hash": "89017312290803152208059:9569",
+      "version": "2026-11-06",
+      "created": "2026-11-06T12:15:35Z",
+      "phl:source_updated": "2026-11-01T16:23:54Z",
+      "table:row_count": 9593,
+      "phl:content_hash": "88821899584569642926790:9593",
       "phl:repaired_geometries": 0,
-      "phl:null_geometries": 0
+      "phl:null_geometries": 0,
+      "file:size": 1453437,
+      "file:checksum": "1220d572bede86de36594e56c3b63b2314c0bb8624de6271196b6928c81ac508cec8"
     },
     "vacant_indicators_bldg-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_bldg/vacant_indicators_bldg.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "vacant_indicators_bldg (vector tiles)",
-      "file:size": 2859019,
-      "file:checksum": "1220b35aca79ed974db84b9360ebcca1829471024e54669d10717198ef8bb9dc8fd7",
+      "file:size": 2877579,
+      "file:checksum": "1220c32b68681b03c8413a260fa44e6b5c22abd2aac5818f92bd9177f3be0513819a",
       "roles": [
         "visual"
       ]
@@ -268,10 +268,27 @@
       "phl:content_hash": "82918918162922042759097:9041",
       "file:size": 1371993,
       "file:checksum": "1220a220300c17e45983b55ee30195967264e3834c15407e5d5f7edda36a1eeadc72"
+    },
+    "version-2026-10-06": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/vacant_indicators_bldg/versions/2026-10-06.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "vacant_indicators_bldg as extracted on 2026-10-06",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-10-06",
+      "created": "2026-10-06T20:34:27Z",
+      "phl:source_updated": "2026-10-04T15:24:43Z",
+      "table:row_count": 9569,
+      "phl:content_hash": "89017312290803152208059:9569",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 0,
+      "file:size": 1446474,
+      "file:checksum": "12200b10dc1dfe82d3a7fbd32d9851bb128b5c27e22da1a0fa41130365ee98897cdb"
     }
   },
-  "version": "2026-10-06",
-  "phl:source_updated": "2026-10-04T15:24:43Z",
+  "version": "2026-11-06",
+  "phl:source_updated": "2026-11-01T16:23:54Z",
   "phl:update_frequency": "unstated",
   "phl:update_frequency_source": "https://opendataphilly.org/datasets/vacant-property-indicators/"
 }
