@@ -56,7 +56,7 @@
   "stac_extensions": [
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/file/v2.1.0/schema.json",
-    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.3.0/schema.json",
     "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
     "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
