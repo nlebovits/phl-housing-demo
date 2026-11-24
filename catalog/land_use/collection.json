@@ -61,8 +61,8 @@
     "https://stac-extensions.github.io/version/v1.2.0/schema.json"
   ],
   "geoparquet:geometry_type": "MultiPolygon",
-  "geoparquet:feature_count": 559077,
-  "table:row_count": 559077,
+  "geoparquet:feature_count": 608310,
+  "table:row_count": 608310,
   "table:primary_geometry": "geometry",
   "table:columns": [
     {
@@ -102,6 +102,18 @@
       "type": "string"
     },
     {
+      "name": "address",
+      "type": "string"
+    },
+    {
+      "name": "pin",
+      "type": "int32"
+    },
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
       "name": "Shape__Area",
       "type": "double"
     },
@@ -118,7 +130,7 @@
       "type": "binary"
     }
   ],
-  "updated": "2026-08-26T12:27:17Z",
+  "updated": "2026-11-24T18:37:19Z",
   "pmtiles:min_zoom": 0,
   "pmtiles:max_zoom": 14,
   "pmtiles:tile_type": "mvt",
@@ -146,7 +158,7 @@
       "interval": [
         [
           "2026-08-26T12:27:17Z",
-          "2026-08-26T12:27:17Z"
+          "2026-11-23T22:05:04Z"
         ]
       ]
     }
@@ -180,23 +192,25 @@
     "land_use": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/land_use/land_use.parquet",
       "type": "application/vnd.apache.parquet",
-      "file:size": 79255383,
-      "file:checksum": "12201241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa",
       "roles": [
         "data"
       ],
-      "version": "2026-08-26",
-      "created": "2026-08-26T12:27:17Z",
-      "phl:source_updated": null,
-      "table:row_count": 559077,
-      "phl:content_hash": "5159993519258805151655550:559077"
+      "version": "2026-11-24",
+      "created": "2026-11-24T18:37:19Z",
+      "phl:source_updated": "2026-11-23T22:05:04Z",
+      "table:row_count": 608310,
+      "phl:content_hash": "5617034939792797494385150:608310",
+      "phl:repaired_geometries": 0,
+      "phl:null_geometries": 71,
+      "file:size": 84938497,
+      "file:checksum": "12205060727cb14224bab7671850ded7ea41dd5c6261269a57fd48470565f9ba95c7"
     },
     "land_use-tiles": {
       "href": "https://data.source.coop/nlebovits/phl-housing-demo/land_use/land_use.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "land_use (vector tiles)",
-      "file:size": 88063155,
-      "file:checksum": "12200d37e44ad4c6911139e33d82999fd2006a9806b72731a8415d925e03688e376e",
+      "file:size": 127348100,
+      "file:checksum": "1220707f9f5af806dded719c0d83591b321687c3cc573e2cecf85943de5719f4579e",
       "roles": [
         "visual"
       ]
@@ -249,10 +263,25 @@
       "roles": [
         "style"
       ]
+    },
+    "version-2026-08-26": {
+      "href": "https://data.source.coop/nlebovits/phl-housing-demo/land_use/versions/2026-08-26.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "land_use as extracted on 2026-08-26",
+      "roles": [
+        "archive"
+      ],
+      "version": "2026-08-26",
+      "created": "2026-08-26T12:27:17Z",
+      "phl:source_updated": null,
+      "table:row_count": 559077,
+      "phl:content_hash": "5159993519258805151655550:559077",
+      "file:size": 79255383,
+      "file:checksum": "12201241a2a5d330ee7de48489e2056842187ba26036a5e10a9c978fac4a896a44aa"
     }
   },
-  "version": "2026-08-26",
-  "phl:source_updated": null,
+  "version": "2026-11-24",
+  "phl:source_updated": "2026-11-23T22:05:04Z",
   "phl:update_frequency": "unstated",
   "phl:update_frequency_source": "https://opendataphilly.org/datasets/land-use/"
 }
